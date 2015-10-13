@@ -21,6 +21,8 @@
   url: "/test/"
   side: left
   dropdown:
+  - title: "Building and using the input file"
+    url: "/inputguide/"
   - title: "Tutorial for the full-potential LDA program lmf"
     url: "/fpnew/"
   - title: "FP basis optimisation"
