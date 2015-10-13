@@ -32,6 +32,10 @@
   - title: "ASA tutorial"
     url: "/asadoc/"               
 
+- title: "Site Contribution"
+  url: "/formatting/"
+  side: left
+
 - title: "About"
   url: "/about/"
   side: left
