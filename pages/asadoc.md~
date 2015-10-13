@@ -1,0 +1,209 @@
+---
+layout: page-fullwidth
+title: "LM Suite - ASA Tutorial"
+subheadline: ""
+show_meta: false
+teaser: ""
+permalink: "/asadoc/"
+header:
+    image_fullwidth: "header_drop.jpg"
+---
+
+### Table of Contents
+*  Auto generated table of contents
+{:toc}  
+
+### _Purpose_
+_____________________________________________________________
+This tutorial demonstrates how to set up and run band calculation in the Atomic Spheres Approximation (ASA), using the **lm**{: style="color: blue"} program. It:
+
+1. describes how to set up the input file for use.
+
+2. how to run a band calculation with the **lm** package{: style="color: blue"}.
+
+3. shows how to generate energy bands and partial DOS.  
+
+### _Preliminaries_
+_____________________________________________________________
+This tutorial will require use of both the _lm_{: style="color: blue"} repository (located [here](https://bitbucket.org/lmto/lm)) and the post-compile build directory of the repository. For the purpose of demonstration, _lm_{: style="color: green"} will refer to the location of the downloaded repository and _lmbuild_{: style="color: green"} will refer to the location of the directory the repository was compiled (built) in to. In practice, these directories can be named differently. The tutorial will assume a file structure such as
+
+        ~/lmto/lm/
+        ~/lmto/lmbuild/
+
+All instances of commands assume the starting position, in the example above, is (this can be checked with the _pwd_{: style="color: blue"} command)
+
+        ~/lmto/
+
+All instances of _si_{: style="color: green"} in the command lines can be replaced with _ctrl.si_{: style="color: green"}, depending on what your input file has been named.
+
+### _Tutorial_
+_____________________________________________________________
+The aim of this section of the tutorial is to give an outline of the steps involved in using the **lm**{: style="color: blue"} program for those who may be more familiar with it. Further documentation and tutorials can be found for any topic that is not detailed in enough depth here.
+
+##### _1\. Building the Input File_
+_____________________________________________________________
+Shown below is a basic input file that can be used for this tutorial. First, navigate to the build directory _lmbuild_{: style="color: green"}.
+
+        cd lmbuild
+
+Once you have entered the build directory, create a new file named _si_{: style="color: green"} or _ctrl.si_{: style="color: green"} with your preferred text editor. In this file, paste the following text, this file is now your input file.
+
+<div onclick="elm = document.getElementById('box0'); if(elm.style.display == 'none') elm.style.display = 'block'; else elm.style.display = 'none';"><b>Click to show/hide sample input file.</b></div>
+{::nomarkdown}<div style="display:none;" id="box0">{:/} 
+
+~~~
+VERS    LM:7 ASA:7 
+
+HEADER  Si in diamond lattice with empty spheres.
+
+SYMGRP  i*r3(1,1,-1)::(1/4,1/4,1/4) r4x::(1/4,1/4,1/4)
+IO      SHOW=F HELP=F VERBOS=31,35 WKP=F 
+HEADER [ The contents of HEADER reside within the category delimiters,
+       ] so this line isn't part of it.
+STR     RMAX=3.6
+STR     RMAX[3.6] 
+OPTIONS NSPIN=1 ASA[ADNF=T TWOC=F CCOR=T] 
+% var a0=.5292 nk=3+1 
+BZ      NKABC={nk} {nk} {nk}  METAL=F DOSWT=T SAVDOS=F
+        BZJOB=0 
+BZ      NKABC=4 4 4 METAL=F DOSWT=T SAVDOS=F
+        BZJOB=0
+STRUC   NBAS=4 NCLASS=2 NL=3
+        ALAT=5.431/{a0} PLAT= 0 .5 .5   .5 0 .5   .5 .5 0 
+SITE    ATOM=SI   POS= 0 0 0
+        ATOM=SI   POS= .25 .25 .25
+        ATOM=ES   POS= .5 .5 .5
+        ATOM=ES   POS= .75 .75 .75
+SPEC    ATOM=SI   R/W=1  Z=14
+ITER    MIX=B2,wc=3,b0 CONVC=1D-5 NIT=10 
+START
+        BEGMOM=T (=T to begin with moments, =F to begin with band-structure)
+        CNTROL=T (=T to use following to override disk; =F to ignore following)
+          ATOM=SI  P=3.5 3.5 3.5    Q=1 0 0    2 0 0   0 0 0
+          ATOM=ES  P=1.5 2.5 3.5    Q=.5 0 0  .5 0 0   0 0 0 
+~~~
+
+{::nomarkdown}</div>{:/}
+
+##### _2\. Running Programs in the ASA Package_
+_____________________________________________________________
+The band calculation can be done with the **lm**{: style="color: blue"} package, located in your build directory. First, navigate to the build directory 
+
+        cd lmbuild
+
+To invoke **lm**{: style="color: blue"} and to pipe the output to a file, use the command
+
+        ./lm si > si.out
+
+This will run the **lm**{: style="color: blue"} package using the input file, _si_{: style="color: green"}, created above. The output will be displayed on screen as well as being saved to the _si.out_{: style="color: green"} file.
+
+_Note:_{: style="color: red"} The output file can be named differently, and its extension does not matter. Further, it is not neccessary to save the output to a file at all if you do not wish to, simply ommit:
+
+        > si.out
+
+##### _3\. Generating Energy Bands and Densities-of-States_
+_____________________________________________________________
+1.  Plotting energy bands require the use of a symmetry-line file. Rather than create one, it can be found in the _lm_{: style="color: green"} repository. First, navigate in to the build directory
+
+        cd lmbuild
+
+    From this directory, copy the _startup/syml.fcc_{: style="color: green"} file, located in the _startup_{: style="color: green"} directory of the _lm_{: style="color: green"} repository, and save it as _syml.si_{: style="color: green"}
+
+        cp ../lm/startup/syml.fcc syml.si
+
+    <div onclick="elm = document.getElementById('box1'); if(elm.style.display == 'none') elm.style.display = 'block'; else elm.style.display = 'none';"><b>The symmetry-line file should look as such (click to show).</b></div>
+    {::nomarkdown}<div style="display:none;" id="box1">{:/} 
+
+        41  .5  .5  .5  0   0   0		L to Gamma (Lambda)
+        ...
+        0   0   0   0   0   0   0
+
+    {::nomarkdown}</div>{:/}
+
+    With this symmetry-line file, **lm**{: style="color: blue"} can be used to generate ASA bands:
+
+        ./lm si --band:fn=syml
+
+    The bands are generated and saved in the file _bands.si_{: style="color: green"} located in the current directory
+
+    The bands can be plotted with various plotting packages.
+
+    <div onclick="elm = document.getElementById('box2'); if(elm.style.display == 'none') elm.style.display = 'block'; else elm.style.display = 'none';"><b>Click here for an example plot using the FPLOT package.</b></div>
+    {::nomarkdown}<div style="display:none;" id="box2">{:/}
+
+    If you have the plbnds program installed from the FPLOT package, you can plot the bands by invoking one of the following
+
+        echo -15 15 5 10 | ./plbnds -scl=13.6 -ef=0 si 
+
+    which creates directly a postscript file ps.si, or better:
+
+        echo -15 15 5 10 | ./plbnds -fplot -scl=13.6 -ef=0 si 
+
+    which creates an fplot command, in file plot.plnds. Use fplot to create a postscript file:
+
+        ./fplot -f plot.plbnds 
+
+    which creates a postscript file ps.dat.
+
+    The energy bands generator has an optional feature that enables you to highlight a particular orbital character in the energy bands. See the 'Using FPLOT' tutorial.
+
+    {::nomarkdown}</div>{:/} 
+
+2.  Generating the total density-of-states (DOS) requires that the switch BZ SAVDOS=T be set in the input file. The input file does not need to be edited for this however, as variables can be edited with command-line arguments. In order to avoid the program changing the potential, interactive mode is also used.
+
+    First, navigate to the build directory
+ 
+        cd lmbuild
+
+    Next, use the **lm**{: style="color: blue"} package to generate the DOS
+
+        ./lm si -vnk=16 -vmet=1 --iactiv --pr30
+
+    During the process, lines beginning with _QUERY:_ will appear. Press return to each query until 
+
+        QUERY: beta (def=0.8)?
+
+    Appears. Type _q_ and the program will stop.
+
+    A DOS can also be generated using files generated as a byproduct of a band pass via the **lmdos**{: style="color: blue"} package. Still in the _lmbuild_{: style="color: green"} directory, execute:
+
+        ./lmdos si -vnk=16 -vmet=1 --iactiv --pr30 
+
+    During execution, a prompt will appear:
+
+        Enter npts (def=501), emin and emax (def=-1,0): 
+
+    enter:
+
+        1001 -1 .3 RETURN
+
+    or do the whole thing in one go:
+
+        echo 1001 -1 .3 / | ./lmdos si -vnk=16 -vmet=1 --iactiv --pr30 
+
+    The **FPLOT**{: style="color: blue"} package can be used with the **pldos**{: style="color: blue"} package to create pictures of DOS from this file.
+
+    <div onclick="elm = document.getElementById('box3'); if(elm.style.display == 'none') elm.style.display = 'block'; else elm.style.display = 'none';"><b>Click here for an example plot using the FPLOT package.</b></div>
+    {::nomarkdown}<div style="display:none;" id="box3">{:/}
+
+    For example,
+
+        echo 8 7 / | ./pldos -fplot '-lst=1,2,3;4,5,6' dos.si 
+
+    creates a file _dosp.dat_{: style="color: green"} with two columns containing partial dos (one column combines dos 1,2,3 —the Si dos and the other combines dos 4,5,6—the Es dos), and a file _plot.pldos_{: style="color: green"} which holds the **FPLOT**{: style="color: blue"} command that creates a postscript file for this DOS.
+
+        ./fplot -disp -pr10 -f plot.dos 
+
+    creates and displays postscript file _ps.dat_{: style="color: green"}. You can see from the DOS that there is a direct gap near the Fermi level of about 0.04 Ry, which is the LDA gap for Si. Note: there is a facility to draw two DOS in a single panel, one above the ‘zero’ and one below. This is particulary convenient in spin polarized cases when you want to compare the majority and minority DOS. Example: in file _dos.dat_{: style="color: green"} the majority DOS are in channels 1,3,5 (atom 1) and 7,9,11 (atom 2), and the minority DOS are in channels 2,4,6 (atom 1) and 8,10,12 (atom 2), invoke, e.g.
+
+        echo 8 7 / | ./pldos -fplot '-lst=1,3,5;7,9,11' '-lst2=2,4,6;8,10,12' dos.dat 
+
+    {::nomarkdown}</div>{:/}
+
+### Further Reading
+_____________________________________________________________
+Guide to the input file
+
+Programs in the ASA package explained
+
+Using colour with fplot

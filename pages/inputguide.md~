@@ -1,0 +1,87 @@
+---
+layout: page-fullwidth
+title: "LM Suite - Input File Guide"
+subheadline: ""
+show_meta: false
+teaser: ""
+permalink: "/inputguide/"
+header:
+    image_fullwidth: "header_drop.jpg"
+---
+
+### Table of Contents
+*  Auto generated table of contents
+{:toc}  
+
+### _Purpose_
+_____________________________________________________________
+This guide aims to detail the structure and use of the input file and related topics. Additionally, the guide details the different categories that the input file uses and the tokens that can be set within each category.
+
+### _Input Categories_
+_____________________________________________________________
+
+##### _Preliminaries_
+_____________________________________________________________
+_Note:_{: style="color: red"} The tables below list the input systems’ tokens and their function. Tables are organized by category.
+
+*   The Arguments column refers to the cast belonging to the token ("l", "i", "r", and "c" refer to logical, integer, floating-point and character data, respectively)
+*   The Program column indicates which programs the token is specific to, if any
+*   The Optional column indicates whether the token is optional (Y) or required (N)
+*   The Default column indicates the default value, if any
+*   The Explanation column describes the token’s function.
+
+##### _BZ_
+Category BZ holds information concerning the numerical integration of quantities such as energy bands over the Brillouin Zone (BZ). The LMTO programs permit both sampling and tetrahedron integration methods. Both are described in bzintegration.html, and the relative merits of the two different methods are discussed. As implemented both methods use a uniform, regularly spaced mesh of k-points, which divides the BZ into microcells as described here. Normally you specify this mesh by the number of divisions of each of the three primitive reciprocal lattice vectors (which are the inverse, transpose of the lattice vectors PLAT); NKABC below.
+
+These tokens are read by programs that make hamiltonians in periodic crystals (lmf,lm,lmgf,lmpg,tbe). Some tokens apply only to codes that make energy bands, (lmf,lm,tbe).
+
+<div onclick="elm = document.getElementById('bztable'); if(elm.style.display == 'none') elm.style.display = 'block'; else elm.style.display = 'none';"><b>Click to show table.</b></div>
+{::nomarkdown}<div style="display:none;" id="bztable">{:/} 
+
+Token | Arguments | Program | Optional | Default | Explanation
+- | - | - | - | - | -
+GETQP | l | | Y | F | Read list of k-points from a disk file. This is a special mode, and you normally you would let the program choose its own mesh by specifying the number of divisions (see NKABC). <br> If token is not parsed, the program will attempt to parse NKABC.
+NKABC | l to 3 i | | N | | The number of divisions in the three directions of the reciprocal lattice vectors. k-points are generated along a uniform mesh on each of these axes. (This is the optimal general purpose quadrature for periodic functions as it integrates the largest number of sine and cosine functions exactly for a specified number of points.) <br><br> The parser will attempt to read three integers. If only one number is read, the missing second and third entries assume the value of the first. <br><br> Information from NKABC, together with BZJOB below, contains specifications equivalent to the widely used “Monkhorst Pack” scheme. But it is more transparent and easier to understand. The number of k-points in the full BZ is the product of these numbers; the number of irreducible k-points may be reduced by symmetry operations.
+PUTQP | l | | Y | F | If T, Write out the list of irreducible k-points to file qpts, and the weights for tetrahedron integration if available.
+BZJOB | l to 3 i | | Y | 0 | Controls the centering of the k-points in the BZ: <br>0: the mesh is centered so that one point lies at the origin <br>1: points symmetrically straddle the origin <br><br>Three numbers are supplied, corresponding to each of the three primitive reciprocal lattice vectors. As with NKABC if only one number is read the missing second and third entries assume the value of the first.
+METAL | i | lmf, lm, tbe | Y | 1 | Specifies how the weights are generated for BZ integration. <br><br>Numerical quadrature is used to to accumulate the output density or any BZ-integrated property. <br>In insulators, each point in the full BZ gets equal weight; in metals, the weights depend on the Fermi level $$ E_F $$, which must be determined from the eigenvalues. <br>There are these possibilities: <br>either the weights for each k are known in advance, as is the case for insulators;<br>or $$ E_F $$ must be determined before BZ integrations are performed (tetrahedron integration). <br><br>In this more difficult case, there are two possibilities:<br>the weight at k does not depend on values of neighboring k (the case for Methfessel-Paxton sampling integration) <br>the weight at k does depend on values of neighboring k (tetrahedron integration).
+
+{::nomarkdown}</div>{:/}
+
+##### _CONS_
+
+##### _DYN_
+
+##### _EWALD_
+
+##### _HAM_
+
+##### _GF_
+
+##### _GW_
+
+##### _HEADER_
+
+##### _IO_
+
+##### _ITER_
+
+##### _OPTICS_
+
+##### _OPTIONS_
+
+##### _PGF_
+
+##### _SITE_
+
+##### _SPEC_
+
+##### _STR_
+
+##### _START_
+
+##### _STRUC_
+
+##### _SYMGRP_
+
+##### _VERS_
