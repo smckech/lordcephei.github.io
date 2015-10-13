@@ -5,8 +5,8 @@ subheadline: ""
 show_meta: false
 teaser: ""
 permalink: "/fpnew/"
-header:
-    image_fullwidth: "header_drop.jpg"
+header: no
+
 ---
 
 # Tutorial For The Full-Potential LDA Program **lmf** (v0.00)  

@@ -5,14 +5,12 @@ subheadline: ""
 show_meta: false
 teaser: ""
 permalink: "/fpoptbas/"
-header:
-    image_fullwidth: "header_drop.jpg"
+header: no
+
 ---
 
-<hr style="height:10pt; visibility:hidden;" />
-
 # **FP tutorial to demonstrate optimization of basis (v6.14)**
-________________________________________
+________________________________________  
 
 This tutorial uses the SrTiO3 input file [ctrl.srtio3](FPsamples/ctrl.srtio3) found in directory `doc/fp/samples.' (Output files are also in this directory.) It assumes you have read the [FP documentation](fp.html) and the [ASA documentation](lmto.html). This tutorial's purpose is limited to demonstration of the automatic basis optimization option in lmf. It assumes that you have gone through the basic [FP tutorial](FPtutorial.html) and [ASA tutorial](ASAtutorial.html).   
 
@@ -20,11 +18,11 @@ To follow this tutorial, start in the top-level directory. Copy file [doc/FPsamp
 
 We begin by invoking **lmfa** :
 
-          lmfa srtio3 
+	lmfa srtio3 
 
 which makes each sphere self-consistent, and stores the free-atom data in file atm.srtio3 along with the parameters RSMH and EH it determined for the free atom. The latter data is found at the end of file atm.srtio3 :
 
-        BASIS:
+     BASIS:
      Sr RSMH= 3.1 1.185 1.873 -1 EH= -0.114 -1.202 -0.1 0
      Ti RSMH= 2.335 0.815 1.137 -1 EH= -0.12 -2.057 -0.1 0
      O RSMH= 0.854 0.767 -1 EH= -1.289 -0.33 0
@@ -61,38 +59,41 @@ To show a more interesting case, let's optimize wrt most of the orbitals we have
           lmf -vnk=2 srtio3 --optbas:sort:spec=O,rs,e,l=01:spec=Ti,rs,e,l=012:spec=Sr,rs,e,l=012 --rdbasp:fn=atm
     
 
-Early in the output you should see the following table:
+Early in the output you should see the following table:  
 
-         LMFOPB:  optimizing energy wrt 16 parameters:
-       spec       l  type     start
-       3:O        1   rsm     0.767
-       2:Ti       1   rsm     0.815
-       3:O        0   rsm     0.854
-       2:Ti       2   rsm     1.137
-       1:Sr       1   rsm     1.185
-       1:Sr       2   rsm     1.873
-       2:Ti       0   rsm     2.335
-       1:Sr       0   rsm     3.100
-       2:Ti       1   eh     -2.057
-       3:O        0   eh     -1.289
-       1:Sr       1   eh     -1.202
-       3:O        1   eh     -0.330
-       2:Ti       0   eh     -0.120
-       1:Sr       0   eh     -0.114
-       2:Ti       2   eh     -0.100
-       1:Sr       2   eh     -0.100
+LMFOPB: optimizing energy wrt 16 parameters:  
+
+
+|    spec  |     l     |   type  |   start   |
+|:--------:|:---------:|:-------:|:---------:|
+|    3:O   |      1    |    rsm  |     0.767 |
+|    2:Ti  |      1    |    rsm  |     0.815 |
+|    3:O   |      0    |    rsm  |     0.854 |
+|    2:Ti  |      2    |    rsm  |     1.137 |
+|    1:Sr  |      1    |    rsm  |     1.185 |
+|    1:Sr  |      2    |    rsm  |     1.873 |
+|    2:Ti  |      0    |    rsm  |     2.335 |
+|    1:Sr  |      0    |    rsm  |     3.100 |
+|    2:Ti  |      1    |    eh   |    -2.057 |
+|    3:O   |      0    |    eh   |    -1.289 |
+|    1:Sr  |      1    |    eh   |    -1.202 |
+|    3:O   |      1    |    eh   |    -0.330 |
+|    2:Ti  |      0    |    eh   |    -0.120 |
+|    1:Sr  |      0    |    eh   |    -0.114 |
+|    2:Ti  |      2    |    eh   |    -0.100 |
+|    1:Sr  |      2    |    eh   |    -0.100 |
     
 
 **lmf** optimizes the total energy wrt each variable, in order shown. (lmf changed the order because of the :sort option). The output can be found in [out.srtio3.lmfopt](FPsamples/out.srtio3.lmfopt).   
 
-The part of the [output](FPsamples/out.srtio3.lmfopt) connected with basis optimization can be found in lines beginning with LMFOPB:, e.g.
+The part of the [output](FPsamples/out.srtio3.lmfopt) connected with basis optimization can be found in lines beginning with LMFOPB:, e.g.  
 
-         LMFOPB: continue optimization of var #2, species Ti val=0.888867
-     MNBRAK:  found=T   x,f=      0.81500000     -2.65965498
-     MNBRAK:  found=T   x,f=      1.01500000     -2.65785139
-     MNBRAK:  found=T   x,f=      0.93860680     -2.65933813
-     MNBRAK:  found=T   x,f=      0.86163389     -2.65967351
-     BRENT:   found=T   x,f=      0.88886657     -2.65963089
+	LMFOPB: continue optimization of var #2, species Ti val=0.888867
+	MNBRAK:  found=T   x,f=      0.81500000     -2.65965498
+	MNBRAK:  found=T   x,f=      1.01500000     -2.65785139
+	MNBRAK:  found=T   x,f=      0.93860680     -2.65933813
+	MNBRAK:  found=T   x,f=      0.86163389     -2.65967351
+	BRENT:   found=T   x,f=      0.88886657     -2.65963089
     
      LMFOPB: var #2 converged in 5 iterations to 0.862:  ehf=-2.659674 ... writing file basp
     

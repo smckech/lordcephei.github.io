@@ -5,14 +5,12 @@ subheadline: ""
 show_meta: false
 teaser: ""
 permalink: "/fstut/"
-header:
-    image_fullwidth: "header_drop.jpg"
+header: no
+
 ---
 
-<hr style="height:10pt; visibility:hidden;" />
-
 # **Generating a Fermi surface in spin polarized Fe (v7.7)**
-________________________________________
+________________________________________  
 
 This tutorial outlines all the steps needed to generate a Fermi surface for Fe, using either the ASA or FP programs.
 
@@ -28,15 +26,16 @@ For ASA, do:
 
 The script (first command) sets up the potential; the second ensures that the correct Fermi level is put on the disk. The third copies file fs.fe: into the working directory:
 
-        # vx    range  n      vy        range  n   height  band
-    .5 .5 0  0 1   35   0  0  1      0 1   51   0.00   2:6
+| # vx |   range |  n  |    vy  |      range  | n |  height | band |
+|:----:|:-------:|:---:|:------:|:-----------:|:-:|:-------:|:----:|
+|.5 .5 |  0  0 1 |  35 | 0  0  1|         0 1 | 51|   0.00  | 2:6  |  
     
 
 See [here](generating-energy-bands.html#contourmode) for syntax. Fe is magnetic and bands 2,3,4,5,6 cross the Fermi surface (either majority or minority), so bands 2..6 will be generated. This file is set up to generate mesh of points for bands 2..6 in the rectangle defined by Γ=(0,0,0) in the lower left corner, H=(0,0,1)2π/_a_ at the upper left corner, N=(1/2,1/2,0)2π/_a_ at the lower right corner, and N=(1/2,1/2,1)2π/_a_ at the upper right corner.
 
 The FP test suite generates the bands file automatically as part of the test. Do:
 
-           ~/lm/fp/test/test.fp --quiet fe 1
+	~/lm/fp/test/test.fp --quiet fe 1
     
 
 To plot the FS you will need graphics software. The remaining steps assume you have the the FPLOT package installed.

@@ -5,8 +5,8 @@ subheadline: ""
 show_meta: false
 teaser: ""
 permalink: "/fpbasisset/"
-header:
-    image_fullwidth: "header_drop.jpg"
+header: no
+
 ---
 
 To go back to the preliminaries click [here](/fpnew/).

@@ -1,3 +1,14 @@
+---
+layout: page-fullwidth
+title: "LM Suite - "
+subheadline: ""
+showmeta: false
+teaser: ""
+permalink: "/fpsheer/"
+header: no
+
+---
+
 This section shows how to calculate two of the three independent shear constants in Al. We first calculate _c_11− _c_12, which we will do by computing the total energy at different lattice distortions, and fitting the curvature of the total energy. The tetragonal distortion is conveniently generated using the line
 
         SHEAR=0 0 1 1+dist 

@@ -5,8 +5,8 @@ subheadline: ""
 show_meta: false
 teaser: ""
 permalink: "/fpldacalc/"
-header:
-    image_fullwidth: "header_drop.jpg"
+header: no
+
 ---
 
 In the [preliminaries](/fpnew/) we built a trial density with a Mattheis construction, and made a band pass with it. Now we can do a self-consistent calculation
