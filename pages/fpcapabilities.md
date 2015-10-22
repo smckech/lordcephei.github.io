@@ -8,15 +8,11 @@ permalink: "/fpcapabilities/"
 header: no
 ---
 
-lmf in an implementation of the local-density approximation, and generates density-of states, and total energy as a part of the self-consistency cycle.
+#####*Energy bands*//
 
-Other extensions are:
+You can run lmf in band mode to generate energy bands along lines or planes for, generating, e.g. Fermi surfaces.  *k*-point specifications and invocation is described in [here](//). Particularly useful are the color weights.
 
-#####*Energy bands*
-
-You can run lmf in band mode to generate energy bands along lines or planes for, generating, e.g. Fermi surfaces. *k*-point specifications and invocation is described in [here](//). Particularly useful are the color weights.
-
-#####*Partial DOS and Mulliken analysis*
+#####*Partial DOS and Mulliken analysis*//
 
 lmf can generate partial dos within augmentation spheres, and construct a Mulliken analysis. DOS can be resolved by site, by site and l, or by site and lm. These options are invoked through in command-line switches. For illustrations, invoke
 
@@ -54,9 +50,9 @@ lmf is designed to work in coordination with a GW package by T. Kotani (the GW p
 
 #####*Spin-Orbit coupling*
 
-lmf solves the scalar Dirac hamiltonian. The dominant difference between the full Dirac hamiltonian and the scalar one is the spin orbit coupling, which can be added as a term λL·S to the scalar Dirac Hamiltonian.
+lmf solves the scalar Dirac hamiltonian. The dominant difference between the full Dirac hamiltonian and the scalar one is the spin orbit coupling, which can be added as a term λL · S to the scalar Dirac Hamiltonian.
 
-Starting with v6.15, lmf can add λL·S to the scalar Dirac hamiltonian (courtesy of A. Chantis). It is possible to include the full L · S or just the L<sub>z</sub> · S<sub>z</sub> part. Beginning with v7.9,  L<sub>z</sub> · S<sub>z</sub> + (L · S − L<sub>z</sub> · S<sub>z</sub>) can be added where the last term is treated in an approximate manner. The approximation turns out to be rather good. See here for some description and analysis of all three approximations. L · S in all three forms can be combined with the self-energy read by a QSGW calculation. In the L<sub>z</sub> · S<sub>z</sub> and approximate L · S forms the effect of S<sub>O</sub> coupling can be passed through to the GW code, to include its effect on the self-energy.
+Starting with v6.15, lmf can add λL·S to the scalar Dirac hamiltonian (courtesy of A. Chantis). It is possible to include the full L · S or just the L<sub>z</sub> · S<sub>z</sub> part. Beginning with v7.9, L<sub>z</sub> · S<sub>z</sub> + (L · S − L<sub>z</sub> · S<sub>z</sub>) can be added where the last term is treated in an approximate manner. The approximation turns out to be rather good. See here for some description and analysis of all three approximations. L · S in all three forms can be combined with the self-energy read by a QSGW calculation. In the L<sub>z</sub> · S<sub>z</sub> and approximate L · S forms the effect of S<sub>O</sub> coupling can be passed through to the GW code, to include its effect on the self-energy.
 
 Use HAM_S<sub>O</sub> to turn on S<sub>O</sub> coupling.
 
@@ -76,7 +72,8 @@ Local orbitals are presented in one of two flavors. The first, conventional type
 + for states with energies in the vicinity of the local orbital energy, the envelope functions of the regular valence states combine with the local orbital to make the interstitial part of the wave function.
 Example that illustrate local orbitals of this type are
 
-    fp/test/test.fp gas fp/test/test.fp cu
+
+      fp/test/test.fp gas fp/test/test.fp cu
 
 The Ga 3*d* semi-core the high-lying As 5*s* state are included as local orbitals. In the Cu case, the high-lying Cu 4*d* is included, which is important in GW calculations.
 
