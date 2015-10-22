@@ -15,7 +15,7 @@
   side: left
   dropdown:
   - title: "Installation"
-    url: "/install/"     
+    url: "/install/"
 
 - title: "Tutorials"
   url: "/test/"
@@ -29,8 +29,10 @@
     url: "/extbfield/"
   - title: "Generating a Fermi surface in spin polarized Fe"
     url: "/fstut/"
+  - title: "LM Tutorial"
+    url: "/lmtut/"
   - title: "ASA tutorial"
-    url: "/asadoc/"               
+    url: "/asadoc/"
 
 - title: "Site Contribution"
   url: "/formatting/"

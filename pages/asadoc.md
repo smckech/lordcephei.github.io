@@ -14,7 +14,7 @@ _____________________________________________________________
 This section details the expected commands, inputs and outputs for each section in this tutorial. Useful for those who may want to remind themselves of the command usage or similar. It is not advised to use this section unless you have previously gone through this tutorial fully.
 
 <div onclick="elm = document.getElementById('tutOutline'); if(elm.style.display == 'none') elm.style.display = 'block'; else elm.style.display = 'none';"><b>Click to show/hide the tutorial outline.</b></div>
-{::nomarkdown}<div style="display:none;padding:25px;" id="tutOutline">{:/} 
+{::nomarkdown}<div style="display:none;padding:25px;" id="tutOutline">{:/}
 
 ##### _Running Band Calculations_
 {:.no_toc}
@@ -24,38 +24,38 @@ _____________________________________________________________
 {:.no_toc}
 
 <div onclick="elm = document.getElementById('sampIn'); if(elm.style.display == 'none') elm.style.display = 'block'; else elm.style.display = 'none';"><b>Click to show/hide sample input file.</b></div>
-{::nomarkdown}<div style="display:none;padding:25px;" id="sampIn">{:/} 
+{::nomarkdown}<div style="display:none;padding:25px;" id="sampIn">{:/}
 
 ~~~
-VERS    LM:7 ASA:7 
+VERS    LM:7 ASA:7
 
 HEADER  Si in diamond lattice with empty spheres.
 
 SYMGRP  i*r3(1,1,-1)::(1/4,1/4,1/4) r4x::(1/4,1/4,1/4)
-IO      SHOW=F HELP=F VERBOS=31,35 WKP=F 
+IO      SHOW=F HELP=F VERBOS=31,35 WKP=F
 HEADER [ The contents of HEADER reside within the category delimiters,
        ] so this line isn't part of it.
 STR     RMAX=3.6
-STR     RMAX[3.6] 
-OPTIONS NSPIN=1 ASA[ADNF=T TWOC=F CCOR=T] 
-% var a0=.5292 nk=3+1 
+STR     RMAX[3.6]
+OPTIONS NSPIN=1 ASA[ADNF=T TWOC=F CCOR=T]
+% var a0=.5292 nk=3+1
 BZ      NKABC={nk} {nk} {nk}  METAL=F DOSWT=T SAVDOS=F
-        BZJOB=0 
+        BZJOB=0
 BZ      NKABC=4 4 4 METAL=F DOSWT=T SAVDOS=F
         BZJOB=0
 STRUC   NBAS=4 NCLASS=2 NL=3
-        ALAT=5.431/{a0} PLAT= 0 .5 .5   .5 0 .5   .5 .5 0 
+        ALAT=5.431/{a0} PLAT= 0 .5 .5   .5 0 .5   .5 .5 0
 SITE    ATOM=SI   POS= 0 0 0
         ATOM=SI   POS= .25 .25 .25
         ATOM=ES   POS= .5 .5 .5
         ATOM=ES   POS= .75 .75 .75
 SPEC    ATOM=SI   R/W=1  Z=14
-ITER    MIX=B2,wc=3,b0 CONVC=1D-5 NIT=10 
+ITER    MIX=B2,wc=3,b0 CONVC=1D-5 NIT=10
 START
         BEGMOM=T (=T to begin with moments, =F to begin with band-structure)
         CNTROL=T (=T to use following to override disk; =F to ignore following)
           ATOM=SI  P=3.5 3.5 3.5    Q=1 0 0    2 0 0   0 0 0
-          ATOM=ES  P=1.5 2.5 3.5    Q=.5 0 0  .5 0 0   0 0 0 
+          ATOM=ES  P=1.5 2.5 3.5    Q=.5 0 0  .5 0 0   0 0 0
 ~~~
 
 {::nomarkdown}</div>{:/}
@@ -69,7 +69,7 @@ START
 {:.no_toc}
 
 <div onclick="elm = document.getElementById('sampOut'); if(elm.style.display == 'none') elm.style.display = 'block'; else elm.style.display = 'none';"><b>Click to show/hide sample output.</b></div>
-{::nomarkdown}<div style="display:none;padding:25px;" id="sampOut">{:/} 
+{::nomarkdown}<div style="display:none;padding:25px;" id="sampOut">{:/}
 
 ~~~
 -----------------------  START LM (80000K)  -----------------------
@@ -78,7 +78,7 @@ START
  LM:       alat = 10.26266  nbas = 4  nspec = 2  vn 7.00(LM 7.0)  verb 40
  pot:      non-rel, XC:BH
  asa:      no-ccor
- bz:       nonmetal, tetra, invit 
+ bz:       nonmetal, tetra, invit
 
                 Plat                                  Qlat
    0.000000   0.500000   0.500000       -1.000000   1.000000   1.000000
@@ -98,7 +98,7 @@ START
          i*r3(1,1,-1):(1/4,1/4,1/4) r4x:(1/4,1/4,1/4)
          i*r3(1,1,-1)::(1/4,1/4,1/4) r4x::(1/4,1/4,1/4)
  MKSYM:  found 48 space group operations ... includes inversion
- 
+
 
 
  BZMESH:  10 irreducible QP from 64 ( 4 4 4 )  shift= T T T
@@ -218,7 +218,7 @@ PPAR:  ES        nl=3  nsp=1  ves=  0.00000000
           0.306621   0.000000   0.014409  -0.849654   2.500000   2.222022
    2   2  0.133439  -0.246985   0.462171
           0.133439   0.000000   0.005020  -1.850924   3.500000   3.145933
-  
+
 
 
  mixing: mode=A  beta=.8
@@ -349,7 +349,7 @@ i ehk=-1153.5850951
           0.368228   0.000000   0.017124  -0.080031   2.277618   2.259306
    2   2  0.141648  -0.090427   0.063078
           0.141648   0.000000   0.005350  -0.638392   3.216746   3.156384
-  
+
  mixing: mode=A  beta=.8
  PQMIX:  read 1 iter from file mixm.  RMS DQ=5.95e-2  last it=2.16e-1
  AMIX: nmix=1 mmix=8  nelts=24  beta=0.8  tm=10  rmsdel=5.95e-2
@@ -474,7 +474,7 @@ i ehf=-1153.6346575 ehk=-1153.6129303
           0.342675   0.000000   0.016363  -0.048588   2.259454   2.249492
    2   2  0.137211  -0.007401   0.005700
           0.137211   0.000000   0.005301  -0.053937   3.156871   3.153396
-  
+
  mixing: mode=A  beta=.8
  PQMIX:  read 2 iter from file mixm.  RMS DQ=1.34e-2  last it=5.95e-2
  AMIX: nmix=2 mmix=8  nelts=24  beta=0.8  tm=10  rmsdel=1.34e-2
@@ -599,7 +599,7 @@ i ehf=-1153.6200009 ehk=-1153.6187713
           0.346763   0.000000   0.016489  -0.011615   2.253545   2.251199
    2   2  0.137946  -0.003382   0.005394
           0.137946   0.000000   0.005311  -0.024515   3.155504   3.153933
-  
+
  mixing: mode=A  beta=.8
  PQMIX:  read 3 iter from file mixm.  RMS DQ=2.34e-3  last it=1.34e-2
  AMIX: nmix=2 mmix=8  nelts=24  beta=0.8  tm=10  rmsdel=2.34e-3
@@ -724,7 +724,7 @@ i ehf=-1153.6191355 ehk=-1153.6191034
           0.347557   0.000000   0.016514   0.000059   2.251529   2.251539
    2   2  0.138090  -0.000012   0.005313
           0.138090   0.000000   0.005313  -0.000086   3.154049   3.154042
-  
+
  mixing: mode=A  beta=.8
  PQMIX:  read 4 iter from file mixm.  RMS DQ=2.21e-5  last it=2.34e-3
  AMIX: nmix=2 mmix=8  nelts=24  beta=0.8  tm=10  rmsdel=2.21e-5
@@ -849,45 +849,45 @@ Shown below is a basic input file that can be used for this tutorial. First, nav
 Once you have entered the build directory, create a new file named _si_{: style="color: green"} or _ctrl.si_{: style="color: green"} with your preferred text editor. In this file, paste the following text, this file is now your input file.
 
 <div onclick="elm = document.getElementById('box0'); if(elm.style.display == 'none') elm.style.display = 'block'; else elm.style.display = 'none';"><b>Click to show/hide sample input file.</b></div>
-{::nomarkdown}<div style="display:none;padding:25px;" id="box0">{:/} 
+{::nomarkdown}<div style="display:none;padding:25px;" id="box0">{:/}
 
 ~~~
-VERS    LM:7 ASA:7 
+VERS    LM:7 ASA:7
 
 HEADER  Si in diamond lattice with empty spheres.
 
 SYMGRP  i*r3(1,1,-1)::(1/4,1/4,1/4) r4x::(1/4,1/4,1/4)
-IO      SHOW=F HELP=F VERBOS=31,35 WKP=F 
+IO      SHOW=F HELP=F VERBOS=31,35 WKP=F
 HEADER [ The contents of HEADER reside within the category delimiters,
        ] so this line isn't part of it.
 STR     RMAX=3.6
-STR     RMAX[3.6] 
-OPTIONS NSPIN=1 ASA[ADNF=T TWOC=F CCOR=T] 
-% var a0=.5292 nk=3+1 
+STR     RMAX[3.6]
+OPTIONS NSPIN=1 ASA[ADNF=T TWOC=F CCOR=T]
+% var a0=.5292 nk=3+1
 BZ      NKABC={nk} {nk} {nk}  METAL=F DOSWT=T SAVDOS=F
-        BZJOB=0 
+        BZJOB=0
 BZ      NKABC=4 4 4 METAL=F DOSWT=T SAVDOS=F
         BZJOB=0
 STRUC   NBAS=4 NCLASS=2 NL=3
-        ALAT=5.431/{a0} PLAT= 0 .5 .5   .5 0 .5   .5 .5 0 
+        ALAT=5.431/{a0} PLAT= 0 .5 .5   .5 0 .5   .5 .5 0
 SITE    ATOM=SI   POS= 0 0 0
         ATOM=SI   POS= .25 .25 .25
         ATOM=ES   POS= .5 .5 .5
         ATOM=ES   POS= .75 .75 .75
 SPEC    ATOM=SI   R/W=1  Z=14
-ITER    MIX=B2,wc=3,b0 CONVC=1D-5 NIT=10 
+ITER    MIX=B2,wc=3,b0 CONVC=1D-5 NIT=10
 START
         BEGMOM=T (=T to begin with moments, =F to begin with band-structure)
         CNTROL=T (=T to use following to override disk; =F to ignore following)
           ATOM=SI  P=3.5 3.5 3.5    Q=1 0 0    2 0 0   0 0 0
-          ATOM=ES  P=1.5 2.5 3.5    Q=.5 0 0  .5 0 0   0 0 0 
+          ATOM=ES  P=1.5 2.5 3.5    Q=.5 0 0  .5 0 0   0 0 0
 ~~~
 
 {::nomarkdown}</div>{:/}
 
 ##### _2\. Running Band Calculations_
 _____________________________________________________________
-The band calculation can be done with the **lm**{: style="color: blue"} package, located in your build directory. First, navigate to the build directory 
+The band calculation can be done with the **lm**{: style="color: blue"} package, located in your build directory. First, navigate to the build directory
 
         cd lmbuild
 
@@ -912,7 +912,7 @@ _____________________________________________________________
         cp ../lm/startup/syml.fcc syml.si
 
     <div onclick="elm = document.getElementById('box1'); if(elm.style.display == 'none') elm.style.display = 'block'; else elm.style.display = 'none';"><b>The symmetry-line file should look as such (click to show).</b></div>
-    {::nomarkdown}<div style="display:none;padding:25px;" id="box1">{:/} 
+    {::nomarkdown}<div style="display:none;padding:25px;" id="box1">{:/}
 
         41  .5  .5  .5  0   0   0		L to Gamma (Lambda)
         ...
@@ -933,33 +933,33 @@ _____________________________________________________________
 
     If you have the plbnds program installed from the FPLOT package, you can plot the bands by invoking one of the following
 
-        echo -15 15 5 10 | ./plbnds -scl=13.6 -ef=0 si 
+        echo -15 15 5 10 | ./plbnds -scl=13.6 -ef=0 si
 
     which creates directly a postscript file ps.si, or better:
 
-        echo -15 15 5 10 | ./plbnds -fplot -scl=13.6 -ef=0 si 
+        echo -15 15 5 10 | ./plbnds -fplot -scl=13.6 -ef=0 si
 
     which creates an fplot command, in file plot.plnds. Use fplot to create a postscript file:
 
-        ./fplot -f plot.plbnds 
+        ./fplot -f plot.plbnds
 
     which creates a postscript file ps.dat.
 
     The energy bands generator has an optional feature that enables you to highlight a particular orbital character in the energy bands. See the 'Using FPLOT' tutorial.
 
-    {::nomarkdown}</div>{:/} 
+    {::nomarkdown}</div>{:/}
 
 2.  Generating the total density-of-states (DOS) requires that the switch BZ SAVDOS=T be set in the input file. The input file does not need to be edited for this however, as variables can be edited with command-line arguments. In order to avoid the program changing the potential, interactive mode is also used.
 
     First, navigate to the build directory
- 
+
         cd lmbuild
 
     Next, use the **lm**{: style="color: blue"} package to generate the DOS
 
         ./lm si -vnk=16 -vmet=1 --iactiv --pr30
 
-    During the process, lines beginning with _QUERY:_ will appear. Press return to each query until 
+    During the process, lines beginning with _QUERY:_ will appear. Press return to each query until
 
         QUERY: beta (def=0.8)?
 
@@ -967,11 +967,11 @@ _____________________________________________________________
 
     A DOS can also be generated using files generated as a byproduct of a band pass via the **lmdos**{: style="color: blue"} package. Still in the _lmbuild_{: style="color: green"} directory, execute:
 
-        ./lmdos si -vnk=16 -vmet=1 --iactiv --pr30 
+        ./lmdos si -vnk=16 -vmet=1 --iactiv --pr30
 
     During execution, a prompt will appear:
 
-        Enter npts (def=501), emin and emax (def=-1,0): 
+        Enter npts (def=501), emin and emax (def=-1,0):
 
     enter:
 
@@ -979,7 +979,7 @@ _____________________________________________________________
 
     or do the whole thing in one go:
 
-        echo 1001 -1 .3 / | ./lmdos si -vnk=16 -vmet=1 --iactiv --pr30 
+        echo 1001 -1 .3 / | ./lmdos si -vnk=16 -vmet=1 --iactiv --pr30
 
     The **FPLOT**{: style="color: blue"} package can be used with the **pldos**{: style="color: blue"} package to create pictures of DOS from this file.
 
@@ -988,15 +988,15 @@ _____________________________________________________________
 
     For example,
 
-        echo 8 7 / | ./pldos -fplot '-lst=1,2,3;4,5,6' dos.si 
+        echo 8 7 / | ./pldos -fplot '-lst=1,2,3;4,5,6' dos.si
 
     creates a file _dosp.dat_{: style="color: green"} with two columns containing partial dos (one column combines dos 1,2,3 —the Si dos and the other combines dos 4,5,6—the Es dos), and a file _plot.pldos_{: style="color: green"} which holds the **FPLOT**{: style="color: blue"} command that creates a postscript file for this DOS.
 
-        ./fplot -disp -pr10 -f plot.dos 
+        ./fplot -disp -pr10 -f plot.dos
 
     creates and displays postscript file _ps.dat_{: style="color: green"}. You can see from the DOS that there is a direct gap near the Fermi level of about 0.04 Ry, which is the LDA gap for Si. Note: there is a facility to draw two DOS in a single panel, one above the ‘zero’ and one below. This is particulary convenient in spin polarized cases when you want to compare the majority and minority DOS. Example: in file _dos.dat_{: style="color: green"} the majority DOS are in channels 1,3,5 (atom 1) and 7,9,11 (atom 2), and the minority DOS are in channels 2,4,6 (atom 1) and 8,10,12 (atom 2), invoke, e.g.
 
-        echo 8 7 / | ./pldos -fplot '-lst=1,3,5;7,9,11' '-lst2=2,4,6;8,10,12' dos.dat 
+        echo 8 7 / | ./pldos -fplot '-lst=1,3,5;7,9,11' '-lst2=2,4,6;8,10,12' dos.dat
 
     {::nomarkdown}</div>{:/}
 
