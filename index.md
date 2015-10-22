@@ -6,8 +6,8 @@
 #
 layout: frontpage
 title: "LM Suite - Home"
-header: 
-   image_fullwidth: "shore.jpg"
+header:
+   image_fullwidth: "greybck.jpg"
 ---
 
 
