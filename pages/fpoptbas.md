@@ -1,6 +1,6 @@
 ---
 layout: page-fullwidth
-title: "LM Suite - FP Optimisation Basis Tutorial"
+title: "FP Optimisation Basis Tutorial"
 subheadline: ""
 show_meta: false
 teaser: ""
@@ -9,7 +9,7 @@ header: no
 
 ---
 
-# **FP tutorial to demonstrate optimization of basis (v6.14)**
+# **FP tutorial to demonstrate optimization of basis**
 ________________________________________  
 
 This tutorial uses the SrTiO3 input file [ctrl.srtio3](FPsamples/ctrl.srtio3) found in directory *doc/fp/samples*{: style="color: blue"}. (Output files are also in this directory.) It assumes you have read the [FP documentation](fp.html) and the [ASA documentation](lmto.html). This tutorial's purpose is limited to demonstration of the automatic basis optimization option in lmf. It assumes that you have gone through the basic [FP tutorial](FPtutorial.html) and [ASA tutorial](ASAtutorial.html).   
