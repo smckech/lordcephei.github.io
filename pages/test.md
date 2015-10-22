@@ -5,7 +5,7 @@ subheadline: ""
 show_meta: false
 teaser: ""
 permalink: "/lmtut/"
-sidebar: left
+sidebar: "left"
 header: no
 ---
 

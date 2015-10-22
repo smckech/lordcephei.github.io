@@ -69,4 +69,4 @@ If you have the mc calculator in your path you can do this with the following co
 
 The postscript file should look like the picture shown below. Compare, e.g. to this paper by Coleman et al: Phys. Rev. B23, 2491 (1981)!
 
-[*Click here to see the image.*](http://postimg.org/image/qdxw011cn/)
+[**Click here to see the image.**](http://lordcephei.github.io/images/fefs.jpg)

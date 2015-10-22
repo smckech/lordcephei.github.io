@@ -15,23 +15,23 @@ Start with **lmchk** just to verify some things.
 
 *   Verify that the preprocessor works as advertised: try
 
-               lmchk al --showp 
+               lmchk al --showp
 
     For example, the line containing  RSMH=  should have been turned into
 
-               RSMH=1.8,1.8,1.8 EH=-.1,-.1,-.1 
+               RSMH=1.8,1.8,1.8 EH=-.1,-.1,-.1
 
 *   Invoke
 
-               lmchk al 
+               lmchk al
 
     and verify from the [output](FPsamples/out.al.lmchk) that the sphere overlaps about 0.6% (a safe number) and that sum-of-sphere volumes equals about 75% of the total. That is a pretty large packing fraction, as a consequence of the close packing of the fcc structure.
 
-    
+
 
 *   Invoke **lmfa** to generate densities for the free atom. Atomic densities will be overlapped to make a first trial density for the solid (Mattheis construction).
 
-               lmfa al 
+               lmfa al
 
     **lmfa**'s main function is to generate atomic densities and store them in  atm._ext_. Look at the [standard output](FPsamples/out.al.lmfa):
 
@@ -50,7 +50,7 @@ Start with **lmchk** just to verify some things.
 
 *   Invoke **lmf** in a [non self-consistent mode](#OPTIONS)
 
-              lmf al -vhf=1 
+              lmf al -vhf=1
 
     _*Note_  You can change how much text is output with token [IO_VERBOSE](IOcat). The default verbosity (31) is relatively terse.  
 
