@@ -8,6 +8,7 @@ permalink: "/fplmtoverview/"
 header: no
 ---
 
+
 ###*The Full-Potential Linear Muffin-Tin Orbitals (FP-LMTO)*
 _______________________________________________________________
 
@@ -15,8 +16,9 @@ _______________________________________________________________
 
 The **lmf** program is an all-electron implementation of the local-density approximation, with a basis consisting of generalized linear muffin tin orbitals, of **LAPWs**, or some combination of the two.
 
-#####*Overview of the full-potential method*
 <hr style="height:5pt; visibility:hidden;" />
+#####*Overview of the full-potential method*
+
 
 The full-potential program **lmf** was originally adapted from a program **nfp** written by M. Methfessel and M. van Schilfgaarde. The method is described in some detail in the following reference :
 
@@ -28,22 +30,21 @@ The following features are unique to this method:
 
 <hr style="height:5pt; visibility:hidden;" />
 #####*Smoothed Hankel functions*
-<hr style="height:5pt; visibility:hidden;" />
 
 The envelope functions are smoothed generalizations of Hankel functions that found in **LMTO** programs. Unlike the normal Hankel functions, the smoothed versions — convolutions of ordinary Hankel functions and Gaussian functions — are regular at the origin. They are a significantly better choice of basis than the customary **LMTO** basis set. However, the smoothing introduces complications because the augmentation of a smoothed Hankel function is less straightforward than of a normal Hankel. The envelope functions are not screened into a tight-binding representation, as in the second-generation and later generation **LMTO** methods; thus wave functions are evaluated by Ewald summation. A real-space version using screened envelope functions is in progress.
 
+<hr style="height:5pt; visibility:hidden;" />
 #####*Local Orbitals*
+
+This package extends the linear method through the use of local orbitals. Augmented methods substitute radial solutions of the Schrödinger equation with combinations of partial waves of angular quantum number *l* inside the augmentation region. Linear methods used a fixed radial function (more precisely, pair of functions), which has validity over only a certain energy window. With local orbitals, a third radial function is added to the basis, which greatly extends the energy window over which energy eigenvalues can be calculated. It is necessary, for example, to obtain the reliable **LDA** band gap in GaAs, as the Ga *3d* and *4d* partial waves are both important. To include local orbitals in the basis, see here for documentation.
+
 <hr style="height:5pt; visibility:hidden;" />
-
-This package extends the linear method through the use of local orbitals. Augmented methods substitute radial solutions of the Schrödinger equation with combinations of partial waves of angular quantum number *l* inside the augmentation region. Linear methods used a fixed radial function (more precisely, pair of functions), which has validity over only a certain energy window. With local orbitals, a third radial function is added to the basis, which greatly extends the energy window over which energy eigenvalues can be calculated. It is necessary, for example, to obtain the reliable **LDA** bandgap in GaAs, as the Ga *3d* and *4d* partial waves are both important. To include local orbitals in the basis, see here for documentation.
-
 #####*Augmented Plane Waves*
-<hr style="height:5pt; visibility:hidden;" />
 
 In July 2008 Takao Kotani added APWs as additional envelope functions, which can increase the flexibility of the basis. One can view this package as an extension of a conventional LAPW method, enabling through the use of a few MTOs a much faster convergence in energy cutoff of APWs. Alternatively, it can be viewed as an extension of the original **MTO** method, With APWs, a good quality basis is easier to construct than it is with a strictly with the **MTO** basis. Also APWs offer a systematic way of converging the accuracy of the combined **MTO** + **APW** basis systematic and reliable manner, to almost arbitrarily high accuracy. This is particularly important when reliable eigenvalues far above the Fermi level are needed, and to check the accuracy of a given **MTO** basis. To include APWs in the basis, see here for documentation.
 
-#####*Augmentation and Representation of the charge density*
 <hr style="height:5pt; visibility:hidden;" />
+#####*Augmentation and Representation of the charge density*
 
 The charge density representation is unique to this method. It consists of three parts: a smooth density n<sub>0</sub> carried on a uniform mesh, defined everywhere in space (n<sub>0</sub> is not augmented, as occurs with conventional augmentation), the true density n<sub>1</sub> expressed in terms of spherical harmonics Ylm inside each augmentation sphere, and a one-center expansion of the smooth density n<sub>2</sub>, also expanded in terms of harmonics Ylm inside each augmentation sphere. The total density is expressed as in the “threefold representation” n = n<sub>0</sub> + n<sub>1</sub> – n<sub>2</sub>.
 
@@ -55,8 +56,8 @@ One important difference between the **ASA** and **FP** methods is that the **FP
 
 A second important difference is that the basis set is more complicated, and in its current form, the user must choose parameters defining the basis. This complication is the most onerous part of the present method, and there are plans for redesign; but at present is necessary to treat the interstitial region reliably. The inputs are described below; see also [this](/fpoptbas/) for a tutorial about choosing the basis optimally. Note also with the incorporation of the **APW** basis, other options are available.
 
-#####*The FP package adds two executable programs to the basic one:*
 <hr style="height:5pt; visibility:hidden;" />
+#####*The FP package adds two executable programs to the basic one:*
 
 + Program lmf is the program used for self-consistent full-potential calculations. It requires a starting density, which it obtains either from a binary restart file *rst.ext*{: style="color: blue"} (typically generated by a prior invocation of **lmf**) or an (almost) equivalent version *rsta.ext*{: style="color: blue"} in **ASCII** format, from a superposition of free-atom densities (*file atm.ext*{: style="color: blue"}), which is created as follows
 
