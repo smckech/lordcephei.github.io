@@ -144,22 +144,22 @@ The procedure just outlined has the advantage that it is completely automatic. H
 
 This was obtained by using the basis supplied by the input file, and optimizing it:
 
-  lmf -vnk=2 srtio3 --optbas:sort:spec=O,rs,e,l=01:spec=Ti,rs,e,l=012:spec=Sr,rs,e,l=012
+  	lmf -vnk=2 srtio3 --optbas:sort:spec=O,rs,e,l=01:spec=Ti,rs,e,l=012:spec=Sr,rs,e,l=012
 
 
 It produced
 
-  LMFOPB:  before optimization ehf=-2.7507\.  After optimization ehf=-2.7607
+  	LMFOPB:  before optimization ehf=-2.7507\.  After optimization ehf=-2.7607
 
 
 One could go further, choosing a still larger basis (one is supplied by the input file, which is used if you invoke **lmf** with *-vbigbas=t*{: style="color: green"})
 
-  lmf -vnk=2 srtio3 --optbas:sort:spec=O,rs,e,l=01:spec=Ti,rs,e,l=012:spec=Sr,rs,e,l=012 -vbigbas=t
+  	lmf -vnk=2 srtio3 --optbas:sort:spec=O,rs,e,l=01:spec=Ti,rs,e,l=012:spec=Sr,rs,e,l=012 -vbigbas=t
 
 
 which produced
 
-  LMFOPB:  before optimization ehf=-2.7711\.  After optimization ehf=-2.7888
+  	LMFOPB:  before optimization ehf=-2.7711\.  After optimization ehf=-2.7888
 
 
 This energy (-2.7888 Ry), is not so much larger than the minimal-basis energy (-2.7267) --- it is deeper by 12 mRy/atom. Thus, the minimal basis is quite reasonable.

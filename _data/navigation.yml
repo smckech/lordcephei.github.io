@@ -18,7 +18,7 @@
     url: "/install/"
 
 - title: "Tutorials"
-  url: "/testfile/"
+  url: ""
   side: left
   dropdown:
   - title: "Building and using the input file"
