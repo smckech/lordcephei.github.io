@@ -18,6 +18,9 @@
     url: "/install/"
   - title: "FP Overview"
     url: "/fplmtoverview/"
+  - title: "FP Capabilities"
+    url: "/fpcapabilities/"
+  
 
 - title: "Tutorials"
   url: ""
