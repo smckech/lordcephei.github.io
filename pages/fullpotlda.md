@@ -5,8 +5,7 @@ subheadline: ""
 show_meta: false
 teaser: ""
 permalink: "/fullpotlda/"
-header:
-    image_fullwidth: "header_drop.jpg"
+header: no
 ---
 
 ### Table of Contents
@@ -29,11 +28,11 @@ This tutorial demonstrates the all-electron, full-potential LDA program **lmf**.
 
 + shows how to compute shear constants _c_<sub>11</sub>− _c_<sub>12</sub> and _c_<sub>44</sub> in Al.
 
-A corresponding tutorial for the ASA program **lm** is found in the [ASA tutorial](ASAtutorial.html).
+A corresponding tutorial for the ASA program **lm** is found in the [ASA tutorial](/asadoc/).
 
 *Note* This tutorial assumes that you installed the executables (e.g. **lmchk**, **lmfa**, **lmf**) and that they are in your path.  
 
-It also assumes you have read the [ASA documentation](lmto.html) and the [FP documentation](fp.html), how the [input file is structured](input-file-style.html) and that you have already gone through the [ASA tutorial](ASAtutorial.html), and that you understand how the [file preprocessor](file-preprocessor.html) works. In this tutorial two of the three elastic constants in Al are calculated. Output files are in [doc/FPsamples](FPsamples/ctrl.al). [Build the input file yourself](#inputfile), or copy ctrl.al from [doc/FPsamples](FPsamples/ctrl.al) and skip immediately to the [electronic structure calculations](#optimizebasis).
+It also assumes you have read the [ASA documentation](lmto.html) and the [FP documentation](/fpnew/), how the [input file is structured](/inputguide/) and that you have already gone through the [ASA tutorial](ASAtutorial.html), and that you understand how the [file preprocessor]() works. In this tutorial two of the three elastic constants in Al are calculated. Output files are in [doc/FPsamples](FPsamples/ctrl.al). [Build the input file yourself](/inputguide/), or copy ctrl.al from [doc/FPsamples](FPsamples/ctrl.al) and skip immediately to the [electronic structure calculations](/fpoptbas/).
 
 **lmf** has many other useful features not described in this tutorial. Look at [this page](#othersamples) for information about other tools and kinds of calculations available.
 
@@ -41,7 +40,7 @@ It also assumes you have read the [ASA documentation](lmto.html) and the [FP doc
 
 Start in the top-level directory. This sample helps you create a complete input file for elemental Al, including optimizing the parameters for the basis set. The file is then used to compute a shear constant. You may create some or all of your own input file from scratch; or you can just copy file [doc/FPsamples/ctrl.al](FPsamples/ctrl.al) to the top-level directory.
 
-Many categories are nearly identical to those in the [ASA tutorial](ASAtutorial.html):
+Many categories are nearly identical to those in the [ASA tutorial](/asadoc/):
 
 + create category [VERS](tokens.html#VERScat). **lmf** requires token FP:7
 
@@ -66,7 +65,7 @@ Many categories are nearly identical to those in the [ASA tutorial](ASAtutorial.
     When choosing parameters by hand, a reasonable default is to set the smoothing radius (see RSMH below) to 2/3 of the augmentation radius for *s* and *p* orbitals, and about 1 or so for transition metal *d* orbtals. To improve on the basis it is recommended you avail yourself of the basis optimizer. See [here](FPoptbas.html) for a (somewhat outdated) tutorial; it is also covered [later in the present tutorial](#optimizebasis).
 
     `doc/FPsamples/ctrl.al` uses by default a minimal basis of *spd* orbitals, defined in the following lines:
-    
+
     `% const rsm1=1.8 rsmd1=1.8 ed1=-.1`
 
     The const directive is described in the [preprocessor documentation](file-preprocessor.html#constdef)
@@ -90,7 +89,7 @@ Many categories are nearly identical to those in the [ASA tutorial](ASAtutorial.
     RSMH2 has nonzero values in the *s* and *d* channels only; channels for which RSMH2=0 are excluded from the basis.
 
     When you use RSMH2 you should set EH2 to about 0.8 or 1 Ry deeper than EH1; otherwise the basis becomes too linearly dependent.  
-    
+
 
 *   create the [HAM](tokens.html#HAMcat) category. Most important here is GMAX, which specifies the cutoff in **G** vectors for the interstitial density. A uniform mesh of G vectors is generated; it keeps those for which G. This number is important because execution efficiency depends on it (though for one atom/cell, efficiency isn't important). It is exactly analogous to GMAX you must specify when using a plane-wave (pseudopotential or augmented plane wave) basis, except that here it is used for the density only, not both density and basis.
 
@@ -147,7 +146,7 @@ Start with **lmchk** just to verify some things.
 
 *   Verify that the preprocessor works as advertised: try
 
-       lmchk al --showp 
+       lmchk al --showp
 
     For example, the line containing  RSMH=  should have been turned into
 
@@ -155,13 +154,13 @@ Start with **lmchk** just to verify some things.
 
 *   Invoke
 
-       lmchk al 
+       lmchk al
 
     and verify from the [output](FPsamples/out.al.lmchk) that the sphere overlaps about 0.6% (a safe number) and that sum-of-sphere volumes equals about 75% of the total. That is a pretty large packing fraction, as a consequence of the close packing of the fcc structure.
 
 *   Invoke **lmfa** to generate densities for the free atom. Atomic densities will be overlapped to make a first trial density for the solid (Mattheis construction).
 
-       lmfa al 
+       lmfa al
 
     **lmfa**'s main function is to generate atomic densities and store them in atm.*ext*. Look at the [standard output](FPsamples/out.al.lmfa):
     1.  The atomic density is represented inside the MT spheres on a shifted logarithmic radial mesh: the *ith* mesh point is *ri* = _b_[exp(_a_(_i_−1)−1]. The mesh is determined by the MT radius, mesh spacing parameter and number of points ([<font size="+1"><tt>rmt, a, and nr</tt></font>](FPsamples/out.al.lmfa#species)).
@@ -174,7 +173,7 @@ Start with **lmchk** just to verify some things.
 
 *   Invoke **lmf** in a [non self-consistent mode](#OPTIONS)
 
-      lmf al -vhf=1 
+      lmf al -vhf=1
 
     *Note You can change how much text is output with token [IO_VERBOSE](IOcat). The default verbosity (31) is relatively terse.  
 
@@ -221,13 +220,13 @@ Start with **lmchk** just to verify some things.
 
 *   You can make the basis most optimal by minimizing the total energy with respect to all parameters RSMH and EH. You can in fact do so as explained in [this tutorial](FPoptbas.html). But experience has shown that energies are usually rather insensitive to EH and anyway, for theoretical reasons, EH should not be too negative. In practice you can optimize RSMH efficiently, and it is not necessary to to more. Do this with:
 
-       lmf al --optbas 
+       lmf al --optbas
 
     You should find that the optimization reduced the Harris Foulkes energy from ehf=-0.2924 to ehf=-0.2926 Ry. This difference is too small to bother with. Usually the improvement is subtsantially larger, and you take the result of the optimized calculation (saved in basp2.*ext*) and copy them to your input file. Or, you can have lmf automatically read these parameters from file basp; tokens in HAM_AUTOBAS control what **lmf** reads from this file, and what **lmfa** writes to it. See [this tutorial](Building_FP_input_file.html#autobas) for an example.
 
     We might consider the effect of enlarging the basis, which as we noted we can do from the commmand line with -vbigbas=1. Do this:
 
-       lmf al -vbigbas=1 -vhf=1 
+       lmf al -vbigbas=1 -vhf=1
 
     and you will see that the HF energy is now ehf=-.2943: the additional basis improves the energy by 1.9mRy in this case, again probably too small to worry about.  
 
@@ -235,7 +234,7 @@ Start with **lmchk** just to verify some things.
 
     In the [preliminaries](#preliminaries) we built a trial density with a Mattheis construction, and made a band pass with it. Now we can do a self-consistent calculation
 
-       lmf al > out 
+       lmf al > out
 
     Up to the calculation of the Fermi level [Fermi level](FPsamples/out.al.lmf#efermi) the output will be essentially the same.
 
@@ -245,7 +244,7 @@ Start with **lmchk** just to verify some things.
 
     *   The *output density* is screened using the model Lindhard function, provided the Lindhard parameter [ELIND](tokens.html#HAMcat) is nonzero:
 
-         nout* = nin  + eps^-1 (nout-nin) 
+         nout* = nin  + eps^-1 (nout-nin)
 
     *   An estimate for the self-consistent density is made by mixing nin and nout using some [mixing scheme](tokens.html#mixing).
     *   The resultant density is [saved](FPsamples/out.al.lmf#iors) in rst.*ext*, unless you specify otherwise using [--rs=](Command-line-options.html#section1lmf).
@@ -253,7 +252,7 @@ Start with **lmchk** just to verify some things.
 
     Because Al is rather well approximated by free electron gas, the Lindhard function is an excellent approximation to the true dielectric function, and the iterations converge rapidly to self-consistency. However, because the tolerances were set [very small](#mix), self-consistency is achieved only after [six iterations](FPsamples/out.al.lmf#endofiter6). To see how the RMS DQ evolves, do
 
-     grep 'RMS DQ' out 
+     grep 'RMS DQ' out
 
     You should see a table like this:
 
@@ -263,11 +262,11 @@ Start with **lmchk** just to verify some things.
      mixrho:  sought 3 iter from file mixm; read 3.  RMS DQ=6.44e-6  last it=1.29e-4
      mixrho:  sought 3 iter from file mixm; read 4.  RMS DQ=4.24e-7  last it=6.44e-6
      mixrho:  sought 3 iter from file mixm; read 4.  RMS DQ=4.97e-8  last it=4.24e-7
-    
+
 
     The code calculates two energy functionals, the Hohenberg-Kohn and Harris-Foulkes functional. Both energies printed at the end of each iteration. The HF energy is more binding than the HK after the [first iteration](FPsamples/out.al.lmf#endofiter1); at [self-consistency](FPsamples/out.al.lmf#endofiter5) they are the same. The HK energy is variational; it should approach the self-consistent value from above. Usually (but not always) the HF energy approaches it from below. Thus the difference in the two is an additional measure of deviation from self-consistency. Moniter the convergence the two with:
 
-     grep ehf=- out 
+     grep ehf=- out
 
     You should see the following table:
 
@@ -291,7 +290,7 @@ Start with **lmchk** just to verify some things.
     You can generate and plot the energy bands using **lmf**. It proceeds in the same way as in the [ASA tutorial](ASAtutorial.html#bands). Generate the band file this way:
 
        cp startup/syml.fcc ./syml.al
-       lmf al --band:fn=syml 
+       lmf al --band:fn=syml
 
     Plot the bands as in the ASA tutorial, or look at this [this tutorial](generating-energy-bands.html).
 
@@ -299,11 +298,11 @@ Start with **lmchk** just to verify some things.
 
     To compute the density of states, see [this tutorial](generating-density-of-states.html). To compute core-level EELS spectra or Mulliken analysis in Fe, try running
 
-       fp/test/test.fp fe 2 
+       fp/test/test.fp fe 2
 
     To compute total or partial DOS in hcp Co, try running
 
-       fp/test/test.fp co 2 
+       fp/test/test.fp co 2
 
     [Another tutorial](siged-tutorial.html#AsAntisiteLatticeRelaxation) goes through a lattice relaxation of an As antisite defect in the LDA. It also shows how quasiparticle self-consistent *GW* self-energies can be incorporated into **lmf** to obtain a quasiparticle description of the defect level. This tutorial also shows how to use **lmf** to calculate the [spin orbit coupling and magnetic anisotropy](siged-tutorial.html#SOcoupling) in Fe. Quasiparticle self-consistent *GW* self-energies can be incorporated there as well. While QS*GW* significantly improves on the LDA band structure, it is not yet known whether they improve on the LDA's prediction of the anisotropy.
 
@@ -311,13 +310,13 @@ Start with **lmchk** just to verify some things.
 
     This section shows how to calculate two of the three independent shear constants in Al. We first calculate *c*<sub>11</sub>− *c*<sub>12</sub>, which we will do by computing the total energy at different lattice distortions, and fitting the curvature of the total energy. The tetragonal distortion is conveniently generated using the line
 
-            SHEAR=0 0 1 1+dist 
+            SHEAR=0 0 1 1+dist
 
     which distorts the lattice in a way that conserves volume to all orders (this is useful because it tends to be less error-prone). The direction of distortion is set by the first three parameters; the lattice will be sheared along (001).   
 
     The first difficulty is that our specification of the FT mesh using token GMAX may cause the program to switch meshes for as parameter *dist* changes. This is a bad idea, since we want to resolve very small energy differences. So, the first step is to comment out the line with GMAX=gmax in the input and use instead:
 
-       FTMESH=10 10 10 
+       FTMESH=10 10 10
 
     The second difficulty is that the shear constants in Al are difficult to converge, because they require many *k*-points. The following steps are written in 'tcsh' and compute the self-consistent total energy parameterically as a function of 'dist':
 
@@ -331,7 +330,7 @@ Start with **lmchk** just to verify some things.
 
     Extracting ehf and ehk parametrically as a function of dist is very easy with the [vextract](Building_FP_input_file.html#vextract) tool:
 
-       cat save.al | startup/vextract c dist ehf > dat 
+       cat save.al | startup/vextract c dist ehf > dat
 
     The key 'c' tells vextract that you want lines beginning only with 'c': these lines correspond to band passes when [self-consistency](Building_FP_input_file.html#vextract) was reached. You can use any regular expression for the key. You can ask vextract to extract any quantity associated with a variable in the file.
 
@@ -349,7 +348,7 @@ Start with **lmchk** just to verify some things.
 
     Fitting a sixth-order polynomial through these points, we obtain as the second derivative of ehf with respect to dist:
 
-       E'' = .578 Ry 
+       E'' = .578 Ry
 
     With a little algebra, and converting from atomic Ry units to ergs/cm<sup>3</sup> it is easy to show that
 
@@ -357,13 +356,13 @@ Start with **lmchk** just to verify some things.
         1Ry/a0^3 = 147e12 erg/cm^3
         c11-c12  = (2/3*147/vol)*E'' (10^12 erg/cm^3)
                  = 0.514 x 10^12 erg/cm^3
-    
+
 
     which is 6% less than the experimental 0K value, 0.55 × 10<sup>12</sup> erg/cm<sup>3</sup>.
 
     A trigonal shear will yield *c*<sub>44</sub>. To compute it, replace the SHEAR token with:
 
-             SHEAR=1 1 1 1+dist 
+             SHEAR=1 1 1 1+dist
 
     Now the lattice is sheared along the [111] direction. Repeat the preceding command sequence with this substitution, and you should find file 'dat' looking something very nearly like:
 
@@ -376,20 +375,18 @@ Start with **lmchk** just to verify some things.
       .02 -.2904718
       .03 -.2902827
       .04 -.290012
-    
+
 
     Fitting a sixth-order polynomial through these points, we obtain as the second derivative of ehf with respect to dist:
 
-       E'' = .684 Ry 
+       E'' = .684 Ry
 
     In this case,
 
         c44 = (1/3*147/vol)*E'' (10^12 erg/cm^3)
             = 0.304 x 10^12 erg/cm^3
-    
+
 
     which is about 6% smaller than the extrapolation to 0K of the experimental value, 0.32 × 10<sup>12</sup> erg/cm<sup>3</sup>. Both of these elastic constants depend on the fitting procedure with an uncertainty of about 5%. A careful calculation would use more points dist and increase nk. The final shear constant, the bulk modulus, you can calculate by varying the lattice constant. We do not do it here, but if you do this, you are advised to use token STRUC_DALAT, rather than change ALAT (see the following note).
 
     *Note* that [doc/FPsamples/ctrl.al](FPsamples/ctrl.al) includes a token DALAT, which it sets to 0. The actual lattice constant is ALAT+DALAT. Do it this way because some parameters change with ALAT, but are kept frozen when DALAT varies. A calculation of *B* yields 0.85× 10<sup>12</sup> erg/cm<sup>3</sup> when evaluated at the LDA mininum energy lattice constant (7.53 a.u., about 1% smaller than the experiment), and 0.72 × 10<sup>12</sup> erg/cm<sup>3</sup> when evaluated at the experimental lattice constant. Because the lattice constant is slightly wrong there is an ambiguity as to which value is appropriate to compare against experiment. The experimental value extrapolated to 0K is 0.81× 10<sup>12</sup> erg/cm<sup>3</sup>.
-
-

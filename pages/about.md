@@ -6,36 +6,7 @@ show_meta: false
 teaser: "This page describes what the program aims to do."
 permalink: "/about/"
 header: no
-categories:
-    - "one"
-    - "two"
-    - "three"
-tags:
-    - "tag one"
-    - "tag two"
-    - "tag three"
 ---
-
-<div class="row">
-<div class="medium-4 medium-push-8 columns" markdown="1">
-<div class="panel radius" markdown="1">
-Inhalt
-{: #toc }
-*  TOC
-{:toc}
-</div>
-</div><!-- /.medium-4.columns -->
-
-
-
-<div class="medium-8 medium-pull-4 columns" markdown="1">
-
-
-
-</div><!-- /.medium-8.columns -->
-</div><!-- /.row -->
-
-
 
 *LM Suite* offers a range of first principles programs that can be used to model different materials and nanoscale structures. The common basis of these codes is the use of a linear muffin tin orbital basis (LMTO) set to describe the electronic structure of the different materials. These orbitals are expanded in terms of the angular momentum index around each atom and can be considered crystal extensions of atomic orbitals.
 
@@ -59,6 +30,6 @@ function approaches are a natural choice for transport calculations since the in
 incorporated into the Hamiltonian for the device region through an additional self energy term. The lmpg code has
 been used to examine transport in devices ranging from magnetic tunnel junctions to atomic point contacts.
 
-+ **QSGW:**   LM Suite also has the ability to perform quasiparticle self-consistent GW calculations.  Unlike standard
++ **QSGW:**   LM Suite also has the ability to perform quasiparticle self-consistent GW calculations. Unlike standard
 density functional calculations that underestimate the band gap of a material, this approach can describe the optical
 properties for a wide range of materials.
