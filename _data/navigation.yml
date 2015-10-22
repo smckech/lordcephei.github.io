@@ -16,13 +16,10 @@
   dropdown:
   - title: "Installation"
     url: "/install/"
-  - title: "Full Potential LMTO"
-    url: ""
-    dropdown:
-      - title: "FP Overview"
-        url: "/fplmtoverview/"
-      - title: "FP Capabilities"
-        url: "/fpcapabilities/"
+  - title: "FP Overview"
+    url: "/fplmtoverview/"
+  - title: "FP Capabilities"
+    url: "/fpcapabilities/"
 
 
 - title: "Tutorials"
