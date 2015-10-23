@@ -20,14 +20,15 @@
     url: "/fplmtoverview/"
   - title: "FP Capabilities"
     url: "/fpcapabilities/"
-
+  - title: "The Input File"
+    url: "/inputguide/"
 
 - title: "Tutorials"
   url: ""
   side: left
   dropdown:
-  - title: "Building and using the input file"
-    url: "/inputguide/"
+  - title: "Building the FP Input File"
+    url: "/buildingfpinput/"
   - title: "Tutorial for the full-potential LDA program lmf"
     url: "/fpnew/"
   - title: "FP basis optimisation"
