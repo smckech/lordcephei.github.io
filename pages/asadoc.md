@@ -911,7 +911,7 @@ _____________________________________________________________
 
         cp ../lm/startup/syml.fcc syml.si
 
-    <div onclick="elm = document.getElementById('box1'); if(elm.style.display == 'none') elm.style.display = 'block'; else elm.style.display = 'none';"><button type="button" class="btn btn-default btn-default btn-block">The symmetry-line file should look as such (click to show).</button></div>
+    <div onclick="elm = document.getElementById('box1'); if(elm.style.display == 'none') elm.style.display = 'block'; else elm.style.display = 'none';"><button type="button" class="btn btn-default btn-block">The symmetry-line file should look as such (click to show).</button></div>
     {::nomarkdown}<div style="display:none;padding:25px;" id="box1">{:/}
 
         41  .5  .5  .5  0   0   0		L to Gamma (Lambda)
