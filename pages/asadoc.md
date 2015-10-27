@@ -911,6 +911,28 @@ _____________________________________________________________
 
         cp ../lm/startup/syml.fcc syml.si
 
+	{::nomarkdown}<div class="panel panel-default">
+	    <div class="panel-heading" role="tab" id="headingOne">
+	      <h4 class="panel-title">
+	        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+	          Collapsible Group Item #1
+	        </a>
+	      </h4>
+	    </div>
+	    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+	      <div class="panel-body">{:/}
+
+        41  .5  .5  .5  0   0   0		L to Gamma (Lambda)
+        ...
+        0   0   0   0   0   0   0
+
+    {::nomarkdown}
+	      </div>
+	    </div>
+	  </div>
+      </body>
+    {:/}
+
     <div onclick="elm = document.getElementById('box1'); if(elm.style.display == 'none') elm.style.display = 'block'; else elm.style.display = 'none';"><b>The symmetry-line file should look as such (click to show).</b></div>
     {::nomarkdown}<div style="display:none;padding:25px;" id="box1">{:/}
 
