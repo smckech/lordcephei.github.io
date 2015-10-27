@@ -1,10 +1,10 @@
 ---
 layout: page-fullwidth
-subheadline:
-title:"test for toc"
+subheadline: "test subheading"
+title: "test for toc"
 teaser: "nothing really"
 meta_description: "something"
-permalink:"/testfile/"
+permalink: "/testfile/"
 categories:
     - "one"
     - "two"

@@ -1,33 +1,4 @@
----
-layout: page-fullwidth
-title: "ASA Tutorial"
-subheadline: ""
-show_meta: false
-teaser: ""
-permalink: "/asadoc/"
-header: no
----
-_____________________________________________________________
-
-### _Tutorial Outline_
-{:.no_toc}
-This section details the expected commands, inputs and outputs for each section in this tutorial. Useful for those who may want to remind themselves of the command usage or similar. It is not advised to use this section unless you have previously gone through this tutorial fully.
-
-<div onclick="elm = document.getElementById('tutOutline'); if(elm.style.display == 'none') elm.style.display = 'block'; else elm.style.display = 'none';"><button type="button" class="button tiny radius">Click to show/hide the tutorial outline.</button></div>
-{::nomarkdown}<div style="display:none;margin:0px 25px 0px 25px;"id="tutOutline">{:/}
-
-##### _Running Band Calculations_
-{:.no_toc}
-_____________________________________________________________
-
-###### _Expected Input_
-{:.no_toc}
-
-<div onclick="elm = document.getElementById('sampIn'); if(elm.style.display == 'none') elm.style.display = 'block'; else elm.style.display = 'none';"><button type="button" class="button tiny radius">Click to show/hide sample input file.</button></div>
-{::nomarkdown}<div style="display:none;margin:0px 25px 0px 25px;"id="sampIn">{:/}
-
-~~~
-VERS    LM:7 ASA:7
+<!doctype html> <html class="no-js" lang="en"> <head> <meta charset="utf-8" /> <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <title>ASA Tutorial</title> <link rel="stylesheet" href="https://lordcephei.github.io/assets/css/styles_feeling_responsive.css"> <script src="https://lordcephei.github.io/assets/js/modernizr.min.js"></script> <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script> <script> WebFont.load({ google: { families: [ 'Lato:400,700,400italic:latin', 'Volkhov::latin' ] } }); </script> <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> <noscript> <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic|Volkhov' rel='stylesheet' type='text/css'> </noscript> <meta name="google-site-verification" content="KBbEPlf44q4dfL6SBHqymelMqXBSuZHSXIo-ZfkQLbE" /> <meta name="msvalidate.01" content="0FB4C028ABCF07C908C54386ABD2D97F" /> <meta name="description" content=""/> <link rel="author" href="https://plus.google.com/u/0/104386739373934968982"/> <link rel="icon" sizes="32x32" href="https://lordcephei.github.io/assets/img/favicon-32x32.png"> <link rel="icon" sizes="192x192" href="https://lordcephei.github.io/assets/img/touch-icon-192x192.png"> <link rel="apple-touch-icon-precomposed" sizes="180x180" href="https://lordcephei.github.io/assets/img/apple-touch-icon-180x180-precomposed.png"> <link rel="apple-touch-icon-precomposed" sizes="152x152" href="https://lordcephei.github.io/assets/img/apple-touch-icon-152x152-precomposed.png"> <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://lordcephei.github.io/assets/img/apple-touch-icon-144x144-precomposed.png"> <link rel="apple-touch-icon-precomposed" sizes="120x120" href="https://lordcephei.github.io/assets/img/apple-touch-icon-120x120-precomposed.png"> <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://lordcephei.github.io/assets/img/apple-touch-icon-114x114-precomposed.png"> <link rel="apple-touch-icon-precomposed" sizes="76x76" href="https://lordcephei.github.io/assets/img/apple-touch-icon-76x76-precomposed.png"> <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://lordcephei.github.io/assets/img/apple-touch-icon-72x72-precomposed.png"> <link rel="apple-touch-icon-precomposed" href="https://lordcephei.github.io/assets/img/apple-touch-icon-precomposed.png"> <meta name="msapplication-TileImage" content="https://lordcephei.github.io/assets/img/msapplication_tileimage.png"/> <meta name="msapplication-TileColor" content="#fabb00"> <!-- Facebook Optimization --> <meta property="og:locale" content="en_EN" /> <meta property="og:type" content="website" /> <meta property="og:title" content="ASA Tutorial" /> <meta property="og:description" content="»LM Suite« is a program for for LMTO and GW simulations."/> <meta property="og:url" content="https://lordcephei.github.io//asadoc/" /> <meta property="og:site_name" content="LM Suite" /> <!-- Search Engine Optimization --> <link type="text/plain" rel="author" href="https://lordcephei.github.io/humans.txt" /> <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"> </script> <style type="text/css"> red { color:purple; /*This changes the color of your text */ font-size:24pt; /*This changes the font size of your text */ } </style> </head> <body id="top-of-page" class="page-fullwidth"> <div id="navigation" class="sticky"> <nav class="top-bar" data-topbar> <ul class="title-area"> <li class="name"> <h1 class="show-for-small-only"><a href="https://lordcephei.github.io" class="icon-tree"> LM Suite</a></h1> </li> <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone --> <li class="toggle-topbar menu-icon"><a href="#"><span>Navigation</span></a></li> </ul> <section class="top-bar-section"> <ul class="right"> <script language="Javascript" type="text/javascript"> function google_search() { var query = document.getElementById("google-search").value; window.open("http://google.com/search?q=" + query + "%20site:" + "https://lordcephei.github.io"); } </script> <li class="divider"></li> <li style="background:#FFFFFF"> <form style="width:200px" onsubmit="google_search()" > <input type="text" id="google-search" placeholder="Enter search term and hit enter"> </form> </li> <li class="divider"></li> <li><a href="https://lordcephei.github.io/contact/">Contact</a></li> </ul> <ul class="left"> <li><a href="https://lordcephei.github.io/">Start</a></li> <li class="divider"></li> <li><a href="https://lordcephei.github.io/blog/">News and Updates</a></li> <li class="divider"></li> <li><a href="https://lordcephei.github.io/developers/">Developers</a></li> <li class="divider"></li> <li class="has-dropdown"> <a href="https://lordcephei.github.io/docs/">Documentation</a> <ul class="dropdown"> <li><a href="https://lordcephei.github.io/install/">Installation</a></li> <li><a href="https://lordcephei.github.io/fplmtoverview/">FP Overview</a></li> <li><a href="https://lordcephei.github.io/fpcapabilities/">FP Capabilities</a></li> <li><a href="https://lordcephei.github.io/inputguide/">The Input File</a></li> </ul> </li> <li class="divider"></li> <li class="has-dropdown"> <a href="https://lordcephei.github.io">Tutorials</a> <ul class="dropdown"> <li><a href="https://lordcephei.github.io/buildingfpinput/">Building the FP Input File</a></li> <li><a href="https://lordcephei.github.io/fpnew/">Tutorial for the full-potential LDA program lmf</a></li> <li><a href="https://lordcephei.github.io/fpoptbas/">FP basis optimisation</a></li> <li><a href="https://lordcephei.github.io/extbfield/">Adding external Zeeman field to the potential</a></li> <li><a href="https://lordcephei.github.io/fstut/">Generating a Fermi surface in spin polarized Fe</a></li> <li><a href="https://lordcephei.github.io/lmtut/">LM Tutorial</a></li> <li><a href="https://lordcephei.github.io/asadoc/">ASA tutorial</a></li> </ul> </li> <li class="divider"></li> <li><a href="https://lordcephei.github.io/formatting/">Site Contribution</a></li> <li class="divider"></li> <li><a href="https://lordcephei.github.io/about/">About</a></li> <li class="divider"></li> </ul> </section> </nav> </div><!-- /#navigation --> <div class="row t30"> <div class="medium-12 columns"> <article> <header> <p class="subheadline"></p> <h1>ASA Tutorial</h1> </header> <p class="teaser"> </p> <hr /> <h3 class="no_toc" id="tutorial-outline"><em>Tutorial Outline</em></h3> <p>This section details the expected commands, inputs and outputs for each section in this tutorial. Useful for those who may want to remind themselves of the command usage or similar. It is not advised to use this section unless you have previously gone through this tutorial fully.</p> <div onclick="elm = document.getElementById('tutOutline'); if(elm.style.display == 'none') elm.style.display = 'block'; else elm.style.display = 'none';"><button type="button" class="button tiny radius">Click to show/hide the tutorial outline.</button></div> <p><div style="display:none;margin:0px 25px 0px 25px;"id="tutOutline"></p> <h5 class="no_toc" id="running-band-calculations"><em>Running Band Calculations</em></h5> <hr /> <h6 class="no_toc" id="expected-input"><em>Expected Input</em></h6> <div onclick="elm = document.getElementById('sampIn'); if(elm.style.display == 'none') elm.style.display = 'block'; else elm.style.display = 'none';"><button type="button" class="button tiny radius">Click to show/hide sample input file.</button></div> <p><div style="display:none;margin:0px 25px 0px 25px;"id="sampIn"></p><pre><code>VERS    LM:7 ASA:7
 
 HEADER  Si in diamond lattice with empty spheres.
 
@@ -56,23 +27,8 @@ START
         CNTROL=T (=T to use following to override disk; =F to ignore following)
           ATOM=SI  P=3.5 3.5 3.5    Q=1 0 0    2 0 0   0 0 0
           ATOM=ES  P=1.5 2.5 3.5    Q=.5 0 0  .5 0 0   0 0 0
-~~~
-
-{::nomarkdown}</div>{:/}
-
-###### _Commands_
-{:.no_toc}
-
-        lm si > si.out
-
-###### _Expected Output_
-{:.no_toc}
-
-<div onclick="elm = document.getElementById('sampOut'); if(elm.style.display == 'none') elm.style.display = 'block'; else elm.style.display = 'none';"><button type="button" class="button tiny radius">Click to show/hide sample output.</button></div>
-{::nomarkdown}<div style="display:none;margin:0px 25px 0px 25px;"id="sampOut">{:/}
-
-~~~
------------------------  START LM (80000K)  -----------------------
+</code></pre><p></div></p> <h6 class="no_toc" id="commands"><em>Commands</em></h6><pre><code>    lm si &gt; si.out
+</code></pre><h6 class="no_toc" id="expected-output"><em>Expected Output</em></h6> <div onclick="elm = document.getElementById('sampOut'); if(elm.style.display == 'none') elm.style.display = 'block'; else elm.style.display = 'none';"><button type="button" class="button tiny radius">Click to show/hide sample output.</button></div> <p><div style="display:none;margin:0px 25px 0px 25px;"id="sampOut"></p><pre><code>-----------------------  START LM (80000K)  -----------------------
  HEADER Example of an ASA input file : Si with empty spheres
 
  LM:       alat = 10.26266  nbas = 4  nspec = 2  vn 7.00(LM 7.0)  verb 40
@@ -800,59 +756,11 @@ c ehf=-1153.619116 ehk=-1153.619116
  CPU time:    1.238s     Wed Feb 11 13:45:55 2009   on waldo.eas.asu.edu
  wkinfo:  used   111 K  workspace of 80000 K   in   2 K calls
 
-~~~
-
-{::nomarkdown}</div>{:/}
-
-{::nomarkdown}</div>{:/}
-
-____________________________________________________________
-
-### _Table of Contents_
-{:.no_toc}
-*  Auto generated table of contents
-{:toc}  
-
-### _Purpose_
-_____________________________________________________________
-This tutorial demonstrates how to set up and run band calculation in the Atomic Spheres Approximation (ASA), using the **lm**{: style="color: blue"} program. It:
-
-1. describes how to set up the input file for use.
-
-2. how to run a band calculation with the **lm**{: style="color: blue"} package.
-
-3. shows how to generate energy bands and partial DOS.  
-
-### _Preliminaries_
-_____________________________________________________________
-This tutorial will require use of both the _lm_{: style="color: blue"} repository (located [here](https://bitbucket.org/lmto/lm)) and the post-compile build directory of the repository. For the purpose of demonstration, _lm_{: style="color: green"} will refer to the location of the downloaded repository and _lmbuild_{: style="color: green"} will refer to the location of the directory the repository was compiled (built) in to. In practice, these directories can be named differently. The tutorial will assume a file structure such as
-
-        ~/lmto/lm/
-        ~/lmto/lmbuild/
-
-All instances of commands assume the starting position, in the example above, is (this can be checked with the _pwd_{: style="color: blue"} command)
-
-        ~/lmto/
-
-All instances of _si_{: style="color: green"} in the command lines can be replaced with _ctrl.si_{: style="color: green"}, depending on what your input file has been named.
-
-### _Tutorial_
-_____________________________________________________________
-The aim of this section of the tutorial is to give an outline of the steps involved in using the **lm**{: style="color: blue"} program for those who may be more familiar with it. Further documentation and tutorials can be found for any topic that is not detailed in enough depth here.
-
-##### _1\. Building the Input File_
-_____________________________________________________________
-Shown below is a basic input file that can be used for this tutorial. First, navigate to the build directory _lmbuild_{: style="color: green"}.
-
-        cd lmbuild
-
-Once you have entered the build directory, create a new file named _si_{: style="color: green"} or _ctrl.si_{: style="color: green"} with your preferred text editor. In this file, paste the following text, this file is now your input file.
-
-<div onclick="elm = document.getElementById('box0'); if(elm.style.display == 'none') elm.style.display = 'block'; else elm.style.display = 'none';"><button type="button" class="button tiny radius">Click to show/hide sample input file.</button></div>
-{::nomarkdown}<div style="display:none;margin:0px 25px 0px 25px;"id="box0">{:/}
-
-~~~
-VERS    LM:7 ASA:7
+</code></pre><p></div></p> <p></div></p> <hr /> <h3 class="no_toc" id="table-of-contents"><em>Table of Contents</em></h3> <ul id="markdown-toc"> <li><a href="#purpose" id="markdown-toc-purpose"><em>Purpose</em></a></li> <li><a href="#preliminaries" id="markdown-toc-preliminaries"><em>Preliminaries</em></a></li> <li><a href="#tutorial" id="markdown-toc-tutorial"><em>Tutorial</em></a> <ul> <li><a href="#building-the-input-file" id="markdown-toc-building-the-input-file"><em>1. Building the Input File</em></a></li> <li><a href="#running-band-calculations-1" id="markdown-toc-running-band-calculations-1"><em>2. Running Band Calculations</em></a></li> <li><a href="#generating-energy-bands-and-densities-of-states" id="markdown-toc-generating-energy-bands-and-densities-of-states"><em>3. Generating Energy Bands and Densities-of-States</em></a></li> </ul> </li> <li><a href="#further-reading" id="markdown-toc-further-reading"><em>Further Reading</em></a></li> </ul> <h3 id="purpose"><em>Purpose</em></h3> <hr /> <p>This tutorial demonstrates how to set up and run band calculation in the Atomic Spheres Approximation (ASA), using the <strong style="color: blue">lm</strong> program. It:</p> <ol> <li> <p>describes how to set up the input file for use.</p> </li> <li> <p>how to run a band calculation with the <strong style="color: blue">lm</strong> package.</p> </li> <li> <p>shows how to generate energy bands and partial DOS.</p> </li> </ol> <h3 id="preliminaries"><em>Preliminaries</em></h3> <hr /> <p>This tutorial will require use of both the <em style="color: blue">lm</em> repository (located <a href="https://bitbucket.org/lmto/lm">here</a>) and the post-compile build directory of the repository. For the purpose of demonstration, <em style="color: green">lm</em> will refer to the location of the downloaded repository and <em style="color: green">lmbuild</em> will refer to the location of the directory the repository was compiled (built) in to. In practice, these directories can be named differently. The tutorial will assume a file structure such as</p><pre><code>    ~/lmto/lm/
+    ~/lmto/lmbuild/
+</code></pre><p>All instances of commands assume the starting position, in the example above, is (this can be checked with the <em style="color: blue">pwd</em> command)</p><pre><code>    ~/lmto/
+</code></pre><p>All instances of <em style="color: green">si</em> in the command lines can be replaced with <em style="color: green">ctrl.si</em>, depending on what your input file has been named.</p> <h3 id="tutorial"><em>Tutorial</em></h3> <hr /> <p>The aim of this section of the tutorial is to give an outline of the steps involved in using the <strong style="color: blue">lm</strong> program for those who may be more familiar with it. Further documentation and tutorials can be found for any topic that is not detailed in enough depth here.</p> <h5 id="building-the-input-file"><em>1. Building the Input File</em></h5> <hr /> <p>Shown below is a basic input file that can be used for this tutorial. First, navigate to the build directory <em style="color: green">lmbuild</em>.</p><pre><code>    cd lmbuild
+</code></pre><p>Once you have entered the build directory, create a new file named <em style="color: green">si</em> or <em style="color: green">ctrl.si</em> with your preferred text editor. In this file, paste the following text, this file is now your input file.</p> <div onclick="elm = document.getElementById('box0'); if(elm.style.display == 'none') elm.style.display = 'block'; else elm.style.display = 'none';"><button type="button" class="button tiny radius">Click to show/hide sample input file.</button></div> <p><div style="display:none;margin:0px 25px 0px 25px;"id="box0"></p><pre><code>VERS    LM:7 ASA:7
 
 HEADER  Si in diamond lattice with empty spheres.
 
@@ -881,129 +789,26 @@ START
         CNTROL=T (=T to use following to override disk; =F to ignore following)
           ATOM=SI  P=3.5 3.5 3.5    Q=1 0 0    2 0 0   0 0 0
           ATOM=ES  P=1.5 2.5 3.5    Q=.5 0 0  .5 0 0   0 0 0
-~~~
-
-{::nomarkdown}</div>{:/}
-
-##### _2\. Running Band Calculations_
-_____________________________________________________________
-The band calculation can be done with the **lm**{: style="color: blue"} package, located in your build directory. First, navigate to the build directory
-
-        cd lmbuild
-
-To invoke **lm**{: style="color: blue"} and to pipe the output to a file, use the command
-
-        ./lm si > si.out
-
-This will run the **lm**{: style="color: blue"} package using the input file, _si_{: style="color: green"}, created above. The output will be displayed on screen as well as being saved to the _si.out_{: style="color: green"} file.
-
-_Note:_{: style="color: red"} The output file can be named differently, and its extension does not matter. Further, it is not neccessary to save the output to a file at all if you do not wish to, simply ommit:
-
-        > si.out
-
-##### _3\. Generating Energy Bands and Densities-of-States_
-_____________________________________________________________
-1.  Plotting energy bands require the use of a symmetry-line file. Rather than create one, it can be found in the _lm_{: style="color: green"} repository. First, navigate in to the build directory
-
-        cd lmbuild
-
-    From this directory, copy the _startup/syml.fcc_{: style="color: green"} file, located in the _startup_{: style="color: green"} directory of the _lm_{: style="color: green"} repository, and save it as _syml.si_{: style="color: green"}
-
-        cp ../lm/startup/syml.fcc syml.si
-
-    <div onclick="elm = document.getElementById('box1'); if(elm.style.display == 'none') elm.style.display = 'block'; else elm.style.display = 'none';"><button type="button" class="button tiny radius">The symmetry-line file should look as such (click to show).</button></div>
-    {::nomarkdown}<div style="display:none;margin:0px 25px 0px 25px" id="box1">{:/}
-
-        41  .5  .5  .5  0   0   0		L to Gamma (Lambda)
-        ...
-        0   0   0   0   0   0   0
-
-	{::nomarkdown}</div>{:/}
-
-    With this symmetry-line file, **lm**{: style="color: blue"} can be used to generate ASA bands:
-
-        ./lm si --band:fn=syml
-
-    The bands are generated and saved in the file _bands.si_{: style="color: green"} located in the current directory
-
-    The bands can be plotted with various plotting packages.
-
-    <div onclick="elm = document.getElementById('box2'); if(elm.style.display == 'none') elm.style.display = 'block'; else elm.style.display = 'none';"><button type="button" class="button tiny radius">Click here for an example plot using the FPLOT package.</button></div>
-    {::nomarkdown}<div style="display:none;margin:0px 25px 0px 25px;"id="box2">{:/}
-
-    If you have the plbnds program installed from the FPLOT package, you can plot the bands by invoking one of the following
-
-        echo -15 15 5 10 | ./plbnds -scl=13.6 -ef=0 si
-
-    which creates directly a postscript file ps.si, or better:
-
-        echo -15 15 5 10 | ./plbnds -fplot -scl=13.6 -ef=0 si
-
-    which creates an fplot command, in file plot.plnds. Use fplot to create a postscript file:
-
-        ./fplot -f plot.plbnds
-
-    which creates a postscript file ps.dat.
-
-    The energy bands generator has an optional feature that enables you to highlight a particular orbital character in the energy bands. See the 'Using FPLOT' tutorial.
-
-    {::nomarkdown}</div>{:/}
-
-2.  Generating the total density-of-states (DOS) requires that the switch BZ SAVDOS=T be set in the input file. The input file does not need to be edited for this however, as variables can be edited with command-line arguments. In order to avoid the program changing the potential, interactive mode is also used.
-
-    First, navigate to the build directory
-
-        cd lmbuild
-
-    Next, use the **lm**{: style="color: blue"} package to generate the DOS
-
-        ./lm si -vnk=16 -vmet=1 --iactiv --pr30
-
-    During the process, lines beginning with _QUERY:_ will appear. Press return to each query until
-
-        QUERY: beta (def=0.8)?
-
-    Appears. Type _q_ and the program will stop.
-
-    A DOS can also be generated using files generated as a byproduct of a band pass via the **lmdos**{: style="color: blue"} package. Still in the _lmbuild_{: style="color: green"} directory, execute:
-
-        ./lmdos si -vnk=16 -vmet=1 --iactiv --pr30
-
-    During execution, a prompt will appear:
-
-        Enter npts (def=501), emin and emax (def=-1,0):
-
-    enter:
-
-        1001 -1 .3 RETURN
-
-    or do the whole thing in one go:
-
-        echo 1001 -1 .3 / | ./lmdos si -vnk=16 -vmet=1 --iactiv --pr30
-
-    The **FPLOT**{: style="color: blue"} package can be used with the **pldos**{: style="color: blue"} package to create pictures of DOS from this file.
-
-    <div onclick="elm = document.getElementById('box3'); if(elm.style.display == 'none') elm.style.display = 'block'; else elm.style.display = 'none';"><button type="button" class="button tiny radius">Click here for an example plot using the FPLOT package.</button></div>
-    {::nomarkdown}<div style="display:none;margin:0px 25px 0px 25px;"id="box3">{:/}
-
-    For example,
-
-        echo 8 7 / | ./pldos -fplot '-lst=1,2,3;4,5,6' dos.si
-
-    creates a file _dosp.dat_{: style="color: green"} with two columns containing partial dos (one column combines dos 1,2,3 —the Si dos and the other combines dos 4,5,6—the Es dos), and a file _plot.pldos_{: style="color: green"} which holds the **FPLOT**{: style="color: blue"} command that creates a postscript file for this DOS.
-
-        ./fplot -disp -pr10 -f plot.dos
-
-    creates and displays postscript file _ps.dat_{: style="color: green"}. You can see from the DOS that there is a direct gap near the Fermi level of about 0.04 Ry, which is the LDA gap for Si. Note: there is a facility to draw two DOS in a single panel, one above the ‘zero’ and one below. This is particulary convenient in spin polarized cases when you want to compare the majority and minority DOS. Example: in file _dos.dat_{: style="color: green"} the majority DOS are in channels 1,3,5 (atom 1) and 7,9,11 (atom 2), and the minority DOS are in channels 2,4,6 (atom 1) and 8,10,12 (atom 2), invoke, e.g.
-
-        echo 8 7 / | ./pldos -fplot '-lst=1,3,5;7,9,11' '-lst2=2,4,6;8,10,12' dos.dat
-
-    {::nomarkdown}</div>{:/}
-
-### _Further Reading_
-_____________________________________________________________
-Guide to the input file
-
-Programs in the ASA package explained
-
-Using colour with fplot
+</code></pre><p></div></p> <h5 id="running-band-calculations-1"><em>2. Running Band Calculations</em></h5> <hr /> <p>The band calculation can be done with the <strong style="color: blue">lm</strong> package, located in your build directory. First, navigate to the build directory</p><pre><code>    cd lmbuild
+</code></pre><p>To invoke <strong style="color: blue">lm</strong> and to pipe the output to a file, use the command</p><pre><code>    ./lm si &gt; si.out
+</code></pre><p>This will run the <strong style="color: blue">lm</strong> package using the input file, <em style="color: green">si</em>, created above. The output will be displayed on screen as well as being saved to the <em style="color: green">si.out</em> file.</p> <p><em style="color: red">Note:</em> The output file can be named differently, and its extension does not matter. Further, it is not neccessary to save the output to a file at all if you do not wish to, simply ommit:</p><pre><code>    &gt; si.out
+</code></pre><h5 id="generating-energy-bands-and-densities-of-states"><em>3. Generating Energy Bands and Densities-of-States</em></h5> <hr /> <ol> <li> <p>Plotting energy bands require the use of a symmetry-line file. Rather than create one, it can be found in the <em style="color: green">lm</em> repository. First, navigate in to the build directory</p><pre><code>cd lmbuild
+</code></pre><p>From this directory, copy the <em style="color: green">startup/syml.fcc</em> file, located in the <em style="color: green">startup</em> directory of the <em style="color: green">lm</em> repository, and save it as <em style="color: green">syml.si</em></p><pre><code>cp ../lm/startup/syml.fcc syml.si
+</code></pre><div onclick="elm = document.getElementById('box1'); if(elm.style.display == 'none') elm.style.display = 'block'; else elm.style.display = 'none';"><button type="button" class="button tiny radius">The symmetry-line file should look as such (click to show).</button></div> <p><div style="display:none;margin:0px 25px 0px 25px" id="box1"></p><pre><code>41  .5  .5  .5  0   0   0		L to Gamma (Lambda)
+...
+0   0   0   0   0   0   0
+</code></pre><p></div></p> <p>With this symmetry-line file, <strong style="color: blue">lm</strong> can be used to generate ASA bands:</p><pre><code>./lm si --band:fn=syml
+</code></pre><p>The bands are generated and saved in the file <em style="color: green">bands.si</em> located in the current directory</p> <p>The bands can be plotted with various plotting packages.</p> <div onclick="elm = document.getElementById('box2'); if(elm.style.display == 'none') elm.style.display = 'block'; else elm.style.display = 'none';"><button type="button" class="button tiny radius">Click here for an example plot using the FPLOT package.</button></div> <p><div style="display:none;margin:0px 25px 0px 25px;"id="box2"></p> <p>If you have the plbnds program installed from the FPLOT package, you can plot the bands by invoking one of the following</p><pre><code>echo -15 15 5 10 | ./plbnds -scl=13.6 -ef=0 si
+</code></pre><p>which creates directly a postscript file ps.si, or better:</p><pre><code>echo -15 15 5 10 | ./plbnds -fplot -scl=13.6 -ef=0 si
+</code></pre><p>which creates an fplot command, in file plot.plnds. Use fplot to create a postscript file:</p><pre><code>./fplot -f plot.plbnds
+</code></pre><p>which creates a postscript file ps.dat.</p> <p>The energy bands generator has an optional feature that enables you to highlight a particular orbital character in the energy bands. See the ‘Using FPLOT’ tutorial.</p> <p></div></p> </li> <li> <p>Generating the total density-of-states (DOS) requires that the switch BZ SAVDOS=T be set in the input file. The input file does not need to be edited for this however, as variables can be edited with command-line arguments. In order to avoid the program changing the potential, interactive mode is also used.</p> <p>First, navigate to the build directory</p><pre><code>cd lmbuild
+</code></pre><p>Next, use the <strong style="color: blue">lm</strong> package to generate the DOS</p><pre><code>./lm si -vnk=16 -vmet=1 --iactiv --pr30
+</code></pre><p>During the process, lines beginning with <em>QUERY:</em> will appear. Press return to each query until</p><pre><code>QUERY: beta (def=0.8)?
+</code></pre><p>Appears. Type <em>q</em> and the program will stop.</p> <p>A DOS can also be generated using files generated as a byproduct of a band pass via the <strong style="color: blue">lmdos</strong> package. Still in the <em style="color: green">lmbuild</em> directory, execute:</p><pre><code>./lmdos si -vnk=16 -vmet=1 --iactiv --pr30
+</code></pre><p>During execution, a prompt will appear:</p><pre><code>Enter npts (def=501), emin and emax (def=-1,0):
+</code></pre><p>enter:</p><pre><code>1001 -1 .3 RETURN
+</code></pre><p>or do the whole thing in one go:</p><pre><code>echo 1001 -1 .3 / | ./lmdos si -vnk=16 -vmet=1 --iactiv --pr30
+</code></pre><p>The <strong style="color: blue">FPLOT</strong> package can be used with the <strong style="color: blue">pldos</strong> package to create pictures of DOS from this file.</p> <div onclick="elm = document.getElementById('box3'); if(elm.style.display == 'none') elm.style.display = 'block'; else elm.style.display = 'none';"><button type="button" class="button tiny radius">Click here for an example plot using the FPLOT package.</button></div> <p><div style="display:none;margin:0px 25px 0px 25px;"id="box3"></p> <p>For example,</p><pre><code>echo 8 7 / | ./pldos -fplot '-lst=1,2,3;4,5,6' dos.si
+</code></pre><p>creates a file <em style="color: green">dosp.dat</em> with two columns containing partial dos (one column combines dos 1,2,3 —the Si dos and the other combines dos 4,5,6—the Es dos), and a file <em style="color: green">plot.pldos</em> which holds the <strong style="color: blue">FPLOT</strong> command that creates a postscript file for this DOS.</p><pre><code>./fplot -disp -pr10 -f plot.dos
+</code></pre><p>creates and displays postscript file <em style="color: green">ps.dat</em>. You can see from the DOS that there is a direct gap near the Fermi level of about 0.04 Ry, which is the LDA gap for Si. Note: there is a facility to draw two DOS in a single panel, one above the ‘zero’ and one below. This is particulary convenient in spin polarized cases when you want to compare the majority and minority DOS. Example: in file <em style="color: green">dos.dat</em> the majority DOS are in channels 1,3,5 (atom 1) and 7,9,11 (atom 2), and the minority DOS are in channels 2,4,6 (atom 1) and 8,10,12 (atom 2), invoke, e.g.</p><pre><code>echo 8 7 / | ./pldos -fplot '-lst=1,3,5;7,9,11' '-lst2=2,4,6;8,10,12' dos.dat
+</code></pre><p></div></p> </li> </ol> <h3 id="further-reading"><em>Further Reading</em></h3> <hr /> <p>Guide to the input file</p> <p>Programs in the ASA package explained</p> <p>Using colour with fplot</p> </article> </div><!-- /.medium-12.columns --> </div><!-- /.row --> <div id="up-to-top" class="row"> <div class="small-12 columns" style="text-align: right;"> <a class="iconfont" href="#top-of-page">&#xf108;</a> </div><!-- /.small-12.columns --> </div><!-- /.row --> <footer id="footer-content" class="bg-grau"> <div id="footer"> <div class="row"> <div class="medium-6 large-5 columns"> <h5 class="shadow-black">About This Site</h5> <p class="shadow-black"> »LM Suite« is a program for for LMTO and GW simulations. <a href="https://lordcephei.github.io/info/">More ›</a> </p> </div><!-- /.large-6.columns --> <div class="small-6 medium-3 large-3 large-offset-1 columns"> <h5 class="shadow-black">Services</h5> <ul class="no-bullet shadow-black"> <li > <a href="https://lordcephei.github.io" title=""></a> </li> <li class="services-contact" > <a href="https://lordcephei.github.io/contact/" title="Contact">Contact</a> </li> <li class="list" > <a href="https://lordcephei.github.io/developers/" title="Contact the developers">Developers</a> </li> <li class="sitemap-link" > <a href="https://lordcephei.github.io/download/" title="Download the program">Downloads</a> </li> </ul> </div><!-- /.large-4.columns --> <div class="small-6 medium-3 large-3 columns"> <h5 class="shadow-black">Related websites</h5> <ul class="no-bullet shadow-black"> <li > <a href="https://lordcephei.github.io" title=""></a> </li> <li class="network-entypo" > <a href="http://lmsuite.org" target="_blank" title="">Original LM Suite</a> </li> </ul> </div><!-- /.large-3.columns --> </div><!-- /.row --> </div><!-- /#footer --> <div id="subfooter"> <nav class="row"> <section id="subfooter-left" class="b30 small-12 medium-6 columns"> <ul class="inline-list"> <li>Created with &hearts; by <a style="display:inline;" href="http://phlow.de/">Phlow</a> with <a style="display:inline;" href="http://jekyllrb.com/" target="_blank">Jekyll</a> using <a style="display:inline;" href="http://phlow.github.io/feeling-responsive/">Feeling Responsive</a> </li> </ul> </section> <section id="subfooter-right" class="small-12 medium-6 columns social-icons"> <ul class="inline-list"> <li><a href="http://www.youtube.com/PhlowMedia" target="_blank" class="icon-youtube" title="Videos, Video-Anleitungen und Filme von Phlow auf YouTube"></a></li> <li><a href="http://twitter.com/phlow" target="_blank" class="icon-twitter" title="Immer das Neuste von Phlow gibt es auf Twitter"></a></li> <li><a href="http://www.facebook.com/phlow.media" target="_blank" class="icon-facebook" title="Lass uns Freunde sein!"></a></li> <li><a href="http://soundcloud.com/phlow" target="_blank" class="icon-soundcloud" title="Sounds und Downloads und mehr"></a></li> <li><a href="http://github.com/phlow" target="_blank" class="icon-github" title="Code und mehr..."></a></li> <li><a href="http://instagram.com/phlowmedia" target="_blank" class="icon-instagram" title="Bilder und Impressionen mit und ohne Filter..."></a></li> <li><a href="http://www.pinterest.com/phlowmedia/" target="_blank" class="icon-pinterest" title="Bilder, Fotos, Illustrationen, Grafiken sammeln..."></a></li> <li><a href="http://www.mixcloud.com/phlow/" target="_blank" class="icon-cloud" title="Mixe, was sonst?"></a></li> </ul> </section> </nav> </div><!-- /#subfooter --> </footer> <script src="https://lordcephei.github.io/assets/js/javascript.min.js"></script> <script> (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m) })(window,document,'script','//www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-60112281-1', 'auto'); ga('set', 'anonymizeIp', true); ga('send', 'pageview'); </script> </body> </html>
