@@ -34,7 +34,7 @@ _____________________________________________________________
 
 #### _Importing Crystal Structure_
 
-#####  _Supplying Crystal Structure by hand__
+#####  _Supplying Crystal Structure by hand_
 
 Typically you have structural information about your material, e.g. _space group number_ (e.g. number 99 or name P4_mm_) and _lattice parameters_ related to the space group (_a_ and _b_ in the P4_mm_ case). This page will use Bi2Te3 as an example, which belongs to space group R3m with lattice constants _a_ and _c_. (See Wykoff, [_Structure of Crystals_](https://archive.org/stream/structureofcryst030914mbp#page/n107/mode/2up/search/Bi), to obtain this information.) You also need information about the chemical species and positions of the atoms in the basis. The minimum information for Bi2Te3 is:
 
