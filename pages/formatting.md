@@ -84,13 +84,11 @@ Code blocks, as would be expected, should be used for any code, input or outputs
 Code blocks can be defined with either a 4-space indentation relative to the current indentation (so if your block of text has a 4-space indentation already, your code block would need to be 8-space). Code blocks can also be denoted with ~~~ at the open and close of a block.
 
 ~~~~~
-
 ~~~
 
 Code here
 
 ~~~
-
 ~~~~~
 
 ##### _Drop Down Boxes_
