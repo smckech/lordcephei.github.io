@@ -36,15 +36,15 @@ An 'Issues or Comments' section can be included with contact details should the 
 The document should contain a table of contents, usually before any other text. Jekyll/Kramdown has support for auto-generating this ToC as shown here:
 
 ~~~
-        ### _Table of Contents_
-        {:.no_toc}
-        *  Auto generated table of contents
-        {:toc}  
+### _Table of Contents_
+{:.no_toc}
+*  Auto generated table of contents
+{:toc}  
 ~~~
 
 Adding the
 
-                {:.no_toc}
+    {:.no_toc}
 
 flag directly under a header will exclude that category and its subcategories from the ToC autogeneration. 
 
@@ -71,7 +71,7 @@ Headers are nested automatically in the table of contents generation by number o
 ##### _Colours_
 The site uses colours to denote certain things. **Blue**{: style="color: blue"} is used for program/package names and terminal commands, such as the **lm**{: style="color: blue"} package or the console command **cd**{: style="color: blue"}. _Green_{: style="color: green"} is used for directories or files, such as the _ctrl.si_{: style="color: green"} file. **Red**{: style="color: red"} is used for important points such as a **Note:**{: style="color: red"}. Colouring items can be achieved with:
 
-                **Placeholder Text**{: style="color: blue"}
+    **Placeholder Text**{: style="color: blue"}
 
 "blue" can be changed to "red", "green" or any standard colour. Note that to colour a string (with or without spaces) there must be a text emphasis element (such as \_ \_ or \*\* \*\* etc) surrounding the string.
 
@@ -79,19 +79,35 @@ The site uses colours to denote certain things. **Blue**{: style="color: blue"} 
 **Bold** is used for programs/package names as well as noteworthy points (**Note:**). _Italics_ are used for directories, files and headers.
 
 ##### _Code Blocks_
-Code blocks, as would be expected, should be used for any code, input or outputs (such as the _ctrl.si_{: style="color: green"} input file), terminal commands and general instructions. Code blocks are always on a new line so it is not suitable if inline text is desired.
+Code blocks, as would be expected, should be used for any code, input or outputs (such as the _ctrl.si_{: style="color: green"} input file), terminal commands and general instructions. Code blocks are always on a new line so it is not suitable if inline text is desired.  
+
+Code blocks can be defined with either a 4-space indentation relative to the current indentation (so if your block of text has a 4-space indentation already, your code block would need to be 8-space). Code blocks can also be denoted with ~~~ at the open and close of a block.
+
+~~~~~
+
+~~~
+
+Code here
+
+~~~
+
+~~~~~
 
 ##### _Drop Down Boxes_
 Drop down boxes allow for hiding of information unless the user manually opens it, enabling tutorials and documentation to be condensed and easier to follow while not removing information. Drop down boxes are not included within standard Kramdown formatting and are implemented with html. To use a dropdown box, the syntax is:
 
+<div onclick="elm = document.getElementById('box0'); if(elm.style.display == 'none') elm.style.display = 'block'; else elm.style.display = 'none';"><button type="button" class="button tiny radius">Click to show.</button></div>
+{::nomarkdown}<div style="display:none;margin:0px 25px 0px 25px;"id="box0">{:/}
+
 ~~~
-<div onclick="elm = document.getElementById('foobar'); if(elm.style.display == 'none') elm.style.display = 'block'; else elm.style.display = 'none';">Click to show.</div>
-{::nomarkdown}<div style="display:none; padding:25px;" id="foobar">{:/} 
+<div onclick="elm = document.getElementById('foobar'); if(elm.style.display == 'none') elm.style.display = 'block'; else elm.style.display = 'none';"><button type="button" class="button tiny radius">Click to show.</button></div>
+{::nomarkdown}<div style="display:none;margin:0px 25px 0px 25px;"id="foobar">{:/}
 
 Content
 
 {::nomarkdown}</div>{:/}
 ~~~
 
-When using a dropdown box, both instances of the "foobar" ID need to be changed and also be unique to that dropdown box.
+{::nomarkdown}</div>{:/}
 
+When using a dropdown box, both instances of the "foobar" ID need to be changed and also be unique to that dropdown box.
