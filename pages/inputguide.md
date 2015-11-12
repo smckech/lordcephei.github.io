@@ -268,18 +268,18 @@ the preprocessor completes.
 
 The following code segment illustrates both types:
 
-'''
+~~~
 % const nbas=5
 CONST   a=10.69 nspec=4
 SPEC    ALAT=a  NSPEC=nspec NBAS={nbas}
-'''
+~~~
 
 After the preprocessor compiles, the input file appears as:
 
-'''
+~~~
 CONST   a=10.69 nspec=4
 SPEC    ALAT=a  NSPEC=nspec NBAS=5
-'''
+~~~
 
 When the CONST category is read (it is read before other categories),
 variables a and nspec are defined and used in the SPEC category.
@@ -321,7 +321,7 @@ MD\_TAUB | r | lmmc | Y | 2067.1 | Barostat relaxation time (a.u.)
 Category EWALD holds information controlling the Ewald sums for structure consstants entering into, e.g. the Madelung summations and Block summed structure constants(**lmf**{: style="color: blue"}). Most programs use quantities in this category to carry out Ewald sums (exceptions are **lmstr**{: style="color: blue"} and the molecules codes).
 
 <div onclick="elm = document.getElementById('ewaldtable'); if(elm.style.display == 'none') elm.style.display = 'block'; else elm.style.display = 'none';"><button type="button" class="button tiny radius">Click to show table.</button></div>
-{::nomarkdown}<div style="display:none;margin:0px 25px 0px 25px;"id="ewladtable">{:/}
+{::nomarkdown}<div style="display:none;margin:0px 25px 0px 25px;"id="ewaldtable">{:/}
 
 Token | Arguments | Program | Optional | Default | Explanation
 - | - | - | - | - | -
@@ -337,7 +337,7 @@ This category contains parameters defining the one-particle hamiltonian.
 
 Pportions of HAM are read by these codes: 
 
-'''
+~~~
 lm
 lmfa
 lmfgwd
@@ -353,7 +353,7 @@ lmctl
 lmpg
 tbe
 lmmag
-'''
+~~~
 
 <div onclick="elm = document.getElementById('hamtable'); if(elm.style.display == 'none') elm.style.display = 'block'; else elm.style.display = 'none';"><button type="button" class="button tiny radius">Click to show table.</button></div>
 {::nomarkdown}<div style="display:none;margin:0px 25px 0px 25px;"id="hamtable">{:/}
@@ -384,18 +384,13 @@ QASA | i | ASA | Y | 3 | A parameter specifying the definition of ASA moments Q0
 PMIN | r | ALL | Y | 0 0 0 ... | Global minimum in fractional part of logarithmic derivative parameters Pl.<br>Enter values for l=0,..lmx<br>0: no minimum constraint<br>\# : with \#<1, floor of fractional P is \#<br>1: use free-electron value as minimum<br><br>Note: lmf always uses a minimum constraint, the free-electron value (or slightly higher if AUTOBAS_GW is set).<br>You can set the floor still higher with PMIN=#.
 PMAX | r | ALL | Y | 0 0 0 ... | Global maximum in fractional part of potential functions Pl. Enter values for l=0,..lmx<br>0 : no maximum constraint<br>\#: with \#<1, uppper bound of of fractional P is \#
 OVEPS | r | ALL | Y | 0 | The overlap is diagonalized and the hilbert space is contracted, discarding the part with eigenvalues of overlap < OVEPS<br>Especially useful with the PMT basis, where the combination of smooth Hankel functions and APWs has a tendency to make the basis overcomplete.
-OVNCUT | i | ALL | Y | 0 | This tag has a similar objective to OVEPS.<br>The overlap is diagonalized and the hilbert space is contracted, discarding the part
-belonging to lowest OVNCUT evals of overlap.<br>Supersedes OVEPS, if present.
+OVNCUT | i | ALL | Y | 0 | This tag has a similar objective to OVEPS.<br>The overlap is diagonalized and the hilbert space is contracted, discarding the part belonging to lowest OVNCUT evals of overlap.<br>Supersedes OVEPS, if present.
 GMAX | r | lmf, lmfgwd | N | | G-vector cutoff used to create the mesh for the interstitial density. A uniform mesh is with spacing between points in the three directions as homogeneous as possible, with G vectors |G|<GMAX.<br>This input is required; but you may omit it if you supply information with the FTMESH token.
 FTMESH | i1 [i2 i3] | FP | N | | The number of divisions specifying the uniform mesh density along the three reciprocal lattice vectors. The second and third arguments default to the value of the first one, if they are not specified. <br>This input is used only if if the parser failed to read the GMAX token.
 TOL | r | FP | Y | 1e-6 | Specifies the precision to which the generalized LMTO envelope functions are expanded in a Fourier expansion of G vectors.
-FRZWF | l | FP | Y | F | Set to T to freeze the shape of the augmented part of the
-wave functions. Normally their shape is updated as the potential changes, but with FRZWF=t the potential used to make augmentation wave functions is frozen at what is read from the restart file (or free-atom potential if starting from superposing free atoms).<br>This is not normally necessary, and freezing wave functions makes the basis slightly less accurate. However, there are slight inconsistencies when these orbitals are allowed to change shape. Notably the calculated forces to not take this shape change into account, and they will be slightly inconsistent with the total energy.
-FORCES | i | FP | Y | 0 | Controls how forces are to be calculated, and how the
-second-order corrections are to be evaluated. Through the variational principle, the total energy is correct to second order in deviations from self-consistency, but forces are correct only to first order. To obtain forces to second order, it is necessary to know how the density would change with a (virtual) displacement of the core+nucleus, which requires a linear response treatment.<br>lmf estimates this changes in one of two ways:{::nomarkdown}<ol><li>the free-atom density is subtracted from the total density for nuclei centered at the original position and added back again at the (virtually) displaced position.<br><br>For this ansatz, use FORCES=1.</li>the core+nucleus is shifted and screened assuming a Lindhard dielectric response. <br><br>For this ansatz, use FORCES=12. You also must
-specify ELIND, below.</li></ol>{:/}
-ELIND | r | lmf | Y | -1 | a parameter in the Lindhard response function, (the
-Fermi level for a free-electron gas relative to the bottom of the band). You can specify this energy directly, by using a positive number for the parameter. If you use instead a negative number, the program will choose a default value from the total number of valence electrons and assuming a free-electron gas, scale that default by the absolute value of the number you specify. If you have a simple sp bonded system, the default value is a good choice. If you have d or f electrons, it tends to overestimate the response.<br>Use a something smaller, e.g. ELIND=-0.7.<br><br>ELIND is used in three contexts:<br><br>(1) in the force correction term; see FORCES= above<br>(2) to estimate a self-consistent density from the input and output densities after a band pass<br>(3) to estimate a reasonable smooth density from a starting density after atoms are moved in a relaxation step.
+FRZWF | l | FP | Y | F | Set to T to freeze the shape of the augmented part of the wave functions. Normally their shape is updated as the potential changes, but with FRZWF=t the potential used to make augmentation wave functions is frozen at what is read from the restart file (or free-atom potential if starting from superposing free atoms).<br>This is not normally necessary, and freezing wave functions makes the basis slightly less accurate. However, there are slight inconsistencies when these orbitals are allowed to change shape. Notably the calculated forces to not take this shape change into account, and they will be slightly inconsistent with the total energy.
+FORCES | i | FP | Y | 0 | Controls how forces are to be calculated, and how the second-order corrections are to be evaluated. Through the variational principle, the total energy is correct to second order in deviations from self-consistency, but forces are correct only to first order. To obtain forces to second order, it is necessary to know how the density would change with a (virtual) displacement of the core+nucleus, which requires a linear response treatment.<br>lmf estimates this changes in one of two ways:{::nomarkdown}<ol><li>the free-atom density is subtracted from the total density for nuclei centered at the original position and added back again at the (virtually) displaced position.<br><br>For this ansatz, use FORCES=1.</li>the core+nucleus is shifted and screened assuming a Lindhard dielectric response. <br><br>For this ansatz, use FORCES=12. You also must specify ELIND, below.</li></ol>{:/}
+ELIND | r | lmf | Y | -1 | a parameter in the Lindhard response function, (the Fermi level for a free-electron gas relative to the bottom of the band). You can specify this energy directly, by using a positive number for the parameter. If you use instead a negative number, the program will choose a default value from the total number of valence electrons and assuming a free-electron gas, scale that default by the absolute value of the number you specify. If you have a simple sp bonded system, the default value is a good choice. If you have d or f electrons, it tends to overestimate the response.<br>Use a something smaller, e.g. ELIND=-0.7.<br><br>ELIND is used in three contexts:<br><br>(1) in the force correction term; see FORCES= above<br>(2) to estimate a self-consistent density from the input and output densities after a band pass<br>(3) to estimate a reasonable smooth density from a starting density after atoms are moved in a relaxation step.
 SIGP[...] | r | lmf, lmfgwd | Y | | Parameters used to interpolate the self-energy Σ. Used in conjunction with the GW package. See gw.html for description. Default: not used
 SIGP\_MODE | r | lmf, lmfgwd | Y | 4 | Specifies the linear function used for matrix elements of Σ at highly-lying energies. With recent implementations of the GW package 4 is recommended; it requires no input from you.
 SIGP\_EMAX SIGP\_NMAX SIGP\_EMIN SIGP\_NMIN SIGP\_A SIGP\_B | r | lmf, lmfgwd | Y | | See gw.html
@@ -403,8 +398,7 @@ AUTOBAS[...] | r | lmfa, lmf, lmfgwd | Y | | Parameters associated with the auto
 AUTOBAS\_GW | i | lmfa | Y | 0 | Set to 1 to tailor the autogenerated basis set file basp0.ext to a somewhat larger basis, better suited for GW.
 AUTOBAS\_GW | i | lmf | Y | 0 | Set to 1 to float log derivatives P a bit more conservatively — better suited to GW calculations.
 AUTOBAS\_LMTO | i | lmfa | Y | 0 | lmfa autogenerates a trial basis set, saving the result into basp0.ext.<br>LMTO is used in an algorithm to determine how large a basis it should construct: the number of orbitals increases as you increase LMTO. This algorithm also depends on which states in the free atom which carry charge.<br>Let lq be the highest l which carries charge in the free atom.<br><br>There are the following choices for LMTO:{::nomarkdown}<ul><li>0. standard minimal basis; same as LMTO=3.</li><li>1. The hyperminimal basis, which consists of envelope functions corresponding those l which carry charge in the free atom, e.g. Ga sp and Mo sd.<br><br>Note: this basis is only sensible when used in conjunction with APWs.</li><li>2. All l up to lq+1 if lq<2; otherwise all l up to lq</li><li>3. All l up to min(lq+1, 3).<br>For elements lighter than Kr, restrict l≤2.<br>For elements heavier than Kr, include l to 3.</li><li>4. (Standard basis) Same as LMTO=3, but restrict l≤2 for elements lighter than Ar.</li><li>5. (Large basis) All l up to max(lq+1,3) except for H, He, Li, B (use l=spd).</li></ul>{:/}<br>Use the MTO token (see below) in combination with this one. MTO controls whether the LMTO basis is 1-κ or 2-κ, meaning whether 1 or 2 envelope functions are allowed per l channel.
-AUTOBAS\_MTO | i | lmfa | Y | 0 | Autogenerate parameters that control which LMTO basis functions are to be included, and their shape.<br><br>Tokens RSMH,EH (and possibly RSMH2,EH2) determine the shape of the MTO basis. lmfa will determine a reasonable set of RSMH,EH automatically (and RSMH2,EH2 for a 2-κ basis), fitting to
-radial wave functions of the free atom.<br><br>Note: lmfa can generate parameters and write them to file basp0.ext.<br>lmf can read parameters from basp.ext.<br>You must manually create basp.ext, e.g. by copying basp0.ext into basp.ext. You can tailor basp.ext with a text editor. There are the following choices for MTO:<br> 0: do not autogenerate basis parameters<br>1: or 3 1-κ parameters with Z-dependent LMX<br>2: or 4 2-κ parameters with Z-dependent LMX
+AUTOBAS\_MTO | i | lmfa | Y | 0 | Autogenerate parameters that control which LMTO basis functions are to be included, and their shape.<br><br>Tokens RSMH,EH (and possibly RSMH2,EH2) determine the shape of the MTO basis. lmfa will determine a reasonable set of RSMH,EH automatically (and RSMH2,EH2 for a 2-κ basis), fitting to radial wave functions of the free atom.<br><br>Note: lmfa can generate parameters and write them to file basp0.ext.<br>lmf can read parameters from basp.ext.<br>You must manually create basp.ext, e.g. by copying basp0.ext into basp.ext. You can tailor basp.ext with a text editor. There are the following choices for MTO:<br> 0: do not autogenerate basis parameters<br>1: or 3 1-κ parameters with Z-dependent LMX<br>2: or 4 2-κ parameters with Z-dependent LMX
 AUTOBAS\_MTO | i | lmf, lmfgwd | Y | 0 | Read parameters RSMH,EH,RSMH2,EH2 that control which LMTO basis functions enter the basis.<br><br>Once initial values have been generated you can tune these parameters automatically for the solid, using lmf with the --optbas switch; see Building_FP_input_file.html and FPoptbas.html.<br><br>The --optbas step is not essential, especially for large basis sets, but it is a way to improve on the basis without increasing the size.<br><br>There are the following choices for MTO:<br><br>0 Parameters not read from basp.ext; they are specified in the input file ctrl.ext.<br>1 or 3: 1-κ parameters may be read from the basis file basp.ext, if they exist<br>2 or 4: 2-κ parameters may be read from the basis file basp.ext, if they exist<br>1 or 2: Parameters read from ctrl.ext take precedence over basp.ext<br>3 or 4: Parameters read from basp.ext take precedence over those read from ctrl.ext.
 AUTOBAS\_PNU | i | lmfa | Y | 0 | Autoset boundary condition for augmentation part of basis, through specification of logarithmic derivative parameters P.<br><br>0 do not make P <br>1 Find P for l < lmxb from free atom wave function; save in file basp0.ext
 AUTOBAS\_PNU | i | lmf, lmfgwd | Y | 0 | Autoset boundary condition for augmentation part of basis, through specification of logarithmic derivative parameters P.<br><br>0 do not attempt to read P from basp.ext.<br>1 Read P from basp.ext, for those species which P is given.
@@ -422,19 +416,19 @@ AUTOBAS\_PFLOAT | i1 i2 | lmf, lmfgwd | y | 1 1 | Governs how the logarithmic de
 ##### _HEADER_
 This category is optional, and merely prints to the standard output whatever text is in the category. For example:
 
-'''
+~~~
 HEADER  This line and the following one are printed to
         standard out on execution of a program.
 XXX
-'''
+~~~
 
 Alternately:
 
-'''
+~~~
 HEADER [ In this form only two lines reside within the
         category delimiters,]
         and only two lines are printed.
-'''
+~~~
 
 ##### _IO_
 
