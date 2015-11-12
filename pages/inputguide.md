@@ -79,7 +79,7 @@ A tag in the outermost branch of the tree points to actual data and is called a 
 Suppose for example, the calculation you want to do e −‘; some have two (−−‘). requires Brillouin zone integrations of a metallic material, which you plan to to carry out using the Methfessel-Paxton sampling method.  
 
 Two parameters: polynomial order n and gaussian width w. 
-Two tags are used to identify them: internally they are represented as **BZ_N** and **BZ_W**, but in the input file they are usually expressed as follows: 
+Two tags are used to identify them: internally they are represented as **BZ\_N** and **BZ_W**, but in the input file they are usually expressed as follows: 
 
         BZ	N=2	W=.01
 
@@ -220,8 +220,8 @@ Category BZ holds information concerning the numerical integration of quantities
 
 These tokens are read by programs that make hamiltonians in periodic crystals (lmf,lm,lmgf,lmpg,tbe). Some tokens apply only to codes that make energy bands, (lmf,lm,tbe).
 
-<div onclick="elm = document.getElementById('bztable'); if(elm.style.display == 'none') elm.style.display = 'block'; else elm.style.display = 'none';"><b>Click to show table.</b></div>
-{::nomarkdown}<div style="display:none;padding:25px;" id="bztable">{:/} 
+<div onclick="elm = document.getElementById('bztable'); if(elm.style.display == 'none') elm.style.display = 'block'; else elm.style.display = 'none';"><button type="button" class="button tiny radius">Click to show table.</button></div>
+{::nomarkdown}<div style="display:none;margin:0px 25px 0px 25px;"id="bztable">{:/}
 
 Token | Arguments | Program | Optional | Default | Explanation
 - | - | - | - | - | - 
@@ -251,30 +251,190 @@ MULL | i | tbe | Y | 0 | Mulliken population analysis. Mulliken population analy
 
 {::nomarkdown}</div>{:/}
 
-##### _CONS_
+##### _CONST_
+
+Category CONST enables the user to declare variables for use in algebraic expressions. The syntax is a string of declarations inside the category, e.g:
+
+        CONST   a=10.69 nspec=4+2
+
+Variables declared this way are similar to, but distinct from variables declared for the preprocessor, such as 
+
+        % const nbas=5
+
+In the latter case the preprocessor makes a pass, and may use expressions involving variables declared by e.g. "% const nbas=5" to alter the structure of the input file.  
+
+Variables declared for use by the preprocessor lose their definition after
+the preprocessor completes.  
+
+The following code segment illustrates both types:
+
+'''
+% const nbas=5
+CONST   a=10.69 nspec=4
+SPEC    ALAT=a  NSPEC=nspec NBAS={nbas}
+'''
+
+After the preprocessor compiles, the input file appears as:
+
+'''
+CONST   a=10.69 nspec=4
+SPEC    ALAT=a  NSPEC=nspec NBAS=5
+'''
+
+When the CONST category is read (it is read before other categories),
+variables a and nspec are defined and used in the SPEC category.
 
 ##### _DYN_
 Contains parameters for molecular statics and dynamics.
 
-<div onclick="elm = document.getElementById('dyntable'); if(elm.style.display == 'none') elm.style.display = 'block'; else elm.style.display = 'none';"><b>Click to show table.</b></div>
-{::nomarkdown}<div style="display:none;padding:25px;" id="dyntable">{:/} 
+<div onclick="elm = document.getElementById('dyntable'); if(elm.style.display == 'none') elm.style.display = 'block'; else elm.style.display = 'none';"><button type="button" class="button tiny radius">Click to show table.</button></div>
+{::nomarkdown}<div style="display:none;margin:0px 25px 0px 25px;"id="dyntable">{:/}
 
 Token | Arguments | Program | Optional | Default | Explanation
 - | - | - | - | - | -
-T | E | S | T | 1 | 2
-T | E | S | T | 3 | 4<br>5
+NIT | i | lmf, lmmc, tbe | Y | | maximum number of relaxation steps (molecular statics)
+SSTAT[...] | | lm, lmgf | Y | | (noncollinear magnetism) parameters specifying how spin statics (rotation of quantization axes to minimze energy) is carried out
+SSTAT\_MODE | i | lm, lmgf | N | 0 | 0: no spin statics or dynamics<br>-1: Landau-Gilbert spin dynamics<br>1: spin statics: quantization axis determined by making output density matrix diagonal<br>2: spin statics: size and direction of relaxation determined from spin torque<br>Add 10 to mix angles independently of P,Q (Euler angles are subject to mixing to accelerate convergence)<br>Add 1000 to mix Euler angles independently of P,Q
+SSTAT\_SCALE | i | lm, lmgf | N | 0 | (used with mode=2) scale factor amplifying magnetic forces
+SSTAT\_MAXT | i | lm, lmgf | N | 0 | maximum allowed change in angle
+SSTAT\_TAU | i | lm, lmgf | N | 0 | (used with mode=-1) time step
+SSTAT\_ETOL | i } lm, lmgf | N | 0 | (used with mode=-1) Set tau=0 this iter if etot-ehf>ETOL
+MSTAT[...] | | lmf, lmmc, tbe | Y | | (molecular statics) parameters specifiying how site positions are relaxed given the internuclear forces
+MSTAT\_MODE | i | lmf, lmmc, tbe | N | 0 | 0: no relaxation<br>4: relax with conjugate gradients algorithm (not generally recommended)<br>5: relax with Fletcher-Powell alogirithm. Find minimum along a line; a new line is chosen. The Hessian matrix is updated only at the start of a new line minimization. Fletcher-Powell is more stable but usually less efficient then Broyden.<br>6: relax with Broyden algorithm. This is essentially a Newton-Raphson algorithm, where Hessian matrix and direction of descent are updated each iteration.
+MSTAT\_HESS | l | lmf, lmmc, tbe | N | T | T: Read hessian matrix from file, if it exists<br>F: assume initial hessian is the unit matrix
+MSTAT\_XTOL | r | lmf, lmmc, tbe | Y | 1e-3 | Convergence criterion for change in atomic displacements<br>>0: criterion satisfied when xtol > net shift (shifts summed over all sites)<br><0: criterion satisfied when xtol > max shift of any site<br>0: DO not use this criterion to check convergence<br><br>Note: When molecular statics are performed, either GTOL or XTOL must be specified. Both may be specified
+MSTAT\_GTOL | r | lmf,lmmc,tbe | Y | 0 | Convergence criterion for tolerance in forces.<br>>0: criterion satisfied when gtol > "net" force (forces summed over all sites)<br><0: criterion satisfied when xtol > max absolute force at any site<br>0: Do not use this criterion to check convergence<br><br>Note: When molecular statics are performed, either GTOL or XTOL must be specified. Both may be specified
+MSTAT\_STEP | r | lmf, lmmc, tbe | Y | 0.015 | Initial (and maximum) step length
+MSTAT\_NKILL | i | lmf, lmmc, tbe | Y | 0 | Remove hessian after NKILL iterations.<br>Never remove Hessian if NKILL=0
+MSTAT\_PDEF= | r | lmf, lmmc, tbe | Y | 0 0 0 ... | Lattice deformation modes (not documented)
+MD[...] | | lmmc, tbe | Y | | Parameters for molecular dynamics
+MD\_MODE | i | lmmc | N | 0 | 0: no MD<br>1: NVE<br>2: NVT<br>3: NPT
+MD\_TSTEP | r | lmmc | Y | 20.671 | Time step (a.u.)<br>NB: 1 fs = 20.67098 a.u.
+MD\_TEMP | r | lmmc | Y | 0.00189999 | Temperature (a.u.)<br>NB: 1 deg K = 6.3333e-6 a.u.
+MD\_TAUP | r | lmmc | Y | 206.71 | Thermostat relaxation time (a.u.)
+MD\_TIME | r | lmmc | N | 20671000 | Total MD time (a.u.)
+MD\_TAUB | r | lmmc | Y | 2067.1 | Barostat relaxation time (a.u.)
 
 {::nomarkdown}</div>{:/}
 
 ##### _EWALD_
+Category EWALD holds information controlling the Ewald sums for structure consstants entering into, e.g. the Madelung summations and Block summed structure constants(**lmf**{: style="color: blue"}). Most programs use quantities in this category to carry out Ewald sums (exceptions are **lmstr**{: style="color: blue"} and the molecules codes).
+
+<div onclick="elm = document.getElementById('ewaldtable'); if(elm.style.display == 'none') elm.style.display = 'block'; else elm.style.display = 'none';"><button type="button" class="button tiny radius">Click to show table.</button></div>
+{::nomarkdown}<div style="display:none;margin:0px 25px 0px 25px;"id="ewladtable">{:/}
+
+Token | Arguments | Program | Optional | Default | Explanation
+- | - | - | - | - | -
+AS | r | | Y | 2 | Controls the relative number of lattice vectors in the real and reciprocal space
+TOL | r | | Y | 1e-8 | Tolerance in the Ewald sums
+NKDMX | i | | Y | 800 | The maximum number of real-space lattice vectors entering into the Ewald sum, used for memory allocation.<br>Normally you should not need this token. Increase NKDMX if you encounter an error message like this one: xlgen: too many vectors, n=...
+RPAD | r | | Y | 0 | Scale rcutoff by RPAD when lattice vectors padded in oblong geometries
+
+{::nomarkdown}</div>{:/}
 
 ##### _HAM_
+This category contains parameters defining the one-particle hamiltonian.  
+
+Pportions of HAM are read by these codes: 
+
+'''
+lm
+lmfa
+lmfgwd
+lmfgws
+lmf
+lmmc
+lmgf
+lmdos
+lmchk
+lmscell
+lmstr
+lmctl
+lmpg
+tbe
+lmmag
+'''
+
+<div onclick="elm = document.getElementById('hamtable'); if(elm.style.display == 'none') elm.style.display = 'block'; else elm.style.display = 'none';"><button type="button" class="button tiny radius">Click to show table.</button></div>
+{::nomarkdown}<div style="display:none;margin:0px 25px 0px 25px;"id="hamtable">{:/}
+
+Token | Arguments | Program | Optional | Default | Explanation
+- | - | - | - | - | -
+NSPIN | i | ALL | Y | 1 | 1 for non-spin-polarized calculations<br>2 for spin-polarized calculations
+REL	| i | ALL | Y | 1 | 0: for nonrelativistic Schrodinger equation<br>1: for scalar relativistic approximation to the Dirac equation<br>2: for Dirac equation<br><br>NB: For the magnetic parameters below to be active, HAM_NSPIN must be 2
+SO | i | ALL | Y | 0 | 0: no SO coupling<br>1: Add L·S to hamiltonian<br>2: Add Lz·Sz only to hamiltonian<br>3: Like 2, but also add L·S−LzSz in an approximate manner that preserves indpendence in the spin channels.<br>See [here](http://titus.phy.qub.ac.uk/packages/LMTO/v7.11/doc/spin-orbit-coupling.html) for analysis and description of the different approximations
+NONCOL | l | ASA | Y | F | F: collinear magnetism<br>T: non-collinear magnetism
+SS | 4 r | ASA | Y | 0 | Magnetic spin spiral, direction vector and angle.<br><br>Example: nc/test/test.nc 1
+BFIELD | i | lm, lmf | Y | 0 | 0: no external magnetic field applied.<br>1: add site-dependent constant external Zeeman field (requires NONCOL=T).<br>Fields are read from file bfield.ext.<br>2: add Bz·Sz only to hamiltonian.<br><br>Examples:<br>fp/test/test.fp gdn<br>nc/test/test.nc 5
+BXCSCAL | i | lm, lmgf | Y | 0 | This tag provides an alternative means to add an effective external magnetic field in the LDA.<br>0: no special scaling of the exchange-correlation field.<br>1: scale the magnetic part of the LDA XC field by a site-dependent factor 1 + sbxci as described below.<br>2: scale the magnetic part of the LDA XC field by a site-dependent factor $(1 + sbxc_i^2)^{1/2}$ as described below.<br>This is a special mode used to impose contraining fields on rotations, used, e.g. by the CPA code.<br>Site-dependent scalings sbxci are read from file bxc.ext.
+XCFUN | i | ALL LDA | Y | 2 | Specifies local exchange correlation functional:<br>1: Ceperly-Alder<br>2: Barth-Hedin (ASW fit)<br>3: PW91 (same as PBE)<br>4: PBE (Same as PW91)
+GGA | i | ALL LDA | Y | 0 | Specifies a GGA functional:{::nomarkdown}<ol><li>No GGA (LDA only)</li><li>Langreth-Mehl</li><li>PW91</li><li>PBE</li><li>PBE with Becke exchange<br>Example: fp/test/test.fp te</li></ol>{:/}
+PWMODE | i | lmf, lmfgwd | Y | | Controls how APWs are added to the LMTO basis.{::nomarkdown}<br><br>1s digit:<ol><li>LMTO basis only</li><li>Mixed LMTO+PW<br>Examples: <br>fp/test/test.fp srtio3 and fp/test/test.fp felz 4</li><li>PW basis only</li></ol>10s digit:<ol><li>PW basis fixed (less accurate, but simpler)</li><li>PW basis k-dependent. Symmetry-consistent but basis and basis dimension depend on k.<br>Example: fp/test/test.fp te</li></ol>{:/}
+PWEMIN | r | lmf, lmfgwd | Y | 0 | Include APWs with energy E > PWEMIN (Ry)
+PWEMAX | r | lmf, lmfgwd | Y | -1 | Include APWs with energy E < PWEMAX (Ry)
+NPWPAD | i | lmf, lmfgwd | Y | -1 | Overrides default padding of variable basis dimension
+RDSIG | i | lmf, lmfgwd, lm, lmgf | Y | 0 | Controls how the self-energy Σ is added to local exchange correlation functional.<br>1s digit:{::nomarkdown}<ul><li>0 do not read Σ</li><li>1 read file Σ in sigm.ext, if it exists, and add it to the LDA potential<br>Add 2 to symmetrize Σ(T)<br>Add 4 to include Re(Σ(T)) only</li></ul>10s digit:<ul><li>0 simple interpolation</li><li>1 approximate high energy parts of sigma by diagonal (see sigp)</li><li>3 interpolate sigma by LDA eigenvectors (no longer supported)<br>In this mode use 100s digit for # interpolation points.<br>Add 10000 to indicate the sigma file was stored in the full BZ (no symmetry operations are assumed)<br>Add 20000 to use the minimum neighbor table (only one translation vector at the surfaces or edges; cannot be used with symmetrization)<br>Add 40000 to allow file mismatch between expected k-points and file values.</li></ul>{:/}<br>Note: Some options can also be supplied through the command-line argument --rsig[~option~option...].
+RSSTOL | r | ALL | Y | 5e-6 | Max tolerance in Bloch sum error for real-space Σ.<br><br>Unless otherwise specified (by e.g. --rsig~rs), Σ is read in k-space and is immediately converted to real space by inverse Bloch transform.<br>The r.s.form is forward Bloch summed and checked against the original k-space Σ.<br>If the difference exceeds RSSTOL the program will abort.<br>The conversion should be exact to machine precision unless the range of Σ is truncated.<br>You can control the range of real-space Σ with RSRNGE below.
+RSRNGE | r | ALL | Y | 5 | Maximum range of connecting vectors for real-space Σ (units of ALAT)
+NMTO | i | ASA | Y | 0 | Order of polynomial approximation for NMTO hamiltonian
+KMTO | r | ASA | Y | | Corresponding NMTO kinetic energies.<br>Read NMTO values, or skip if NMTO=0
+EWALD | l | lm | Y | F | Make strux by Ewald summation (NMTO only)
+VMTZ | r | ASA | Y | 0 | Muffin-tin zero defining wave functions
+QASA | i | ASA | Y | 3 | A parameter specifying the definition of ASA moments Q0,Q1,Q2; see lmto documentation{::nomarkdown}<ul><li>0. Methfessel conventions for 2nd gen ASA moments Q0,Q1,Q2</li><li>1. Q2 = coefficient to φ̇2 − p φ2 in sphere.</li><li>2. Q1,Q2 accumulated as coefficients to <φ·φ̇> and <φ̇2>, respectively.</li><li>3. 1+2 (Stuttgart conventions)</li></ul>{:/}
+PMIN | r | ALL | Y | 0 0 0 ... | Global minimum in fractional part of logarithmic derivative parameters Pl.<br>Enter values for l=0,..lmx<br>0: no minimum constraint<br>\# : with \#<1, floor of fractional P is \#<br>1: use free-electron value as minimum<br><br>Note: lmf always uses a minimum constraint, the free-electron value (or slightly higher if AUTOBAS_GW is set).<br>You can set the floor still higher with PMIN=#.
+PMAX | r | ALL | Y | 0 0 0 ... | Global maximum in fractional part of potential functions Pl. Enter values for l=0,..lmx<br>0 : no maximum constraint<br>\#: with \#<1, uppper bound of of fractional P is \#
+OVEPS | r | ALL | Y | 0 | The overlap is diagonalized and the hilbert space is contracted, discarding the part with eigenvalues of overlap < OVEPS<br>Especially useful with the PMT basis, where the combination of smooth Hankel functions and APWs has a tendency to make the basis overcomplete.
+OVNCUT | i | ALL | Y | 0 | This tag has a similar objective to OVEPS.<br>The overlap is diagonalized and the hilbert space is contracted, discarding the part
+belonging to lowest OVNCUT evals of overlap.<br>Supersedes OVEPS, if present.
+GMAX | r | lmf, lmfgwd | N | | G-vector cutoff used to create the mesh for the interstitial density. A uniform mesh is with spacing between points in the three directions as homogeneous as possible, with G vectors |G|<GMAX.<br>This input is required; but you may omit it if you supply information with the FTMESH token.
+FTMESH | i1 [i2 i3] | FP | N | | The number of divisions specifying the uniform mesh density along the three reciprocal lattice vectors. The second and third arguments default to the value of the first one, if they are not specified. <br>This input is used only if if the parser failed to read the GMAX token.
+TOL | r | FP | Y | 1e-6 | Specifies the precision to which the generalized LMTO envelope functions are expanded in a Fourier expansion of G vectors.
+FRZWF | l | FP | Y | F | Set to T to freeze the shape of the augmented part of the
+wave functions. Normally their shape is updated as the potential changes, but with FRZWF=t the potential used to make augmentation wave functions is frozen at what is read from the restart file (or free-atom potential if starting from superposing free atoms).<br>This is not normally necessary, and freezing wave functions makes the basis slightly less accurate. However, there are slight inconsistencies when these orbitals are allowed to change shape. Notably the calculated forces to not take this shape change into account, and they will be slightly inconsistent with the total energy.
+FORCES | i | FP | Y | 0 | Controls how forces are to be calculated, and how the
+second-order corrections are to be evaluated. Through the variational principle, the total energy is correct to second order in deviations from self-consistency, but forces are correct only to first order. To obtain forces to second order, it is necessary to know how the density would change with a (virtual) displacement of the core+nucleus, which requires a linear response treatment.<br>lmf estimates this changes in one of two ways:{::nomarkdown}<ol><li>the free-atom density is subtracted from the total density for nuclei centered at the original position and added back again at the (virtually) displaced position.<br><br>For this ansatz, use FORCES=1.</li>the core+nucleus is shifted and screened assuming a Lindhard dielectric response. <br><br>For this ansatz, use FORCES=12. You also must
+specify ELIND, below.</li></ol>{:/}
+ELIND | r | lmf | Y | -1 | a parameter in the Lindhard response function, (the
+Fermi level for a free-electron gas relative to the bottom of the band). You can specify this energy directly, by using a positive number for the parameter. If you use instead a negative number, the program will choose a default value from the total number of valence electrons and assuming a free-electron gas, scale that default by the absolute value of the number you specify. If you have a simple sp bonded system, the default value is a good choice. If you have d or f electrons, it tends to overestimate the response.<br>Use a something smaller, e.g. ELIND=-0.7.<br><br>ELIND is used in three contexts:<br><br>(1) in the force correction term; see FORCES= above<br>(2) to estimate a self-consistent density from the input and output densities after a band pass<br>(3) to estimate a reasonable smooth density from a starting density after atoms are moved in a relaxation step.
+SIGP[...] | r | lmf, lmfgwd | Y | | Parameters used to interpolate the self-energy Σ. Used in conjunction with the GW package. See gw.html for description. Default: not used
+SIGP\_MODE | r | lmf, lmfgwd | Y | 4 | Specifies the linear function used for matrix elements of Σ at highly-lying energies. With recent implementations of the GW package 4 is recommended; it requires no input from you.
+SIGP\_EMAX SIGP\_NMAX SIGP\_EMIN SIGP\_NMIN SIGP\_A SIGP\_B | r | lmf, lmfgwd | Y | | See gw.html
+AUTOBAS[...] | r | lmfa, lmf, lmfgwd | Y | | Parameters associated with the automatic determination of the basis set.<br>These switches greatly simplify the creation of an input file for lmf.<br>Note: Programs lmfa and lmf both use tokens in the AUTOBAS tag but they mean different things, as described below. This is because lmfa generates the parameters while lmf uses them.<br><br>Default: not used
+AUTOBAS\_GW | i | lmfa | Y | 0 | Set to 1 to tailor the autogenerated basis set file basp0.ext to a somewhat larger basis, better suited for GW.
+AUTOBAS\_GW | i | lmf | Y | 0 | Set to 1 to float log derivatives P a bit more conservatively — better suited to GW calculations.
+AUTOBAS\_LMTO | i | lmfa | Y | 0 | lmfa autogenerates a trial basis set, saving the result into basp0.ext.<br>LMTO is used in an algorithm to determine how large a basis it should construct: the number of orbitals increases as you increase LMTO. This algorithm also depends on which states in the free atom which carry charge.<br>Let lq be the highest l which carries charge in the free atom.<br><br>There are the following choices for LMTO:{::nomarkdown}<ul><li>0. standard minimal basis; same as LMTO=3.</li><li>1. The hyperminimal basis, which consists of envelope functions corresponding those l which carry charge in the free atom, e.g. Ga sp and Mo sd.<br><br>Note: this basis is only sensible when used in conjunction with APWs.</li><li>2. All l up to lq+1 if lq<2; otherwise all l up to lq</li><li>3. All l up to min(lq+1, 3).<br>For elements lighter than Kr, restrict l≤2.<br>For elements heavier than Kr, include l to 3.</li><li>4. (Standard basis) Same as LMTO=3, but restrict l≤2 for elements lighter than Ar.</li><li>5. (Large basis) All l up to max(lq+1,3) except for H, He, Li, B (use l=spd).</li></ul>{:/}<br>Use the MTO token (see below) in combination with this one. MTO controls whether the LMTO basis is 1-κ or 2-κ, meaning whether 1 or 2 envelope functions are allowed per l channel.
+AUTOBAS\_MTO | i | lmfa | Y | 0 | Autogenerate parameters that control which LMTO basis functions are to be included, and their shape.<br><br>Tokens RSMH,EH (and possibly RSMH2,EH2) determine the shape of the MTO basis. lmfa will determine a reasonable set of RSMH,EH automatically (and RSMH2,EH2 for a 2-κ basis), fitting to
+radial wave functions of the free atom.<br><br>Note: lmfa can generate parameters and write them to file basp0.ext.<br>lmf can read parameters from basp.ext.<br>You must manually create basp.ext, e.g. by copying basp0.ext into basp.ext. You can tailor basp.ext with a text editor. There are the following choices for MTO:<br> 0: do not autogenerate basis parameters<br>1: or 3 1-κ parameters with Z-dependent LMX<br>2: or 4 2-κ parameters with Z-dependent LMX
+AUTOBAS\_MTO | i | lmf, lmfgwd | Y | 0 | Read parameters RSMH,EH,RSMH2,EH2 that control which LMTO basis functions enter the basis.<br><br>Once initial values have been generated you can tune these parameters automatically for the solid, using lmf with the --optbas switch; see Building_FP_input_file.html and FPoptbas.html.<br><br>The --optbas step is not essential, especially for large basis sets, but it is a way to improve on the basis without increasing the size.<br><br>There are the following choices for MTO:<br><br>0 Parameters not read from basp.ext; they are specified in the input file ctrl.ext.<br>1 or 3: 1-κ parameters may be read from the basis file basp.ext, if they exist<br>2 or 4: 2-κ parameters may be read from the basis file basp.ext, if they exist<br>1 or 2: Parameters read from ctrl.ext take precedence over basp.ext<br>3 or 4: Parameters read from basp.ext take precedence over those read from ctrl.ext.
+AUTOBAS\_PNU | i | lmfa | Y | 0 | Autoset boundary condition for augmentation part of basis, through specification of logarithmic derivative parameters P.<br><br>0 do not make P <br>1 Find P for l < lmxb from free atom wave function; save in file basp0.ext
+AUTOBAS\_PNU | i | lmf, lmfgwd | Y | 0 | Autoset boundary condition for augmentation part of basis, through specification of logarithmic derivative parameters P.<br><br>0 do not attempt to read P from basp.ext.<br>1 Read P from basp.ext, for those species which P is given.
+AUTOBAS\_LOC | i | lmfa, lmf, lmfgwd | Y | 0 | Autoset local orbital parameters PZ, which determine which deep or high-lying states are to be included as local orbitals.<br><br>Used by lmfa to control whether parameters PZ are to be sought:<br>0: do not autogenerate PZ<br>1 or 2: autogenerate PZ<br><br>Used by lmf and lmfgwd to control how PZ is read:<br><br>1 or 2: read parameters PZ<br>1: Nonzero values from ctrl file take precedence over basis file input
+AUTOBAS\_ELOC | r | lmfa | Y | -2 Ry | The first of two criteria to decide which orbitals should be included in the valence as local orbitals. If the energy of the free atom wave function exceeds (is more shallow than) ELOC, the orbital is included as a local orbital.
+AUTOBAS\_QLOC | r | lmfa | Y | 0.005 | The second of two criteria to decide which  orbitals should be included in the valence as local orbitals.<br>If the fraction of the free atom wave function’s charge outside the augmentation radius exceeds QLOC, the orbital is included as a local orbital.
+AUTOBAS\_PFLOAT | i1 i2 | lmf, lmfgwd | y | 1 1 | Governs how the logarithmic derivative parameters Pl are set and floated in the course of a self-consistency cycle.<br>The 1st argument controls default starting values of P and lower bounds to P when it is floated<br>0: Use version 6 defaults and float lower bound<br>1: Use defaults and float lower bound designed for LDA<br>2: Use defaults and float lower bound designed for GW<br>The 2nd argument controls how the band center of gravity (CG) is determined — used when floating P.<br>0: band CG is found by a traditional method<br>1: band CG is found from the true energy moment of the density
+
+{::nomarkdown}</div>{:/}
 
 ##### _GF_
 
 ##### _GW_
 
 ##### _HEADER_
+This category is optional, and merely prints to the standard output whatever text is in the category. For example:
+
+'''
+HEADER  This line and the following one are printed to
+        standard out on execution of a program.
+XXX
+'''
+
+Alternately:
+
+'''
+HEADER [ In this form only two lines reside within the
+        category delimiters,]
+        and only two lines are printed.
+'''
 
 ##### _IO_
 
@@ -289,6 +449,33 @@ T | E | S | T | 3 | 4<br>5
 ##### _SITE_
 
 ##### _SPEC_
+Category SPEC contains species-specific information. Because data must be read for each species, tokens are repeated (once for each species). For that reason, there is some restriction as to the order of tokens. Data for a specific species (Z=, R=, R/W=, LMX=, IDXDN= and the like described below) begins with a token ATOM=; input of tokens specific to that species must precede the next occurence of ATOM=.  
+
+The following four species apply to the automatic sphere resizer:
+
+<div onclick="elm = document.getElementById('spec1table'); if(elm.style.display == 'none') elm.style.display = 'block'; else elm.style.display = 'none';"><button type="button" class="button tiny radius">Click to show table.</button></div>
+{::nomarkdown}<div style="display:none;margin:0px 25px 0px 25px;"id="spec1table">{:/}
+
+Token | Arguments | Program | Optional | Default | Explanation
+- | - | - | - | - | -
+SCLWSR | r | ALL | Y | 0 | SCLWSR>0 turns on the automatic sphere resizer. It defaults to 0, which turns off the resizer.<br>The 10’s digit tells the resizer how to deal with resizing empty spheres; see lmto.html.
+OMAX1 | r1 r2 r3 | ALL | Y | 0.16, 0.18, 0.2 | Constrains maximum allowed values of sphere overlaps.<br>You may input up to three numbers, which correspond to atom-atom, and atom-empty-sphere, and empty-sphere-empty-sphere overlaps respectively.
+OMAX2 | r1 r2 r3 | ALL | Y | 0.4, 0.45, 0.5 | Constrains maximum allowed values of sphere overlaps defined differently from OMAX1; see lmto.html.<br>Both constraints are applied.
+WSRMAX | r | ALL | Y | 0 | Imposes an upper limit to any one sphere radius
+
+{::nomarkdown}</div>{:/}
+
+The following tokens are input for each species. Data sandwiched between successive
+occurences of ATOM apply to one species.
+
+<div onclick="elm = document.getElementById('spec2table'); if(elm.style.display == 'none') elm.style.display = 'block'; else elm.style.display = 'none';"><button type="button" class="button tiny radius">Click to show table.</button></div>
+{::nomarkdown}<div style="display:none;margin:0px 25px 0px 25px;"id="spec2table">{:/}
+
+Token | Arguments | Program | Optional | Default | Explanation
+- | - | - | - | - | -
+ATOM | c | ALL | N | | A character string (8 characters or fewer) that labels this species. This label is used, e.g. by the SITE category to associate a species with an atom at a given site.<br>Species are split into classes; how and when this is done depends whether you are using an ASA or full-potential implementation.<br><br>ASA-specific:<br>The species ID also names a disk file with information about that atom (potential parameters, moments, potential and some sundry other information). More precisely, species are split into classes, the program differentiates class names by appending integers to the species label. The first class associated with the species has the species label; subsequent ones have integers appended.<br><br>Example: testing/test.ovlp 3
+
+{::nomarkdown}</div>{:/}
 
 ##### _STR_
 
