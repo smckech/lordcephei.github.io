@@ -15,7 +15,7 @@
   side: left
   dropdown:
   - title: "Package Overview"
-  	url: ""
+  	url: "/insert/"
   - title: "Installation"
     url: "/install/"
   - title: "FP Overview"
