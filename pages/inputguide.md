@@ -298,7 +298,7 @@ SSTAT\_MODE | i | lm, lmgf | N | 0 | 0: no spin statics or dynamics<br>-1: Landa
 SSTAT\_SCALE | i | lm, lmgf | N | 0 | (used with mode=2) scale factor amplifying magnetic forces
 SSTAT\_MAXT | i | lm, lmgf | N | 0 | maximum allowed change in angle
 SSTAT\_TAU | i | lm, lmgf | N | 0 | (used with mode=-1) time step
-SSTAT\_ETOL | i } lm, lmgf | N | 0 | (used with mode=-1) Set tau=0 this iter if etot-ehf>ETOL
+SSTAT\_ETOL | i | lm, lmgf | N | 0 | (used with mode=-1) Set tau=0 this iter if etot-ehf>ETOL
 MSTAT[...] | | lmf, lmmc, tbe | Y | | (molecular statics) parameters specifiying how site positions are relaxed given the internuclear forces
 MSTAT\_MODE | i | lmf, lmmc, tbe | N | 0 | 0: no relaxation<br>4: relax with conjugate gradients algorithm (not generally recommended)<br>5: relax with Fletcher-Powell alogirithm. Find minimum along a line; a new line is chosen. The Hessian matrix is updated only at the start of a new line minimization. Fletcher-Powell is more stable but usually less efficient then Broyden.<br>6: relax with Broyden algorithm. This is essentially a Newton-Raphson algorithm, where Hessian matrix and direction of descent are updated each iteration.
 MSTAT\_HESS | l | lmf, lmmc, tbe | N | T | T: Read hessian matrix from file, if it exists<br>F: assume initial hessian is the unit matrix
@@ -385,7 +385,7 @@ PMIN | r | ALL | Y | 0 0 0 ... | Global minimum in fractional part of logarithmi
 PMAX | r | ALL | Y | 0 0 0 ... | Global maximum in fractional part of potential functions Pl. Enter values for l=0,..lmx<br>0 : no maximum constraint<br>\#: with \#<1, uppper bound of of fractional P is \#
 OVEPS | r | ALL | Y | 0 | The overlap is diagonalized and the hilbert space is contracted, discarding the part with eigenvalues of overlap < OVEPS<br>Especially useful with the PMT basis, where the combination of smooth Hankel functions and APWs has a tendency to make the basis overcomplete.
 OVNCUT | i | ALL | Y | 0 | This tag has a similar objective to OVEPS.<br>The overlap is diagonalized and the hilbert space is contracted, discarding the part belonging to lowest OVNCUT evals of overlap.<br>Supersedes OVEPS, if present.
-GMAX | r | lmf, lmfgwd | N | | G-vector cutoff used to create the mesh for the interstitial density. A uniform mesh is with spacing between points in the three directions as homogeneous as possible, with G vectors |G|<GMAX.<br>This input is required; but you may omit it if you supply information with the FTMESH token.
+GMAX | r | lmf, lmfgwd | N | | G-vector cutoff used to create the mesh for the interstitial density. A uniform mesh is with spacing between points in the three directions as homogeneous as possible, with G vectors |G| < GMAX.<br>This input is required; but you may omit it if you supply information with the FTMESH token.
 FTMESH | i1 [i2 i3] | FP | N | | The number of divisions specifying the uniform mesh density along the three reciprocal lattice vectors. The second and third arguments default to the value of the first one, if they are not specified. <br>This input is used only if if the parser failed to read the GMAX token.
 TOL | r | FP | Y | 1e-6 | Specifies the precision to which the generalized LMTO envelope functions are expanded in a Fourier expansion of G vectors.
 FRZWF | l | FP | Y | F | Set to T to freeze the shape of the augmented part of the wave functions. Normally their shape is updated as the potential changes, but with FRZWF=t the potential used to make augmentation wave functions is frozen at what is read from the restart file (or free-atom potential if starting from superposing free atoms).<br>This is not normally necessary, and freezing wave functions makes the basis slightly less accurate. However, there are slight inconsistencies when these orbitals are allowed to change shape. Notably the calculated forces to not take this shape change into account, and they will be slightly inconsistent with the total energy.
@@ -410,8 +410,43 @@ AUTOBAS\_PFLOAT | i1 i2 | lmf, lmfgwd | y | 1 1 | Governs how the logarithmic de
 {::nomarkdown}</div>{:/}
 
 ##### _GF_
+Category GF is intended for parameters specific to the Green’s function code **lmgf**{: style="color: blue"}.
+It is read by **lmgf**{: style="color: blue"}.
+
+<div onclick="elm = document.getElementById('gftable'); if(elm.style.display == 'none') elm.style.display = 'block'; else elm.style.display = 'none';"><button type="button" class="button tiny radius">Click to show table.</button></div>
+{::nomarkdown}<div style="display:none;margin:0px 25px 0px 25px;"id="gftable">{:/}
+
+Token | Arguments | Program | Optional | Default | Explanation
+- | - | - | - | - | -
+MODE | i | ASA | Y | 0 | 0: do nothing<br>1:self-consistent cycle<br>10: Transverse magnetic exchange interactions J(q)<br>11: Read J(q) from disk and analyze results<br>14: Longitudinal exchange interactions<br>20: Transverse $X^(+-)$ from ASA Green's function<br>21: Read X from disk and analyze results<br>20: Transverse $X^(++)$, X^(--) from ASA Green's function<br>Caution: Modes 14 and higher have not been maintained.
+GFOPTS | c | ASA | Y | | ASCII string with switches governing execution of lmgf or lmpg. Use `;‘ to separate the switches.<br><br>Available switches:<br><br>‘p1‘ First order of potential function<br><br>‘p3‘ Third order of potential function<br><br>‘pz‘ Exact potential function (some problems; not recommended<br><br>Use only one of the above; if none are used, the code generates second order potential functions.<br><br>‘idos‘ integrated DOS (by principal layer in the lmpg case)<br><br>‘noidos‘ suppress calculation of integrated DOS<br><br>‘pdos‘ accumulate partial DOS<br><br>‘emom‘ accumulate output moments; use ‘noemom‘ to suppress<br><br>‘noemom‘ suppresss accumulation of output moments<br><br>‘sdmat‘ make site density-matrix<br><br>‘dmat‘ make density-matrix<br><br>‘frzvc‘ do not update potential shift needed to obtain charge neutrality<br><br>‘padtol‘ Tolerance in Pade correction to charge. If tolerance exceeded, lmgf will repeat the band pass with an updated Fermi level<br><br>‘omgtol‘ (CPA) tolerance criterion for convergence in coherent potential<br><br>‘omgmix‘ (CPA) linear mixing parameter for iterating convergence in coherent potential<br><br>‘nitmax‘ (CPA) maximum number of iterations to iterate for coherent potential<br><br>‘lotf‘ (CPA)<br><br>‘dz‘ (CPA)
+DLM | i | ALL | Y | 0 | Governs self-consistency for both chemical CPA and magnetic CPA (disordered local moments).<br><br>12 : normal CPA/DLM calculation: charge and coherent potential Ω both iterated to self-consistency.<br><br>32 : Ω alone is iterated to self-consistency.
+BXY | 1 | ALL | Y | F | (DLM) Setting this switch to T generates a site-dependent constraining field to properly align magnetic moments.<br><br>In this context constraining field is applied by scaling the LDA exchange-correlation field.<br>The scaling factor is $ [1+bxc(ib)^2]^(1/2) $.<br><br>A table of bxc is kept for each site in the first column of file shfac.ext.<br>See also HAM_BXCSCAL.
+TEMP | r | ALL | Y | 0 | (DLM) spin temperature.
+
+{::nomarkdown}</div>{:/}
 
 ##### _GW_
+Category GW holds parameters specific to GW calculations, particularly for the GW driver **lmfgwd**{: style="color: blue"}. Most of these tokens supply values for tags in the GWinput template when **lmfgwd****{: style="color: blue"} generates it (job −1).
+
+<div onclick="elm = document.getElementById('gwtable'); if(elm.style.display == 'none') elm.style.display = 'block'; else elm.style.display = 'none';"><button type="button" class="button tiny radius">Click to show table.</button></div>
+{::nomarkdown}<div style="display:none;margin:0px 25px 0px 25px;"id="gwtable">{:/}
+
+Token | Arguments | Program | Optional | Default | Explanation
+- | - | - | - | - | -
+CODE | i | lmfgwd | Y | 2 | This token tells what GW code you are creating input files for.<br>lmfgwd serves as a driver to several GW codes {::nomarkdown} <ul><li>0. First GW version v033a5 (code still works but it is no longer maintained).</li><li>2. Current version of GW codes</li><li>1. Driver for the Julich spex code (not fully debugged or maintained)</li><li>10. Driver for the Rutgers DMFT code (under development)</li></ul> {:/}
+NKABC | 1 to 3 i | | Y | | Defines the k-mesh for GW. This token serves the same function for GW as BZ_NKABC does for the LDA codes, and the input format is the same.<br><br>When generating a GWinput template, lmfgwd passes the contents of NKABC to the n1n2n3 tag.<br><br>Note: Shell scripts lmgw and lmgwsc used for the GW codes may also use this token.<br>When invoked with switches --getsigp or --getnk, they will modify the n1n2n3 in GWinput.<br>The data they use is taken from GW\_NKABC.
+MKSIG | i | lmfgwd | Y | 3 | (self-consistent calculations only).<br>Controls the form of $ V^(xc) $ (the static QSGW approximation to the dynamical self-energy Σ).<br>In the table below $ Σ_(nn) $‘ (E) refers to a matrix element of Σ between eigenstates n and n‘, at energy E relative to $ E_F $.<br>When generating a GWinput template, lmfgwd passes MKSIG to the iSigMode tag.<br>Values of this tag have the following meanings.{::nomarkdown}<ul><li>0. do not make V<sub>xc</sub></li><li>1. V<sub>xc</sub> = Σ<sub>nn</sub>‘ (E<sub>F</sub>)<br>if n≠n‘, and Σ<sub>nn</sub>(E<sub>n</sub>) if n=n‘:<br>mode B, Eq.(11) in Phys. Rev. B76, 165106 (2007)</li><li>V<sub>xc</sub> = 1/2[Σ</sub>nn</sub>‘ (E<sub>n</sub>) + Σ<sub>nn</sub>‘ (E<sub>n</sub>‘)]:<br>mode A, Eq.(10) in Phys. Rev. B76, 165106 (2007)</li><li>“eigenvalue only” self-consistency V<sub>xc</sub> = δ<sub>nn</sub>‘Σ<sub>nn</sub>‘ (E<sub>n</sub>)</li></ul> {:/}
+GCUTB | r | lmfgwd | Y | 2.7 | G-vector cutoff for basis envelope functions as used in the GW package.<br>When generating a GWinput template, lmfgwd passes GCUTB to the QpGcut_psi tag.
+GCUTX | r | lmfgwd | Y | 2.2 | G-vector cutoff for interstitial part of two-particle objects such as the screened coulomb interaction.<br>When generating a GWinput template, lmfgwd passes GCUTX to the QpGcut_cou tag.
+ECUTS | r | lmfgwd | Y | 2.5 | (self-consistent calculations only). Maximum energy for which to calculate the $ V^(xc) $ described in MKSIG above.<br>This energy should larger than HAM_SIGP_EMAX which is used to interpolate $ V^(xc) $.<br>When generating a GWinput template, lmfgwd passes ECUTS+1/2 to the emax_sigm tag.
+NIME | i | lmfgwd | Y | 6 | Number of frequencies on the imaginary integration axis when making the correlation part of Σ.<br><br>When generating a GWinput template, lmfgwd passes NIME to the niw tag.
+DELRE | r | lmfgwd | Y | .01, .04 | frequency mesh parameters (dw,omg\_c) definining the real axis mesh when calculating Im $ χ_0 $.<br>The ith mesh point is given by:<br>$ ω_i = dw × (i−1) + [dw × (i−1)]^2/omg_c/2 $ <br>Points are approximately uniformly spaced, separated by dw, up to frequency omg\_c, around which point the spacing begins to increase linearly with frequency.<br><br>When generating a GWinput template, lmfgwd passes DELRE(1) to the dw tag and DELRE(2) to the omg\_c tag.<br><br>Note: the similarity to OPTICS\_DW used by the optics part of lmf and lm.
+DELTA | r | lmfgwd | Y | -1e-4 | δ-function broadening for calculating $ χ_0 $, in atomic units.<br>Tetrahedron integration is used if DELTA<0.<br><br>When generating a GWinput template, lmfgwd passes DELTA to the delta tag.
+GSMEAR | r | lmfgwd | Y | .003 | Broadening width for smearing pole in the Green’s function when calculating Σ.<br><br>This parameter is sometimes important in metals, e.g. Fe.<br>See Section 3 in this manual.<br><br>When generating a GWinput template, lmfgwd passes GSMEAR to the esmr tag.
+PBTOL | r | lmfgwd | Y | .001 | Overlap criterion for product basis functions inside augmentation spheres.<br>The overlap matrix of the basis of product functions generated and diagonalized for each l. Functions with overlaps less than PBTOL are removed from the product basis.<br><br>When generating a GWinput template, lmfgwd passes PBTOL to the second line after the the start of the PRODUCT_BASIS section.
+
+{::nomarkdown}</div>{:/}
 
 ##### _HEADER_
 This category is optional, and merely prints to the standard output whatever text is in the category. For example:
@@ -431,16 +466,158 @@ HEADER [ In this form only two lines reside within the
 ~~~
 
 ##### _IO_
+This optional category controls what kind of information, and how much, is written to the standard output file.
+
+<div onclick="elm = document.getElementById('iotable'); if(elm.style.display == 'none') elm.style.display = 'block'; else elm.style.display = 'none';"><button type="button" class="button tiny radius">Click to show table.</button></div>
+{::nomarkdown}<div style="display:none;margin:0px 25px 0px 25px;"id="iotable">{:/}
+
+Token | Arguments | Program | Optional | Default | Explanation
+- | - | - | - | - | -
+SHOW | 1 | all | Y | F | Echo lines as it is read from input file and parsed by the proprocessor.<br>Command-line argument --show provides the same functionality.
+HELP | 1 | all | Y | F | Show what input would be sought, without attempting to read data.<br>Command-line argument --input provides the same functionality.
+VERBOS | 1 to 3 | all | Y | 30 | Sets the verbosity. 20 is terse, 30 slightly terse, 40 slightly verbose, 50 verbose, and so on. If more than one number is given, later numbers control verbosity in subsections of the code, notably the parts dealing with augmentation spheres.<br>May also be set from the command-line: --pr#1[,#2]
+IACTIV | 1 | all | Y | F | Turn on interactive mode. At some point programs will prompt you with queries.<br>May also be controlled from the command-line: --iactiv or --iactiv=no.
+TIM | 1 or 2 | all | Y | 0, 0 | Prints out CPU usage of blocks of code in a tree format.<br>First value sets tree depth. Second value, if present, prints timings on the fly.<br>May also be controlled from the command-line: --time=#1[,#2]
+
+{::nomarkdown}</div>{:/}
 
 ##### _ITER_
+The ITER category contains parameters that control the requirements to reach self-consistency.
+
+It applies to all programs that iterate to self-consistency:
+
+~~~
+lm,
+lmfa,
+lmf,
+lmmc,
+lmgf,
+lmpg,
+tbe.
+~~~
+
+<div onclick="elm = document.getElementById('itertable'); if(elm.style.display == 'none') elm.style.display = 'block'; else elm.style.display = 'none';"><button type="button" class="button tiny radius">Click to show table.</button></div>
+{::nomarkdown}<div style="display:none;margin:0px 25px 0px 25px;"id="itertable">{:/}
+
+Token | Arguments | Program | Optional | Default | Explanation
+- | - | - | - | - | -
+NIT | i | all | Y | 1 | Maximum number of iterations in the self-consistency cycle.
+NRMIX | i1 i2 | ASA, lmfa | Y | 80, 2 | Uses when self-consistency is needed inside an augmentation sphere. This occurs when the density is determined from the momentsQ0,Q1,Q2 in the ASA; or in the free atom code, just Q0.<br>i1: max number of iterations<br>i2: number of prior iterations for Anderson mixing of the sphere density<br><br>Note: You will probably never need to use this token.
+MIX | c | all | Y | | Mixing rules for mixing input, output density in the self-consistency cycle. Syntax:<br>A[nmix][,b=beta][,bv=betv][,n=nit][,w=w1,w2][,nam=fn][,k=nkill][;...] or<br>B[nmix][,b=beta][,bv=betv][,wc=wc][,n=#][,w=w1,w2][,nam=fn][,k=nkill]
+AMIX | c | ASA | Y | | Mixing rules when Euler angles are mixed independently. Syntax as in MIX
+CONV | r | all | Y | 1e-4 | Maximum energy change from the prior iteration for self-consistency to be reached.
+CONVC | r | all | Y | 1e-4 | Maximum in the RMS difference in $ <n^(out) − n^(in)> $.<br><br>In the ASA, this is measured by the change in moments Q0..Q2 and log derivative parameter P.<br><br>In the full-potential case it is measured by an integral over the various parts of n (local, interstitial parts).
+UMIX | r | all | Y | 1 | Mixing parameter for density matrix; used with LDA+U
+TOLU | r | all | Y | 0 | Tolerance for density matrix; used with LDA+U
+NITU | i | all | Y | 0 | Maximum number of LDA+U iterations of density matrix
+
+{::nomarkdown}</div>{:/}
 
 ##### _OPTICS_
+Optics functions available with the ASA extension packages OPTICS.
+
+It is read by **lm**{: style="color: blue"} and is also partially implemented in full-potential **lmf**{: style="color: blue"}.
+
+<div onclick="elm = document.getElementById('opticstable'); if(elm.style.display == 'none') elm.style.display = 'block'; else elm.style.display = 'none';"><button type="button" class="button tiny radius">Click to show table.</button></div>
+{::nomarkdown}<div style="display:none;margin:0px 25px 0px 25px;"id="opticstable">{:/}
+
+Token | Arguments | Program | Optional | Default | Explanation
+- | - | - | - | - | -
+MODE | i | OPTICS | Y | 0 | 0: make no optics calculations<br>1: generate linear $ ε_2 $<br>20: generate second harmonic ε<br>Example: optics/test/test.optics sic<br><br>The following cases (MODE < 0) generate joint or single density-of-states.<br><br>Note: MODE < 0 works only with LTET=3 described below:{::nomarkdown}<ul><li> −1: generate joint density-of-states<br>Examples:<br>(ASA)   optics/test/test.optics --all 4<br>(FP)   fp/test/test.fp zbgan</li><li>−2: generate joint density-of-states, spin 2<br>Example:optics/test/test.optics fe 6</li><li>−3: generate up-down joint density-of-states</li><li>−4: generate down-up joint density-of-states</li><li>−5: generate spin-up single density-of-states<br><br>Example: optics/test/test.optics --all 7</li><li>−6: generate spin-dn single density-of-states</li></ul> {:/}
+LTET | i | OPTICS | Y | 0 | 0: Integration by Methfessel-Paxton sampling<br>1: standard tetrahedron integration<br>2: standard tetrahedron integration<br>3: enhanced tetrahedron integration<br><br>Note: In the metallic case states near the Fermi level must be treated with partial occupancy. LTET=3 is the only scheme that handles this properly.<br>It was adapted from the GW package and has extensions, e.g. the ability to handle non-vertical transitions $ k^(occ) ≠ k^(unocc) $.
+WINDOW | r1 r2 | OPTICS | N | 0 1 | Energy (frequency) window over which to calculate Im[ε(ω)].<br>Im ε is calculated on a mesh of points $ ω_i $.<br>The mesh spacing is specified by NPTS or DW, below.
+NPTS | i | OPTICS | N | 501 | Number of mesh points in the energy (frequency) window. Together with WINDOW, NPTS specifies the frequency mesh as:<br>$ ω_i $ = WINDOW(1) + DW×(i−1)<br>where DW = (WINDOW(2)−WINDOW(1))/(NPTS−1)<br><br>Note: you may alternatively specify DW below.
+DW | r1 [r2] | OPTICS | Y | | Frequency mesh spacing DW[,OMG]. You can supply either one argument, or two.<br>If one argument (DW) is supplied, the mesh will consist of evenly spaced points separated by DW.<br>If a second argument (OMG) is supplied, points are spaced quadratically as:<br>$ ω_i $ = WINDOW(1) + DW×(i−1) + [DW×(i−1)]2/OMG/2<br>Spacing is approximately uniform up to frequency OMG; beyond which it increases linearly.<br>Note: The quadratic spacing can be used only with LTET=3.
+FILBND | i1 [i2] | OPTICS | Y | 0 0 | i1[,i2] occupied energy bands from which to calculate ε using first order perturbation theory, without local fields.<br>i1 = lowest occupied band<br>i2 = highest occupied band (defaults to no. electrons)
+EMPBND | i1 [i2] | OPTICS | Y | 0 0 | i1[,i2] occupied energy bands from which to calculate ε using first order perturbation theory, without local fields.<br>i1 = lowest unoccupied band<br>i2 = highest unoccupied band (defaults to no. bands)
+PART | l | OPTICS | Y | F | Resolve ε or joint DOS into band-to-band contributions, or by k.<br>Result is output into file popt.ext.{::nomarkdown}<ul><li>0. No decomposition</li><li>1. Resolve ε or DOS into individual (occ,unocc) contributions<br><br>Example: optics/test/test.optics ogan 5</li><li>2. Resolve ε or DOS by k<br><br>Example: optics/test/test.optics --all 6</li><li>3. Both 1 and 2<br>Add 10 to write popt as a binary file.</li></ul> {:/}
+CHI2[..] | | OPTICS | Y | | Tag containing parameters for second harmonic generation.<br>Not calculated unless tag is parsed.<br><br>Example: optics/test/test.optics sic
+CHI2\_NCHI2 | i | OPTICS | N | 0 | Number of direction vectors for which to calculate $ χ_2 $
+CHI2\_AXES | i1, i2, i3 | OPTICS | N | direction vectors for each of the NCHI2 sets
+ESCISS | r | OPTICS | Y | 0 | Scissors operator (constant energy added to unoccupied levels)
+ECUT | r | OPTICS | Y | 0.2 | Energy safety margin for determining (occ,unocc) window.<br>lmf will attempt to reduce the number of (occ,unocc) pairs by restricting, for each k, transitions that contribute to the response, i.e. to those inside the optics WINDOW.<br>The window is padded by ECUT include states outside, but near the edge of the window.<br>States outside window may nevertheless make contribution, e.g. because they can be part of a tetrahedron that does contribute.<br>If you do not want lmf to restrict the range, use ECUT<0.
+
+{::nomarkdown}</div>{:/}
 
 ##### _OPTIONS_
+Portions of OPTIONS are read by these codes:
+
+~~~
+lm,
+lmfa,
+lmfgwd,
+lmfgws,
+lmf,
+lmmc,
+lmgf,
+lmdos,
+lmstr,
+lmctl,
+lmpg,
+tbe
+~~~
+
+<div onclick="elm = document.getElementById('optionstable'); if(elm.style.display == 'none') elm.style.display = 'block'; else elm.style.display = 'none';"><button type="button" class="button tiny radius">Click to show table.</button></div>
+{::nomarkdown}<div style="display:none;margin:0px 25px 0px 25px;"id="optionstable">{:/}
+
+Token | Arguments | Program | Optional | Default | Explanation
+- | - | - | - | - | -
+HF | 1 | lm, lmf | Y | F | If T, Use the Harris-Foulkes functional only; do not evaluate output density.
+SHARM | 1 | ASA, lmf, lmfgwd | Y | F | If T, use true spherical harmonics, rather than real harmonics.
+FRZ | l | all | Y | F | (ASA) If T, freezes core wave functions.<br>(FP) If T, freezes the potential used to make augmented partial waves, so that the basis set does not change with potential.
+SAVVEC | 1 | lm | Y | F | Save eigenvectors on disk. (This may be enabled automatically in some circumstances)
+Q | c | all | Y | | Q=HAM, Q=BAND,<br>Q=MAD, Q=ATOM,<br>Q=SHOW<br>make the program stop at selected points without completing a full iteration.
+SCR | i | ASA | Y | 0 | Is connected with the generation or use of the q->0 ASA dielectric response function. It is useful in cases when there is difficulty in making the density self-consistent.<br>See linear-response-asa.html for documentation.{::nomarkdown}<ul></li>0. do not screen qout−qin.</li><li>1. Make the ASA response function P0.</li><li>2. Use P0 to screen qout−qin and the change in ves.</li><li>3. 1+2 (lmgf only)</li><li>4. screen qout−qin from a model P0</li><li>5. illegal input</li><li>6. Use P0 to screen the change in ves only</li></ul> {:/} P0 and U should be updated every iteration, but this is expensive and not worth the cost. However, you can: <br>Add 10*k to recompute intra-site contribution U every kth iteration, 0<k≤9.<br>Add 100*k to recompute P0 every kth iteration (lmgf only).<br><br>Examples: testing/test.scr and gf/test/test.gf mnpt 6
+ASA[...] | r | ASA | N | | Parameters associated with ASA-specific input.
+ASA\_ADNF | 1 | ASA | Y | F | Enables automatic downfolding of orbitals
+ASA\_NSPH | 1 | ASA | Y | 0 | Set to 1 to generate l>0 contributions (from neighboring sites) to l=0 electrostatic potential
+ASA\_TWOC | i | ASA | Y | 0 | Set to 1 to use the two-center approximation ASA hamiltonian
+ASA\_GAMMA | i | ASA | Y | 0 | Set to 1 to rotate to the (orthogonal) gamma representation. This should have no effect on the eigenvalues for the usual three-center hamiltonian, but converts the two-center hamiltonian from first order to second order.<br>Set to 2 to rotate to the spin-averaged gamma representation. <br>The lm code does not allow downfolding with GAMMA≠0.
+ASA\_CCOR | 1 | lm | Y | T | If F, suppresses the combined correction. By default it is enabled. Note: NB: if any orbitals are downfolded, CCOR is automatically enabled.
+ASA\_NEWREP | 1 | NC | Y | F | Set to 1 to rotate structure constants to a user-specified representation.<br>It requires special compilation to be effective
+ASA\_NOHYB | 1 | NC | Y | F | Set to 1 to turn off hybridization
+ASA\_MTCOR | 1 | NC | Y | F | Set to T to turn on Ewald MT correction
+ASA\_QMT | r | NC | Y | 0 | Override standard background charge for Ewald MT correction<br>Input only meaningful if MTCOR=T
+
+{::nomarkdown}</div>{:/}
 
 ##### _PGF_
+Category PGF concerns layer Green’s function calculations by the layer Green’s function program **lmpg**{: style="color: blue"}.
+
+It is read by **lmpg**{: style="color: blue"} and **lmstr**{: style="color: blue"}.
+
+<div onclick="elm = document.getElementById('pgftable'); if(elm.style.display == 'none') elm.style.display = 'block'; else elm.style.display = 'none';"><button type="button" class="button tiny radius">Click to show table.</button></div>
+{::nomarkdown}<div style="display:none;margin:0px 25px 0px 25px;"id="pgftable">{:/}
+
+Token | Arguments | Program | Optional | Default | Explanation
+- | - | - | - | - | -
+MODE | i | ASA | Y | | 0: do nothing<br>1: diagonal layer GF<br>Examples: pgf/test/test.pgf -all 5 and pgf/test/test.pgf -all 6<br>2: left- and right-bulk bulk GF<br>3: find k(E) for left bulk<br>Example: pgf/test/test.pgf 2<br>4: find k(E) for right bulk<br>5: Calculate ballistic current<br>Example: pgf/test/test.pgf femgo
+SPARSE | i | ASA | Y | 0 | 0: Calculate G layer by layer using Dyson’s equation<br>Example: pgf/test/test.pgf -all 5<br>1: Calculate G using LU decomposition<br>Example: pgf/test/test.pgf -all 6
+PLATL | r | ASA | N | | The third lattice vector of left bulk region
+PLATR | r | ASA | N | | The third lattice vector of right bulk region
+GFOPTS | c | ASA | Y | | ASCII string with switches governing execution of lmgf or lmpg. Use `;‘ to separate the switches.<br><br>Available switches:<br><br>‘p1‘ First order of potential function<br><br>‘p3‘ Third order of potential function<br><br>‘pz‘ Exact potential function (some problems; not recommended<br><br>Use only one of the above; if none are used, the code makes second order potential functions<br><br>‘idos‘ integrated DOS (by principal layer in the lmpg case)<br><br>‘noidos‘ suppress calculation of integrated DOS<br><br>‘pdos‘ accumulate partial DOS<br><br>‘emom‘ accumulate output moments; use ‘noemom‘ to suppress<br><br>‘noemom‘ suppresss accumulation of output moments<br><br>‘sdmat‘ make site density-matrix<br><br>‘dmat‘ make density-matrix<br><br>‘frzvc‘ do not update potential shift needed to obtain charge neutrality<br><br>'padtol‘ Tolerance in Pade correction to charge. If tolerance exceeded, lmgf will repeat the band pass with an updated Fermi level<br><br>‘omgtol‘ (CPA) tolerance criterion for convergence in coherent potential<br><br>‘omgmix‘ (CPA) linear mixing parameter for iterating convergence in coherent potential<br><br>‘nitmax‘ (CPA) maximum number of iterations to iterate for coherent potential<br><br>‘lotf‘ (CPA)<br><br>‘dz‘ (CPA)
+
+{::nomarkdown}</div>{:/}
 
 ##### _SITE_
+Category SITE holds site information. As in the SPEC category, tokens must read for each site entry, and a similar restriction applies as to the order of tokens. Token ATOM= must be the first token for each site, and all tokens defining parameters for that site must occur before a subsequent ATOM=.
+
+<div onclick="elm = document.getElementById('sitetable'); if(elm.style.display == 'none') elm.style.display = 'block'; else elm.style.display = 'none';"><button type="button" class="button tiny radius">Click to show table.</button></div>
+{::nomarkdown}<div style="display:none;margin:0px 25px 0px 25px;"id="sitetable">{:/}
+
+Token | Arguments | Program | Optional | Default | Explanation
+- | - | - | - | - | -
+FILE | c | all | Y | | Provides a mechanism to read site data from a separate file. File subs/iosite.f documents the syntax of the site file structure.<br>The reccommended (standard) format has the following syntax:<br><br>The first line should contain a ‘%’ in the first column, and a `version’ token vn=#.<br>Structural data (see category STRUC documentation) may also be put this line. Each subsequent line supplies input for one site. In the simplest format, a line would would have the following:<br>spid x y z<br>where spid is the species identifier (same information would otherwise be specified by token ATOM= below) and x y z are the site positions.<br><br>Examples: fp/test/test.fp er and fp/test/test.fp tio2<br><br>Bug: when you read site data from an alternate file, the reader doesn’t compute the reference energy.<br><br>Kotani format (documented here but no longer maintained) In this alternative format the first four lines always specify data read in the STRUC category; see FILE= in STRUC.<br>Then follow lines, one line for each site<br>ib iclass spid x y z<br>The first number is merely a basis index and should increment 1,2,3,4,… in successive lines. The second class index is ignored by these programs. The remaining columns columns are the species identifier the site positions.<br><br>If SITE_FILE is missing, the following are read from the ctrl file:
+ATOM | c | all | N | | Identifies the species (by label) to which this atom belongs. It is a fatal error for the species not to have been defined.
+ATOM\_POS | r1 r2 r3 | all | N | | the basis vector (length 3), in dimensionless Cartesian coordinates. As with the primitive lattice translation vectors, the true vectors (in atomic units) are scaled from these by ALAT in category STRUC.<br>NB: XPOS and POS are alternative forms of input. One or the other is required.
+ATMOM\_XPOS | r1 r2 r3 | all | N | | Atom coordinates, as (fractional) multiples of the lattice vectors.<br>NB: XPOS and POS are alternative forms of input. One or the other is required.
+ATOM\_DPOS | r1 r2 r3 | all | Y | 0 0 0 | Shift in atom coordinates to POS
+ATOM\_RELAX | i1 i2 i3 | all | Y | 1 1 1 | relax site positions (lattice dynamics or molecular statics) or Euler angles (spin dynamics)
+ATOM\_RMAXS | r | FP | Y | | Site-dependent radial cutoff for structure constants, in a.u.
+ATOM\_ROT | c | ASA | Y | | Rotation of spin quantization axis at this site
+ATOM\_PL | i | lmpg | Y | 0 | (lmpg) Assign principal layer number to this site
+
+{::nomarkdown}</div>{:/}
 
 ##### _SPEC_
 Category SPEC contains species-specific information. Because data must be read for each species, tokens are repeated (once for each species). For that reason, there is some restriction as to the order of tokens. Data for a specific species (Z=, R=, R/W=, LMX=, IDXDN= and the like described below) begins with a token ATOM=; input of tokens specific to that species must precede the next occurence of ATOM=.  
@@ -467,16 +644,248 @@ occurences of ATOM apply to one species.
 
 Token | Arguments | Program | Optional | Default | Explanation
 - | - | - | - | - | -
-ATOM | c | ALL | N | | A character string (8 characters or fewer) that labels this species. This label is used, e.g. by the SITE category to associate a species with an atom at a given site.<br>Species are split into classes; how and when this is done depends whether you are using an ASA or full-potential implementation.<br><br>ASA-specific:<br>The species ID also names a disk file with information about that atom (potential parameters, moments, potential and some sundry other information). More precisely, species are split into classes, the program differentiates class names by appending integers to the species label. The first class associated with the species has the species label; subsequent ones have integers appended.<br><br>Example: testing/test.ovlp 3
+ATOM | c | all | N | | A character string (8 characters or fewer) that labels this species. This label is used, e.g. by the SITE category to associate a species with an atom at a given site.<br>Species are split into classes; how and when this is done depends whether you are using an ASA or full-potential implementation.<br><br>ASA-specific:<br>The species ID also names a disk file with information about that atom (potential parameters, moments, potential and some sundry other information). More precisely, species are split into classes, the program differentiates class names by appending integers to the species label. The first class associated with the species has the species label; subsequent ones have integers appended.<br><br>Example: testing/test.ovlp 3
+Z | r | all | N | | Nuclear charge. Normally an integer, but Z can be a fractional number. A fractional number implies a virtual crystal approximation to an alloy with some Z intermediate between the two integers sandwiching it.
+R | r | all | N | | The augmentation sphere radius, in atomic units. This is a required input for most programs:<br>choose one of R=, R/W= or R/A=. Read descriptions of the latter two below for further remarks; also see this page for a more complete discussion on the choice of sphere radii.<br><br>lmchk can find sphere radii automatically for you. Invoke lmchk with<br>–getwsr.<br>You can also rescale user-chosen radii to meet constraints with the SCLWSR token.
+R/W | r | all | N | | R/W= ratio of the augmentation sphere radius to the average Wigner Seitz radius W.<br>W is the radius of a sphere such that (4πW3/3) = V/N, where V/N is the volume per atom.<br>Thus if all radii are equal with R/W=1, the sum of sphere volumes would fill space, as is usual in the ASA.<br><br>ASA-specific:<br>You must choose the radii so that the sum of sphere volumes (4π/3ΣiRi3) equals the unit cell volume V; otherwise results may become unreliable. The space-filling requirement means sphere may overlap quite a lot, particularly in open systems. If sphere overlaps get too large, (>20% or so) accuracy becomes an issue. In such a case you should add “empty spheres” to fill space. Use lmchk to print out sphere overlaps. lmchk also has an automatic empty spheres finder, which you invoke with the –findes switch; see here for a discussion.<br><br>Example: testing/test.ovlp 3<br><br>FP-specific:<br>FP results are much less sensitive to the choice of sphere radii. Strictly, the spheres should not overlap, but because of lmf‘s unique augmentation scheme, overlaps of up to 10% cause negligibly small errors as a rule.<br>(This does not apply to GW calculations!)<br>Even so, it is not advisable to let the overlaps get too large. As a general rule the L-cutoff should increase as the sphere radius increases. Also it has been found in practice that self-consistency is harder to accomplish when spheres overlap significantly.
+R/A | r | all | N | | R/A = ratio of the aumentation sphere radius to the lattice constant
+A | r | all | Y | | Radial mesh point spacing parameter. All programs dealing with augmentation spheres represent the density on a shifted logarithmic radial mesh. The ith point on the mesh is $ r_i $ = b[exp(a(i−1)−1]. b is determined from the number of radial mesh points specified by NR.
+NR | i | all | Y | Depends on other input | Number of radial mesh points
+LMX | i | all | Y | | basis l-cutoff inside the sphere. If not specified, it defaults to NL−1
+RSMH | r | lmf, lmfgwd | Y | 0 | Smoothing radii defining basis, one radius for each l.<br>RSMH and EH together define the shape of basis function in lmf.<br>To optimize, try running lmf with --optbas
+EH | r | lmf, lmfgwd | Y | | Hankel energies for basis, one energy for each l. RSMH and EH together define the shape of basis function in lmf.
+RSMH2 | r | lmf, lmfgwd | Y | 0 | Basis smoothing radii, second group
+EH2 | r | lmf, lmfgwd | Y | | Basis Hankel function energies, second group
+LMXA | i | FP | Y | NL - 1 | angular momentum l-cutoff for projection of wave functions tails centered at other sites in this sphere.<br>Must be at least the basis l-cutoff (specified by LMX=).
+IDXDN | i | ASA | Y | 1 | a set of integers, one for each l-channel marking which orbitals should be downfolded.<br>0 use automatic downfolding in this channel.<br>1 leaves the orbitals in the basis.<br>2 folds down about the inverse potential function at $ E_ν $ <br>3 folds down about the screening constant alpha.<br>In the FP case, 1 includes the orbital in the basis; >1 removes it
+KMXA | i | lmf, lmfgwd | Y | 3 | Polynomial cutoff for projection of wave functions in sphere.<br>Smoothed Hankels are expanded in polynomials around other sites instead of Bessel functions as in the case of normal Hankels.
+RSMA | r | lmf, lmfgwd | Y | R * 0.4 | Smoothing radius for projection of smoothed Hankel tails into augmentation spheres. sm-Hankels are expanded in polynomials by integrating with Gaussians at that site. Thus RSMA=0 => sm-Hankels Taylor series expansion about the origin. For large KMXA the choice is irrelevant, but RSMA is best chosen that maximizes the convergence of sm-Hankels with KMXA.
+LMXL | i | lmf, lmfgwd | Y | NL - 1 | Angular momentum l-cutoff for explicit representation of local charge on a radial mesh.
+RSMG | r | lmf, lmfgwd | Y | R/4 | Smoothing radius for Gaussians added to sphere densities to correct multipole moments needed for electrostatics. Value should be as large as possible but small enough that the Gaussian doesn’t spill out significantly beyond rmt.
+LFOCA | i | FP | Y | 1 | Prescribes how the core density is treated.<br><br>0 confines core to within RMT. Usually the least accurate.<br>1 treats the core as frozen but lets it spill into the interstitial<br>2 same as 1, but interstitial contribution to vxc treated perturbatively.
+RFOCA | r | FP | Y | R * 0.4 | Smoothing radius fitting tails of core density. A large radius produces smoother interstitial charge, but less accurate fit.
+RSMFA | r | FP | Y | R/2 | Smoothing radius for tails of free-atom charge density. <br>Irrelevant except first iteration only (non-self-consistent harris).<br>A large radius produces smoother interstitial charge, but somewhat less accurate fit.
+RS3 | r | FP | Y | 1 | Minimum allowed smoothing radius for local orbital
+HCR | r | lm | Y | | Hard sphere radii for structure constants<br>*If token is not parsed, attempt to read the following:
+HCR/R | r | lm | Y | 0.7 | Hard sphere radii for structure constants, in units of R
+ALPHA | r | ASA | Y | | Screening parameters for structure constants
+DV | r | ASA | Y | 0 | Artificial constant potential shift added to spheres belonging to this species
+MIX | 1 | ASA | Y | F | Set to suppress self-consistency of classes in this species
+IDMOD | i | all | Y | 0 | 0 : floats log derivative parameter $ P_l $ to band center of gravity<br>1 : freezes Pl<br>2 : freezes linearization energy $ E_ν $.
+CSTRMX | 1 | all | Y | F | Set to T to exclude this species when automatically resizing sphere radii
+GRP2 | i | ASA | Y | 0 | Species with a common nonzero value of GRP2 are symmetrized, independent of symmetry operations.<br>The sign of GRP2 is used as a switch, so species with negative GRP2 are symmetrized but with spins flipped (NSPIN=2)
+FRZWF | 1 | FP | Y | F | Set to freeze augmentation wave functions for this species
+IDU | i | all | Y | 0 0 0 0 | LDA+U mode:<br><br>0 No LDA+U<br>1 LDA+U with Around Mean Field limit double counting<br>2 LDA+U with Fully Localized Limit double counting<br>3 LDA+U with mixed double counting
+UH | r | all | Y | 0 0 0 0 | Hubbard U for LDA+U
+JH | r | all | Y | 0 0 0 0 | Exchange parameter J for LDA+U
+EREF= | r | all | Y | 0 | Reference energy subtracted from total energy
+AMASS= | r | FP | Y | | Nuclear mass in a.u. (for dynamics)
+C-HOLE | c | lmf, lm | Y | | Channel for core hole. You can force partial core occupation.<br>Syntax consists of two characters, the principal quantum number and the second one of `s’,`d’,`d’,`f’ for the l quantum number, e.g. `2s’<br>See Partially occupied core holes for description and examples.<br><br>Default: nothing
+C-HQ | r[,r] | all | Y | -1 0 | First number specifies the number of electrons to remove from the l channel specified by C-HOLE=.<br>Second (optional) number specifies the hole magnetic moment.<br>See Partially occupied core holes for description and examples.
+P | r,r,... | all | Y | | starting values for potential functions, one for each of l=0..LMXA<br><br>Default: taken from an internal table.
+PZ | r,r,... | FP | Y | 0 | starting values for local orbital’s potential functions, one for each of l=0..LMX. Setting PZ=0 for any l means that no local orbital is specified for this l. Each integer part of PZ must be either one less than P (semicore state) or one greater (high-lying state).
+Q | r,r,... | all | Y | | charges for each l-channel making up free-atom density<br><br>Default: taken from an internal table.
+MMON | r,r,... | all | Y | 0 | magnetic moments for each l-channel making up free-atom density<br>Relevant only for the spin-polarized case.
 
 {::nomarkdown}</div>{:/}
 
 ##### _STR_
+Category STR contains information connected with real-space structure constants, used by the ASA programs. It is read by **lmstr**{: style="color: blue"}, **lmxbs**{: style="color: blue"}, **lmchk**{: style="color: blue"}, and **tbe**{: style="color: blue"}.
+
+<div onclick="elm = document.getElementById('strtable'); if(elm.style.display == 'none') elm.style.display = 'block'; else elm.style.display = 'none';"><button type="button" class="button tiny radius">Click to show table.</button></div>
+{::nomarkdown}<div style="display:none;margin:0px 25px 0px 25px;"id="strtable">{:/}
+
+Token | Arguments | Program | Optional | Default | Explanation
+- | - | - | - | - | -
+RMAXS | r | all | Y | | Radial cutoff for strux, in a.u.<br>If token is not parsed, attempt to read the following:
+RMAX | r | all | Y | 0 | the maximum sphere radius (in units of the average WSR) over which neighbors will be included in the generation of structure constants. <br>This takes a default value and is not required input. It is an interesting exercise to see how much the structure constants and eigenvalues change when this radius is increased.
+NEIGHB | i | FP | Y | 30 | Minimum number of neighbors in cluster
+ENV\_MODE | i | all | Y | 0 | Type of envelope functions:<br><br>0 2nd generation<br>1 SSSW (3rd generation)<br>2 NMTO<br>3 SSSW and val-lap basis
+ENV\_NEL | i | lm, lmstr | Y | | (NMTO only) Number of NMTO energies
+ENV\_EL | r | lm, lmstr | N | 0 | SSSW of NMTO energies, in a.u.
+DELRX | r | ASA | Y | 3 | Range of screened function beyond last site in cluster
+TOLG | r | FP | Y | 1e-6 | Tolerance in l=0 gaussians, which determines their range
+RVL/R | r | all | Y | 0.7 | Radial cutoff for val-lap basis (this is experimental)
+VLFUN | i | all | Y | 0 | Functions for val-lap basis (this is experimental)<br>0 G0 + G1<br>1 G0 + Hsm<br>2 G0 + Hsm-dot
+MXNBR | i | ASA | Y | 0 | make lmstr allocate enough memory in dimensioning arrays for MXNBR neighbors in the neighbor table. This is rarely needed
+SHOW | 1 | lmstr | Y | F | Show strux after generating them
+EQUIV | 1 | lmstr | Y | F | if true, try to find equivalent neighbor tables, to reduce the computational effort in generating strux.<br>Not generally recommended
+LMAXW | i | lmstr | Y | -1 | l-cutoff for (optional) Watson sphere, used to help localize strux
+DELRW | r | lmstr | Y | 0.1 | range extending beyond cluster radius for Watson sphere
+IINV\_NIT= | i | lmstr | Y | 0 | Number of iterations
+IINV\_NCUT | i | lmstr | Y | 0 | Number of sites for inner block
+IINV\_TOL | r | lmstr | Y | 0 | Tolerance in errors
+
+*IINV parameters govern iterative solutions to screened strux
+
+{::nomarkdown}</div>{:/}
 
 ##### _START_
+Category START is specific to the ASA. It controls whether the code starts with moments P,Q or potential parameters; also the moments P,Q may be input in this category. It is read by **lm**{: style="color: blue"}, **lmgf**{: style="color: blue"}, **lmpg**{: style="color: blue"}, and **tbe**{: style="color: blue"}.
+
+<div onclick="elm = document.getElementById('starttable'); if(elm.style.display == 'none') elm.style.display = 'block'; else elm.style.display = 'none';"><button type="button" class="button tiny radius">Click to show table.</button></div>
+{::nomarkdown}<div style="display:none;margin:0px 25px 0px 25px;"id="starttable">{:/}
+
+Token | Arguments | Program | Optional | Default | Explanation
+- | - | - | - | - | -
+BEGMOM | i | ASA | Y | 1 | when true, causes program lm to begin with moments from which potential parameters are generated. If false, the potential parameters are used and the program proceeds directly to the band calculation.
+FREE | 1 | ASA | Y | F | is intended to facilitate a self-consistent free-atom calculation. When FREE is true, the program uses rmax=30 for the sphere radius rather than whatever rmax is passed to it; the boundary conditions at rmax are taken to be value=slope=0 (rmax=30 should be large enough that these boundary conditions are sufficiently close to that of a free atom.); subroutine atscpp does not calculate potential parameters or save anything to disk; and lm terminates after all the atoms have been calculated.
+CNTROL | 1 | ASA | Y | F | 	When CONTRL=T, the parser attempts to read the “continuously variable principal quantum numbers” P and moments Q0,Q1,Q2 for each l channel; see P,Q below.
+ATOM | c | ASA | Y | | Class label. P,Q (and possibly other data) is given by class.<br>Tokens following a class label and preceding the next class label belong to that class.
+ATOM\_P= and ATOM\_Q | c | ASA | Y | | Read “continuously variable principal quantum numbers” for this class (P=...), or energy moments Q0,Q1,Q2 (Q=...). P consists of one number per l channel, Q of three numbers (Q0,Q1,Q2) for each l.<br><br>Note In spin<br> polarized calculations, a second set of parameters must follow the first, and the moments should all be half of what they are in non-spin polarized calculations.<br><br>In this sample input file for Si, P,Q is given as:<br<br>>ATOM=SI  P=3.5 3.5 3.5    Q=1 0 0    2 0 0   0 0 0<br>ATOM=ES  P=1.5 2.5 3.5    Q=.5 0 0  .5 0 0   0 0 0<br><br>One electron is put in the Si s orbital, 2 in the p and none in the d, while 0.5 electrons are put in the s and p channels for the empty sphere. All first and second moments are zero. This rough guess produces a correspondingly rough potential.<br><br>You do not have to supply information here for every class; but for classes you do, you must supply all of (P,Q0,Q1,Q2). Data read in START supersedes whatever may have read from disk.<br><br>Remarks below provide further information about how P,Q is read and printed.
+RDVES | 1 | ASA | Y | F | Read Ves(RMT) from the START category along with P,Q
+ATOM\_ENU | r | ASA | Y | | Linearization energies
+
+How the parser reads P,Q
+Remember that knowledge of P,Q is sufficient to completely determine the ASA density.
+Thus the ASA codes use several ways to read these important quantities.
+
+The parser returns P,Q according the following priorities:
+
+* P,Q are read from the disk, if supplied, (along possibly with other quantities such as potential parameters El, C, Δ, γ.) One file is created for each class that contains this data and other class-specific information. Some or all of the data may be missing from the disk files. Alternatively, you may read these data from a restart file rsta.ext, which if it exists contains data for all classes in one file. The program wil not read this data by default; use --rs=1 to have it read from the rsta file. To write class data to rsta, use --rs=*,1 (* must be be 0 or 1)
+
+* If START_CONTRL=T, P,Q (and possibly other quantities) are read from START for classes you supply (usually all classes). Data read from this category supersedes any that might have been read from disk. If class data read from either of these sources, the input system returns it. For classes where none is available the parser will pick a default:
+
+  * If data from a different class but in the same species is available, use it.
+  
+  * Otherwise use some preset default values for P,Q.
+
+After a calculation finishes you can run **lmctl**{: style="color: blue"} to read P,Q from disk and format it in a form ready to insert into the START category. Thus all the information needed to generate a self-consistent ASA calculation can be contained in the ctrl file.
+
+When the sample Si test is run to self-consistency, invoking **lmctl**{: style="color: blue"} will generate something like:
+
+~~~
+ATOM=SI       P=  3.8303101  3.7074067  3.2545634
+              Q=  1.1694276  0.0000000  0.0297168
+                  1.8803181  0.0000000  0.0489234
+                  0.1742629  0.0000000  0.0063520
+ATOM=ES       P=  1.4162942  2.2521617  3.1546386
+              Q=  0.2873686  0.0000000  0.0129888
+                  0.3485430  0.0000000  0.0165416
+                  0.1400664  0.0000000  0.0055459
+~~~
+
+Because the P‘s float to the band center-of gravity (i.e. center of gravity of the occupied states for a particular site and l channel) the corresponding first moments Q1 vanish. P‘s are floated by default since it minimizes the linearization error.
+
+**Caution:**{: style="color: red"} Sometimes it is necessary to override this default: If the band CG (of the occupied states) is far removed the natural CG of the particular channel, you must restrict how far P and be shifted to the band CG. In some cases, allowing P to float completely will result in “ghost bands”.
+
+The high-lying Ga 4d state is a classic example. To restrict P to a fixed value, see SPEC_IDMOD.
+
+In such cases, you want to pick P low, but not so low as to cause problems.
+
+{::nomarkdown}</div>{:/}
 
 ##### _STRUC_
 
+<div onclick="elm = document.getElementById('structable'); if(elm.style.display == 'none') elm.style.display = 'block'; else elm.style.display = 'none';"><button type="button" class="button tiny radius">Click to show table.</button></div>
+{::nomarkdown}<div style="display:none;margin:0px 25px 0px 25px;"id="structable">{:/}
+
+Token | Arguments | Program | Optional | Default | Explanation
+- | - | - | - | - | -
+FILE | c | all | Y | | provides a mechanism to read structural data from an independent file using alternate input styles.<br>If SITE is not present in the STRUC category, NBAS, PLAT and ALAT are read from the ctrl file.<br><br>File subs/iosite.f documents the syntax of the file structure.<br><br>The first line should contain a "% sign and a "version" token vn=#. On the same line, supply tokens nbas= and plat=, similar to the input file.<br>You can also include alat on this line.<br>If you omit it, alat is read from ALAT in the ctrl file.<br>Example: % vn=3.0 nbas=7 plat= -0.5 0.5 1 0.5 -0.5 1 0.5 0.5 1<br><br>Following the header line comes a table of site positions other site-related stuff. That table is not read in the STRUC category. To read site data from this file, specify FILE in the SITE category.<br><br>Kotani format (documented here but no longer maintained) The first line should contain a "%" sign and a "version" token vn=kotani. Then follow four lines containing real numbers:<br><br> #        <-- alat<br> # # #     <-- plat(1,1) plat(2,1) plat(3,1)<br> # # #     <-- plat(1,2) plat(2,2) plat(3,2)<br> # # #     <-- plat(1,3) plat(2,3) plat(3,3)
+ALAT | r | all | N | | A scaling, in atomic units, of the primitive translation and basis vectors
+NBAS | i | all | N | | Size of the basis
+PLAT | r | all | N | | (dimensionless) primitive translation vectors
+NSPEC | i | all | Y | | Number of atom species
+DALAT | r | all | Y | 0 | is added to ALAT. Useful because the average Wigner-Seitz radius W is computed from ALAT, so quantities scaled by W are fixed while ALAT varies.<br>NB: this token is Not Particularly Useful for the ASA, since spheres must be space-filling.
+NL= | i | all | Y | 3 | Sets a global default value for l-cutoffs $ l^(cut) $ : NL = [1 + $ l^(cut) $]. This default is used for both the basis and augmentation cutoffs.
+SHEAR | r | all | Y | | Enables shearing of the lattice in a volume-conserving manner. For SHEAR=#1,#2,#3,#4, #4 is the distortion amplitude, and #1,#2,#3 are a direction vector.<br><br>Example:<br>SHEAR=0,0,1,0.01 <br>This distorts a lattice in initially cubic symmetry to tetragonal symmetry, with 0.01 shear.
+ROT | c | all | Y | | Rotates the lattice and basis vectors, and the symmetry group operations by a unitary matrix.<br><br>Example:<br>ROT=z:pi/4,y:pi/3,z:pi/2 generates a rotation matrix corresponding to the Euler angles α=π/4, β=π/3 γ=π/2. See rotations.html for the general syntax.<br><br>Note:<br>Lattice and basis vectors, and point group operations (SYMGRP) are all rotated.
+DEFGRD | r | all | Y | | A 3×3 matrix defining a general linear transformation of the lattice vectors.
+STRAIN | r | all | Y | | A sequence of six numbers defining a general distortion of the lattice vectors
+ALPHA | r | all | N | | Amount of Voigt strain
+
+{::nomarkdown}</div>{:/}
+
 ##### _SYMGRP_
 
+<div onclick="elm = document.getElementById('symtable'); if(elm.style.display == 'none') elm.style.display = 'block'; else elm.style.display = 'none';"><button type="button" class="button tiny radius">Click to show SYMGRP.</button></div>
+{::nomarkdown}<div style="display:none;margin:0px 25px 0px 25px;"id="symtable">{:/}
+
+Category SYMGRP provides symmetry information; it helps in two ways. First it is the relevant information to find which sites are equivalent, which makes for simpler and more accurate band calculations, and second, it reduces the number of k-points needed in Brillouin zone integrations.  
+
+Normally you don't need SYMGRP; the program is capable of finding its own symmetry operations. However, there are cases where it is useful or even necessary. For example when including spin-orbit coupling or noncollinear magnetism where the symmetry group isn't specified by atomic positions alone. In this case you need to supply extra information.  
+
+You can use SYMGRP to explicitly declare a set of generators from which the entire group can be created. For example, the three operations R4X, MX and R3D are sufficient to generate all 48 elements of cubic symmetry.  
+
+Unless conditions are set for noncollinear magnetism and/or SO coupling, the inversion is assumed by default as a consequence of time-reversal symmetry.  
+
+A tag describing a generator for a point group operation has the form O(nx,ny,nz) where O is one of M, I or Rj, or E, for mirror, inversion j-fold rotation and identity operation, respectively. nx,ny,nz are a triplet of indices specifying the axis of rotation. You may use X, Y, Z or D as shorthand for (1,0,0), (0,1,0), (0,0,1), and (1,1,1) respectively. You may also enter products of rotations, such as I*R4X.
+
+Thus
+
+    SYMGRP  R4X MX R3D
+
+specifies three generators (4-fold rotation around x, mirror in x, 3-fold rotation around (1,1,1)). Generating all possible combinations of these rotations will result in the 48 symmetry operations of the cube.  
+
+To suppress all symmetry operations, use
+
+    SYMGRP E
+
+Full-potential programs (e.g. lmf) do not make spherical approximations to the potential and require you to specify the full space group. The translation part is appended to the point group (rotation) in one of the following forms: ':(x1,x2,x3)' or alternatively '::(p1,p2,p3)' with the double '::'. The first defines the translation in Cartesian coordinates; the second as multiples of plat. These two lines (taken from testing/ctrl.cr3si6) are equivalent specifications:
+
+    SYMGRP   r6z:(0,0,0.4778973) r2(1/2,sqrt(3)/2,0)
+	SYMGRP   r6z::(0,0,1/3)      r2(1/2,sqrt(3)/2,0)
+
+###### _Keywords in the SYMGRP category_
+SYMGRP accepts, in addition to symmetry operations the following keywords:
+
+* `find‘ tells the program to determine its own symmetry operations. Thus:
+
+      SYMGRP find
+  
+  amounts to the same as not incuding a SYMGRP category in the input at all  
+   
+  You can also specify a mix of generators you supply, and tell the program to find any others that might exist. For example:
+  
+      SYMGRP r4x find
+ 
+  specifies that 4-fold rotation be included, and `find‘ tells the program to look for any additional symops that might exist.
+  
+* 'AFM':
+  For certain antiferromagnets, certain translation operations exist provided the rotation/shift is accompanied by a spin flip. Say a translation of (-1/2,1/2,1/2)a restores the crystal structure, but all atoms after translation have opposite spin. Specify this symmetry with:
+  
+      SYMGRP   ...       AFM::-1/2,1/2,1/2
+
+  This operation is used only by **lmf**{: style="color: blue"}.
+  
+* 'SOC' or 'SOC=2':
+  Tells the symmetry group generator to exclude operations that do not preserve the z axis.  
+  This is used particularly for spin-orbit coupling where the crystal symmetry is reduced (z is the quantization axis).
+  SOC=2 is like SOC but allows operations that preserve z or flip z to −z.
+  This works in some cases.  
+
+  **Note:**{: style="color: red"} This keyword is only active when the two spin channels are linked, e.g. SO coupling or noncollinear magnetism.
+  
+* 'GRP2' turns on a switch that can force the density among inequivalent classes that share a common species to be averaged. In the ASA codes the density is spherical and the averaging is complete; in the FP case only the spherical part of the densities can be averaged. This helps sometimes with stabilizing difficult cases in the path to self-consistency.
+  You specify which species are to be averaged with the SPEC_ATOM_GRP2 token.  
+  
+  'GRP2‘ averages the input density;
+  'GRP2=2‘ averages the output density;
+  'GRP2=3‘ averages both the input and the output density.
+  
+* 'RHOPOS' turns on a switch that forces the density positive at all points
+
+{::nomarkdown}</div>{:/}
+
 ##### _VERS_
+This category is used for version control. As of version 7, the input file must have following tokens for any program in the suite:
+
+    VERS LM:7
+
+It tells the input system that you have a v7 style input file.  
+
+For a particular program you need an additional token to tell the parser that this file is set up for that program.
+Thus your VERS category should read:
+
+~~~
+
+VERS LM:7 ASA:7              for lm, lmgf or lmpg
+VERS LM:7 FP:7               for lmf or lmfgwd
+VERS LM:7 MOL:3              for a molecules codes such as lmmc
+VERS LM:7 TB:9               for the empirical tight-binding tbe
+                             and so on.
+
+~~~
+
+Add version control tokens for whatever programs your input file is capable of handling.
