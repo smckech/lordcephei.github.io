@@ -17,7 +17,8 @@ well known Stuttgart LMTO-ASA package and for LM Suite. Over the years, a number
 have helped in developing new capabilities for the code. A list of developers in alphabetical order is provided below:
 
 
-**LM Suite Developers**
+#####*LM Suite Developers*
+_________________________
 
 [Athanasios Chantis]() *(LANL)*
 
