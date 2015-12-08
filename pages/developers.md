@@ -14,24 +14,32 @@ During his time with Ole Anderson’s group at the Max Planck Institute for Soli
 (1987-1988), Mark implemented Ole’s ideas on a linear muffin tin orbital approach for density 
 functional theory into the first LMTO-ASA code. This code served as the foundation for both the 
 well known Stuttgart LMTO-ASA package and for LM Suite. Over the years, a number of other people 
-have helped in developing new capabilities for the code. A partial list of developers is provided below:
+have helped in developing new capabilities for the code. A list of developers in alphabetical order is provided below:
 
 
 **LM Suite Developers**
 
-[Mark van Schilfgaarde](http://www.kcl.ac.uk/nms/depts/physics/people/academicstaff/van-Schilfgaarde-.aspx) *(King’s College London, U.K.)*
-
-[Tony Paxton](http://titus.phy.qub.ac.uk/members/tony/) *(Queen’s University U.K)*
-
-Michael Methfessel *(IHP, Germany)*
-
-[Takao Kotani](http://newton.damp.tottori-u.ac.jp/wiki/index.php/Tkotani) *(Tottori University, Japan)*
-
+[Athanasios Chantis]() *(LANL)*
+[Alena Vishina]()
+[Ben Kaube]()
 [Derek Stewart](https://sites.google.com/site/dft4nano/) *(Cornell University, U.S.)*
-
-Sergey Faleev *(Snami LLC)*
-
-Athanasios Chantis *(LANL)*
-
-[Kirill Belashchenko](http://physics.unl.edu/~kirillb/index.html) *(University of Nebraska)*
-
+[Dimitar Pashov]()
+[H. Donfack]()
+[JEK]()
+[Jialei Xu]()
+[Kino]()
+[Kiril Belashchenko](http://physics.unl.edu/~kirillb/index.html) *(University of Nebraska)*
+[Liqin Ke]()
+[Mark van Schilfgaarde](http://www.kcl.ac.uk/nms/depts/physics/people/academicstaff/van-Schilfgaarde-.aspx) *(King’s College London, U.K.)*
+[Michael Methfessel]() *(IHP, Germany)*
+[P. Larson]()
+[Paolo Pisanti]()
+[Pooya Azarhoosh]()
+[Pujari]()
+[Sasha Lozovoi]()
+[Sergei Faleev]() *(Snami LLC)*
+[Takao Kotani](http://newton.damp.tottori-u.ac.jp/wiki/index.php/Tkotani) *(Tottori University, Japan)*
+[Tony Paxton](http://www.kcl.ac.uk/nms/depts/physics/people/academicstaff/paxton.aspx) *(King’s College London, U.K.)*
+[T. Sandu]()
+[Uk-Jin Rho]()
+[Walter Lambrecht]()
