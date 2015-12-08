@@ -5,8 +5,8 @@ subheadline: ""
 show_meta: false
 teaser: ""
 permalink: "/developers/"
-header:
-    image_fullwidth: "header_drop.jpg"
+header: no
+
 ---
 
 The development and expansion of LM Suite has been led by Mark van Schilfgaarde since its inception.
