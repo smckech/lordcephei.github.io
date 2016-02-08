@@ -24,6 +24,8 @@
     url: "/fpcapabilities/"
   - title: "The Input File"
     url: "/inputguide/"
+  - title: "Optics"
+    url: "/opticsdoc/"
 
 - title: "Tutorials"
   url: ""
