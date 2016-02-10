@@ -11,7 +11,7 @@ _____________________________________________________________
 
 The LM-suite allows for the calculation of the following parameters:
 
-1.   Im $\epsilon(\omega)$, without local-field effects
+1.   Im $ \epsilon(\omega) $, without local-field effects
 
 2.   Joint Density of States (JDOS($\omega$)), the joint DOS between unoccupied conduction band states c and occupied valence band states v, JDOS $= \sum_{c,v}\delta (\epsilon_c−\epsilon_v−\hbar\omega)$.  
      In the spin polarized case, c and v belong to the same spin. JDOS($\omega$) and Im$(\epsilon(\omega))$ are very similar; except the latter has a matrix element of the momentum operator. One important differenceis that the gradient operator has 3 components for xyz polarizations, whereas JDOS has only 1.
