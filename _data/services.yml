@@ -1,0 +1,16 @@
+- menu_name: "Services"
+
+- name: "Contact"
+  url: "/contact/"
+  class: "services-contact"
+  title: "Contact"
+
+- name: "Developers"
+  url: "/developers/"
+  class: "list"
+  title: "Contact the developers"
+
+- name: "Downloads"
+  url: "/download/"
+  class: "sitemap-link"
+  title: "Download the program"
