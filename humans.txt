@@ -1,5 +1,3 @@
----
----
 /* SITE */
 # humanstxt.org/
 # The humans responsible & technology colophon
@@ -18,7 +16,7 @@ Twitter: http://twitter.com/phlow
 
 # TECHNOLOGY COLOPHON
 
-Last Updated: {{ site.time | date:"%Y/%m/%d" }}
+Last Updated: 2016/02/11
 Standards: HTML5, CSS3
 Software: Sublime Text, Chrome, Jekyll, Git, Imageoptim, JPEGMini, Gulp.js, Sass
 Components: Modernizr, jQuery, Backstretch.js, Reveal, Foundation Framework
