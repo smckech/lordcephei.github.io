@@ -109,3 +109,56 @@ Content
 {::nomarkdown}</div>{:/}
 
 When using a dropdown box, both instances of the "foobar" ID need to be changed and also be unique to that dropdown box.
+
+##### _Equations_
+Mathematical equations can be added in-line within the markdown files by enclosing the equation in double dollar signs:
+
+    $$equation$$
+
+The equation itself is standard LaTeX syntax. If you are not familiar with LaTeX equation formatting, more information can be found [here](https://en.wikibooks.org/wiki/LaTeX/Mathematics).
+
+### _Making Changes_
+
+##### _Using Git_
+The site is currently hosted on GitHub and Git is used to manage the site and upload changes. To contribute to the site, please contact . in order to recieve permissions to edit the repository.    
+
+Actually make changes, for those of you unfamiliar with **Git**{: style="color: blue"}, is fairly simple. You will need **Git**{: style="color: blue"} installed on your machine before proceeding, more information [here](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git). First, clone the repository to your local disk.
+
+    git clone https://github.com/lordcephei/lordcephei.github.io.git
+
+This will clone the site's files in to the _lordcephei.github.io_{: style="color: green"} folder. You can now make your changes or additions to the site source files. When these are completed, we must add the file to the index for committing. The following commands assume you are working from the repository directory.
+
+    git add *
+
+You can also add files individually
+
+    git add [filename]
+
+With the files indexed, we can now set up the commit
+
+    git commit -m "Commit message"
+
+Where "Commit message" should be a useful message to let other people using the respository know what you are committing.    
+
+Finally, we can commit the changes
+
+    git push origin master
+
+You may be asked for username and password details, fill these in and assuming you have repository access, all should be fine.   
+
+When you want to edit the repository again, you do not need to clone a new copy. Instead, make sure you update your local copy with all the changes other developers have made.
+
+    git pull origin master
+
+##### _Hosting Locally_
+The site can be built and hosted locally for you to check errors, formatting and the like. To do this, ensure **jekyll**{: style="color: blue"} is installed on your machine, more information [here](https://jekyllrb.com/docs/installation/).   
+
+With **jekyll**{: style="color: blue"} installed, you can either build the site html for hosting elsewhere, or host with **jekyll**{: style="color: blue"}'s built in webserver. To build without hosting, simply
+
+    jekyll build
+
+From within the repository's directory. This will produce a _\_site_{: style="color: green"} folder which contains the copiled html files for the site. To host the site locally
+
+    jekyll serve
+
+This will also create the same _\_site_{: style="color: green"} folder, but will also host the website locally. Read your terminal output for the address of the site.
