@@ -76,7 +76,7 @@ The site uses colours to denote certain things. **Blue**{: style="color: blue"} 
 "blue" can be changed to "red", "green" or any standard colour. Note that to colour a string (with or without spaces) there must be a text emphasis element (such as \_ \_ or \*\* \*\* etc) surrounding the string.
 
 ##### _Text Emphasis_
-**Bold** is used for programs/package names as well as noteworthy points (**Note:**). _Italics_ are used for directories, files and headers.
+**Bold** is used for programs/package names, noteworthy points (**Note:**) and the names of input file tags (e.g. **SITE\_ATOM\_POS**). _Italics_ are used for directories, files and headers.
 
 ##### _Code Blocks_
 Code blocks, as would be expected, should be used for any code, input or outputs (such as the _ctrl.si_{: style="color: green"} input file), terminal commands and general instructions. Code blocks are always on a new line so it is not suitable if inline text is desired.  
