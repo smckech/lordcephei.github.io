@@ -120,9 +120,9 @@ The equation itself is standard LaTeX syntax. If you are not familiar with LaTeX
 ### _Making Changes_
 
 ##### _Using Git_
-The site is currently hosted on GitHub and Git is used to manage the site and upload changes. To contribute to the site, please contact . in order to recieve permissions to edit the repository.    
+The site is currently hosted on GitHub and **Git**{: style="color: blue"} is used to manage the site and upload changes. To contribute to the site, please contact . in order to recieve permissions to edit the repository.    
 
-Actually make changes, for those of you unfamiliar with **Git**{: style="color: blue"}, is fairly simple. You will need **Git**{: style="color: blue"} installed on your machine before proceeding, more information [here](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git). First, clone the repository to your local disk.
+Actually making changes, for those of you unfamiliar with **Git**{: style="color: blue"}, is fairly simple. You will need **Git**{: style="color: blue"} installed on your machine before proceeding, more information [here](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git). First, clone the repository to your local disk.
 
     git clone https://github.com/lordcephei/lordcephei.github.io.git
 
@@ -146,7 +146,7 @@ Finally, we can commit the changes
 
 You may be asked for username and password details, fill these in and assuming you have repository access, all should be fine.   
 
-When you want to edit the repository again, you do not need to clone a new copy. Instead, make sure you update your local copy with all the changes other developers have made.
+When you want to edit the repository again, you do not need to clone a new copy. Instead, make sure you update your local copy with all the changes other developers have made. And follow the steps above, starting with the _add_{: style="color: blue"} command.
 
     git pull origin master
 
@@ -161,4 +161,4 @@ From within the repository's directory. This will produce a _\_site_{: style="co
 
     jekyll serve
 
-This will also create the same _\_site_{: style="color: green"} folder, but will also host the website locally. Read your terminal output for the address of the site.
+This will create the same _\_site_{: style="color: green"} folder, but will also host the website locally. Read your terminal output for the address of the site.
