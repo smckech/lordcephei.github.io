@@ -11,7 +11,7 @@ header: no
 The **lmf** program is an all-electron implementation of the local-density approximation, with a basis consisting of generalized linear muffin tin orbitals, of **LAPWs**, or some combination of the two.
 
 <hr style="height:5pt; visibility:hidden;" />
-#####*Overview of the full-potential method*
+##### *Overview of the full-potential method*
 _____________________________________________
 
 The full-potential program **lmf** was originally adapted from a program **nfp** written by M. Methfessel and M. van Schilfgaarde. The method is described in some detail in the following reference :
@@ -23,7 +23,7 @@ There is also a manual written for the original 1997 code. The present code is a
 *The following features are unique to this method:*
 
 <hr style="height:5pt; visibility:hidden;" />
-#####*Smoothed Hankel functions*
+##### *Smoothed Hankel functions*
 _____________________________________________
 
 The envelope functions are smoothed generalizations of Hankel functions that found in **LMTO** programs. Unlike the normal Hankel functions, the smoothed versions — convolutions of ordinary Hankel functions and Gaussian functions — are regular at the origin. They are a significantly better choice of basis than the customary **LMTO** basis set. However, the smoothing introduces complications because the augmentation of a smoothed Hankel function is less straightforward than of a normal Hankel. The envelope functions are not screened into a tight-binding representation, as in the second-generation and later generation **LMTO** methods; thus wave functions are evaluated by Ewald summation. A real-space version using screened envelope functions is in progress.
