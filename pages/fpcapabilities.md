@@ -27,7 +27,7 @@ You can run **lmf** in band mode to generate energy bands along lines or planes 
 <hr style="height:5pt; visibility:hidden;" />
 #####*Core-level spectroscopy*
 
-**lmf** can generate **EELS** spectra, which involve matrix elements between core and valence electrons. The **EELS** option is invoked with a command-line switches For illustrations, invoke
+**lmf** can generate **EELS** spectra, which involve matrix elements between core and valence electrons. The **EELS** option is invoked with a command-line switches. For illustrations, invoke
 
     fp/test/test.fp fe 2 fp/test/test.fp crn 2
 
@@ -44,12 +44,12 @@ An example that illustrates **LDA** + **U** method is ErAs, which you can run by
 
     fp/test/test.fp eras
 
-ErAs is an interesting case because **LDA** puts all 4 minority *f* electrons in a single extremely narrow band at the Fermi level. In **LDA** + **U** the minority *f* is spit into a 4 - and 3-manifold; see *PRB 67, 035104 (2003)*.
+ErAs is an interesting case because **LDA** puts all 4 minority *f* electrons in a single extremely narrow band at the Fermi level. In **LDA** + **U** the minority *f* is split into a 4 - and 3-manifold; see *PRB 67, 035104 (2003)*.
 
 <hr style="height:5pt; visibility:hidden;" />
 #####*GW*
 
-**lmf** is designed to work in coordination with a **GW** package by T. Kotani (the **GW** package comes comes separately). **lmf** acts both as a driver for the **GW** package and also can be used in a self-consistent **GW** cycle. An extra driver **lmfgw** is compiled as part of this extensions. Use of this driver is described in the **GW** driver documentation. You need the extension package *GW.version.tar.gz*{: style="color: blue"}. Also you will need the **GW** package itself. For illustrations of the driver invoke
+**lmf** is designed to work in coordination with a **GW** package by T. Kotani (the **GW** package comes separately). **lmf** acts both as a driver for the **GW** package and also can be used in a self-consistent **GW** cycle. An extra driver **lmfgw** is compiled as part of this extension. Use of this driver is described in the **GW** driver documentation. You need the extension package *GW.version.tar.gz*{: style="color: blue"}. Also you will need the **GW** package itself. For illustrations of the driver invoke
 
     gw/test/test.gw si gw/test/test.gw gas
 
@@ -78,7 +78,7 @@ Local orbitals are presented in one of two flavors. The first, conventional type
 + It turns the *linear* method into a *quadratic* one. Of course, it would be possible, and more accurate, to construct a **LMTO** orbital of a different principal quantum number complete with envelope function; however, there is a corresponding loss in efficiency because the additional matrix elements of the envelope function must be evaluated.
 + for states with energies in the vicinity of the local orbital energy, the envelope functions of the regular valence states combine with the local orbital to make the interstitial part of the wave function.  
 
-Example that illustrate local orbitals of this type are
+Examples that illustrate local orbitals of this type are
 
 
       fp/test/test.fp gas fp/test/test.fp cu
@@ -87,7 +87,7 @@ The Ga 3*d* semi-core the high-lying As 5*s* state are included as local orbital
 
 The second, extended, kind of local orbital can only be used for semi-core states. Instead of artificially subtracting off some linear of the phi and phi-dot to make the orbital vanish at the augmentation radius, a smooth Hankel tail is attached to the orbital. The smoothing of tail is constructed to match as well as possible the kinetic energy of the semi-core state. This type of orbital has the advantage that the valence envelope function need not "carry" the tail of the semi-core state. Its drawback is that more things can “go wrong,” namely it may fail to do a good job of fitting the kinetic energy.
 
-an example that illustrates the second kind of local orbital is
+An example that illustrates the second kind of local orbital is
 
     fp/test/test.fp srtio3  
 
