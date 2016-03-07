@@ -9,11 +9,11 @@ sidebar: "left"
 header: no
 ---
 
-#Basic LM tutorial
+# Basic LM tutorial
 
 To perform a very basic QSGW calculation and set up for more accurate/specific calculations of SbSBr (or any other structure starting from POSCAR) the following steps can be used as a basic tutorial. This tutorial will take you from POSCAR to qsGW in 6 very simple steps.
 
-###_Step 1: Crystal structure_  
+### _Step 1: Crystal structure_  
 
 The first step is to extract the site/crystall structure from the POSCAR file. This can be achieved in two methods using ”*poscar2init*{: style="color: green"}” or ”*poscar2site*{: style="color: green"}”, both write output as *stdout*{: style="color: blue"} while ”*poscar2site*{: style="color: green"}” also creates a file named ”*site*{: style="color: green"}”. To use just execute in the directory with the POSCAR file. The output of the two executables are very similar, ”Site” file is more convenient when the *ctrl.ext*{: style="color: blue"} file has been prepared and only the ”*site.ext*{: style="color: green"}” is needed, while *init.ext*{: style="color: green"} can be used to create a simple template input file (hence recommended for 1st runs).
 
@@ -28,7 +28,7 @@ To create ”*init.ext*{: style="color: green"}” invoke the following command 
 
 {::nomarkdown}</div>{:/}
 
-###_Step 2: Initial control file_  
+### _Step 2: Initial control file_  
 
 With the crystal structure at hand the lm package is capable of creating a basic control file for you, simply use the command
 
@@ -40,7 +40,7 @@ which will create *actrl.ext*{: style="color: green"} which is almost ready for 
 
 to print out a full list of all available input options.
 
-###_Step 3: DFT set up_  
+### _Step 3: DFT set up_  
 
 To run GW calculation you must first get a self consistent DFT calculation, here are the basic steps needed for the full-potential(FP) approach (this is more versatile than atomic sphere approximation (ASA) but also slower). start by making a ctrl file that the lmto package can access:
 
@@ -57,7 +57,7 @@ There are two important result to take note of at this stage; The first is the G
 
 {::nomarkdown}</div>{:/}
 
-###_Step 4: DFT_  
+### _Step 4: DFT_  
 
 Run a DFT-FP calculation by
 
@@ -69,7 +69,7 @@ This may give you an error regarding the k-mesh settings. The k-mesh division NK
 
 This will set NKABC as 4x4x4.This should be enough for a self consistent calculation, you may also have to set a value for the number of iteration in *ITER NIT*{: style="color: blue"} or *-vnit=*{: style="color: blue"} in command line. Other parameters which are important even for a basic preliminary DFT calculation may include things such as spin polarization and spin orbit coupling; While you may find other parameters become key for certain materials.
 
-###_Step 5: GW set up(almost there)_  
+### _Step 5: GW set up(almost there)_  
 
 once self consistency has been achieved with the desired parameters within DFT, you can start a qsGW calculation. First you have to create input files for the GW package, once again the lmto package make a template for you by using
 
@@ -79,7 +79,7 @@ once self consistency has been achieved with the desired parameters within DFT, 
 
 to see all options available through *lmfgwd*{: style="color: blue"}. This should create a number of files one of which is *GWinput*{: style="color: green"}; this serves as the input file for all GW based calculations. Variables are documented within the file, further information can be found in the Darsbury lecture power points and documentation folder of the lm package.
 
-###_Step 6: Sanity check_  
+### _Step 6: Sanity check_  
 
 To check that the GW files created are *comOPTICS MODE=pelete*{: style="color: blue"} for a qsgw run, and to check for some errors simply run:
 
@@ -87,7 +87,7 @@ To check that the GW files created are *comOPTICS MODE=pelete*{: style="color: b
 
 with this method crashes during GW runs are minimized.
 
-###_Step 7: qsGW (and we are done)_  
+### _Step 7: qsGW (and we are done)_  
 
 To run qsGW calculation the following command is invoked
 
@@ -95,9 +95,9 @@ To run qsGW calculation the following command is invoked
 
 once self-consistency has been achieved the file ”*sigm.ext*{: style="color: green"}” (the self energy, Σ from Hedin’s equations) can be used with lmf. Running a FP calculation in the same directory will now include the electronic self energy obtained from qsGW. Using the lmf with *sigm.ext*{: style="color: green"} allows for qsGW level calculations of Band structure, optics, DOS ....... with much faster speed as the lmf uses the single particle approximation.
 
-###_Bonus Step_  
+### _Bonus Step_  
 
-####Band structure  
+#### Band structure  
 
 <div onclick="elm = document.getElementById('box4'); if(elm.style.display == 'none') elm.style.display = 'block'; else elm.style.display = 'none';">Click here to show or hide.</div>
 {::nomarkdown}<div style="display:none;" id="box4">{:/}
@@ -114,11 +114,11 @@ The switch *−−band:fn=syml*{: style="color: blue"} specifies a band structur
 
 {::nomarkdown}</div>{:/}
 
-####Optics  
+#### Optics  
 
 Calculating optical properties are slightly dependant on a number of switches used for your calculation.
 
-#####Procedure A  
+##### Procedure A  
 
 <div onclick="elm = document.getElementById('box5'); if(elm.style.display == 'none') elm.style.display = 'block'; else elm.style.display = 'none';">Click here to show or hide.</div>
 {::nomarkdown}<div style="display:none;" id="box5">{:/}
@@ -135,15 +135,15 @@ where x y and z are the real space directions.
 
 {::nomarkdown}</div>{:/}
 
-#####Procedure B  
+##### Procedure B  
 
 For the case where *-vso=3*{: style="color: blue"} the procedure has to be preformed through two steps. Once with *OPTICS MODE=1*{: style="color: blue"} and once with *OPTICS MODE=2*{: style="color: blue"}, in this mode the *opt.ext*{: style="color: green"} files are spin polarized.
 
-#####Joint Density of States  
+##### Joint Density of States  
 
 JDOS is calculated in the same manor as εi but with *OPTICS MODE=-1*{: style="color: blue"} for the case of *-vnsp=1*{: style="color: blue"} or *-vnsp=2*{: style="color: blue"} and *-vso=1*{: style="color: blue"}, and with *OPTICS MODE=-1*{: style="color: blue"} and *OPTICS MODE=-2*{: style="color: blue"} for case *-vnsp=2*{: style="color: blue"} and *-vso=3*{: style="color: blue"}.
 
-#####Other procedures  
+##### Other procedures  
 
 There are currently 13 optics mode, a brief description of each is given through:
 

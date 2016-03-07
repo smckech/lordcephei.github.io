@@ -8,7 +8,7 @@ permalink: "/contact/"
 header: no
 ---
 
-###*Contact our help desk here:*
+### *Contact our help desk here:*
 
 Please click <a href="mailto:help.lmto@gmail.com">here</a> to write an email.  
 
