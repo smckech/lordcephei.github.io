@@ -10,7 +10,7 @@ header: no
 <hr style="height:5pt; visibility:hidden;" />
 #####*Energy bands*
 
-You can run **lmf** in band mode to generate energy bands along lines or planes for, generating, e.g. Fermi surfaces.  *k*-point specifications and invocation is described in [here](//). Particularly useful are the color weights.
+You can run **lmf** in band mode to generate energy bands along lines or planes for, generating, e.g. Fermi surfaces.  *k*-point specifications and invocation is described [here](//). Particularly useful are the color weights.
 
 <hr style="height:5pt; visibility:hidden;" />
 #####*Partial DOS and Mulliken analysis*
