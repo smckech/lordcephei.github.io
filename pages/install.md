@@ -5,8 +5,7 @@ subheadline: ""
 show_meta: false
 teaser: ""
 permalink: "/install/"
-header:
-    image_fullwidth: "header_drop.jpg"
+header: no
 ---
 
 ### Table of Contents
