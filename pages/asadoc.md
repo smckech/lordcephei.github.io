@@ -903,7 +903,7 @@ _Note:_{: style="color: red"} The output file can be named differently, and its 
 
 ##### _3\. Generating Energy Bands and Densities-of-States_
 _____________________________________________________________
-1.  Plotting energy bands require the use of a symmetry-line file. Rather than create one, it can be found in the _lm_{: style="color: green"} repository. First, navigate in to the build directory
+1.  Plotting energy bands require the use of a symmetry-line file. Rather than create one, it can be found in the _lm_{: style="color: green"} repository. First, navigate into the build directory
 
         cd lmbuild
 
