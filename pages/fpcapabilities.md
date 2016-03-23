@@ -8,16 +8,23 @@ permalink: "/fpcapabilities/"
 header: no
 ---
 <hr style="height:5pt; visibility:hidden;" />
+### *Introduction*
+
+This page should serve as a demonstration of a number of the capabilities of the **lmf** code and can be used as a reference for the corresponding procedures. 
+
+<hr style="height:5pt; visibility:hidden;" />
 ##### *Energy bands*
 
-You can run **lmf** in band mode to generate energy bands along lines or planes for, generating, e.g. Fermi surfaces.  *k*-point specifications and invocation is described [here](//). Particularly useful are the color weights.
+You can run **lmf** in band mode to generate energy bands along lines or planes, for generating, e.g. Fermi surfaces.  *k*-point specifications and invocation is described [here](//). Particularly useful are the color weights.
 
 <hr style="height:5pt; visibility:hidden;" />
 ##### *Partial DOS and Mulliken analysis*
 
-**lmf** can generate partial dos within augmentation spheres, and construct a Mulliken analysis. **DOS** can be resolved by site, by site and *l*, or by site and **lm**. These options are invoked through in command-line switches. For illustrations, invoke
+**lmf** can generate partial **DOS** within augmentation spheres, and construct a Mulliken analysis. **DOS** can be resolved by site, by site and *l*, or by site and *lm*. These options are invoked through in command-line switches. For illustrations, invoke
 
-    fp/test/test.fp co 2 fp/test/test.fp fe 2
+    fp/test/test.fp co 2 
+    
+    fp/test/test.fp fe 2
 
 <hr style="height:5pt; visibility:hidden;" />
 ##### *Charge density*
@@ -29,7 +36,9 @@ You can run **lmf** in band mode to generate energy bands along lines or planes 
 
 **lmf** can generate **EELS** spectra, which involve matrix elements between core and valence electrons. The **EELS** option is invoked with a command-line switches. For illustrations, invoke
 
-    fp/test/test.fp fe 2 fp/test/test.fp crn 2
+    fp/test/test.fp fe 2 
+    
+    fp/test/test.fp crn 2
 
 <hr style="height:5pt; visibility:hidden;" />
 ##### *LDA+U*
@@ -51,7 +60,9 @@ ErAs is an interesting case because **LDA** puts all 4 minority *f* electrons in
 
 **lmf** is designed to work in coordination with a **GW** package by T. Kotani (the **GW** package comes separately). **lmf** acts both as a driver for the **GW** package and also can be used in a self-consistent **GW** cycle. An extra driver **lmfgw** is compiled as part of this extension. Use of this driver is described in the **GW** driver documentation. You need the extension package *GW.version.tar.gz*{: style="color: blue"}. Also you will need the **GW** package itself. For illustrations of the driver invoke
 
-    gw/test/test.gw si gw/test/test.gw gas
+    gw/test/test.gw si 
+
+    gw/test/test.gw gas
 
 <hr style="height:5pt; visibility:hidden;" />
 ##### *Spin-Orbit coupling*
@@ -64,14 +75,16 @@ Use HAM_S<sub>O</sub> to turn on S<sub>O</sub> coupling.
 
 For illustrations of all three kinds of approaches, try
 
-    fp/test/test.fp felz fp/test/test.fp gasls
+    fp/test/test.fp felz 
+
+    fp/test/test.fp gasls
 
 <hr style="height:5pt; visibility:hidden;" />
 ##### *Local orbitals*
 
 In v6.12 and later, local orbitals may be added to the basis set. These orbitals are important when energy bands over a very wide energy window are required, when high accuracy is needed for shallow (semi-)core states, or for energies far above the Fermi energy. Examples of the former occur in oxides: bond lengths are small and cations with shallow p orbitals extend somewhat beyond the augmentation radius.
 
-Local orbitals are presented in one of two flavors. The first, conventional type of local orbital is constructed by solving the radial Schrödinger at a different linearization energy than the usual valence states, and then subtracting off a particular linear of the valence wave function phi and energy derivative phi-dot such that the local orbital’s value and slope vanish at the augmentation radius. Thus
+Local orbitals are presented in one of two flavors. The first, conventional type of local orbital is constructed by solving the radial Schrödinger at a different linearization energy than the usual valence states, and then subtracting off a particular linear of the valence wave function $\phi$ and energy derivative $\dot{\phi}$ such that the local orbital’s value and slope vanish at the augmentation radius. Thus
 
 + A local orbital is strictly confined to the augmentation sphere, and has no envelope function at all.
 + When taken in linear combination with the valence augmentation functions, it can solve the Schrödinger equation exactly for linearization the energy chosen (that is, for the spherical potential that defines the wave functions).
@@ -81,7 +94,9 @@ Local orbitals are presented in one of two flavors. The first, conventional type
 Examples that illustrate local orbitals of this type are
 
 
-      fp/test/test.fp gas fp/test/test.fp cu
+      fp/test/test.fp gas 
+
+      fp/test/test.fp cu
 
 The Ga 3*d* semi-core the high-lying As 5*s* state are included as local orbitals. In the Cu case, the high-lying Cu 4*d* is included, which is important in **GW** calculations.
 
@@ -100,7 +115,9 @@ In v6.15 and later, floating orbitals may be added to the basis set. These orbit
 
 The following illustrate the inclusion of floating orbitals in the basis:
 
-    fp/test/test.fp te fp/test/test.fp gaslc
+    fp/test/test.fp te 
+
+    fp/test/test.fp gaslc
 
 <hr style="height:5pt; visibility:hidden;" />
 ##### *Augmented Plane Waves*
@@ -109,9 +126,13 @@ Starting with v6.17, Augmented Plane Waves can also be included in the basis. Th
 
 The following illustrate the inclusion of APWs in the basis:
 
-    fp/test/test.fp te fp/test/test.fp srtio3 fp/test/test.fp felz 4
+    fp/test/test.fp te 
+
+    fp/test/test.fp srtio3 
+
+    fp/test/test.fp felz 4
 
 <hr style="height:5pt; visibility:hidden;" />
 ##### *Parallel Implementation*
 
-Two separate parallel versions of lmf have been made (courtesy of A. T. Paxton). One parallelizes over *k*-points, and is the most efficient for scaling; the other parallelizes many points at a lower level.
+Two separate parallel versions of **lmf** have been made (courtesy of A. T. Paxton). One parallelizes over *k*-points, and is the most efficient for scaling; the other parallelizes many points at a lower level.

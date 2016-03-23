@@ -21,24 +21,23 @@ header: no
 
 MPI, BLACS, SCALAPACK etc.. are optional.
 
-Since v7.10d libxc (v2.2+) is also a requirement. If the env variable LIBXCPATH is set to the libxc installation path everything will likely work fine. One may also specify the library and the include path manually in the flags.mk file
+Since v7.10d libxc (v2.2+) is also a requirement. The enviroment variable LIBXCPATH should be set to the libxc installation path or the library path can be manually specified in the flags.mk file (discussed below).
 
 ## Installation Procedure
 
-First of all, clone the repository to your local machine in a path of your choice. This location will be referred to from here on by `/path/to/lm`.
-In an empty folder, create *flags.mk* file containing the necessary variables. A working starting example with annotations can be produced with the included *genflags.py* utility e.g.:
+For installation of the package the repository should first be cloned on the local machine in the path of your choice. This location will be referred to from here on by `/path/to/lm`. In an empty folder, create *flags.mk* file containing the necessary variables. A working template with annotations can be produced with the included *genflags.py* utility e.g.:
 
 `/path/to/lm/genflags.py intel opt > flags.mk      # if using intel compilers`
 
-If an mpi version is to be built the relevant variables in the file have to be set to the appropriate compiler wrappers or alternatively the mpi INCLUDE paths and libraries need to be specified, together with the necessary preprocessing flags. An mpi enabled example of *flags.mk* can be obtained by appending mpi to the *genflags.py* command line arguments above.
+If an MPI version is to be built the relevant variables in the file have to be set to the appropriate compiler wrappers or alternatively the MPI INCLUDE paths and libraries need to be specified, together with the necessary preprocessing flags. An MPI enabled template of *flags.mk* can be obtained by appending mpi to the *genflags.py* command line arguments above.
 
-In the same folder where you created the *flags.mk* file, compile the program using the scons utility. If the scons program is not installed in your machine, a local version provided in `/path/to/lm/scons-local/scons.py` can be used, just replace all occurrences of scons in the following commands. The dependency resolution, compilation, and linking is facilitated by the scons utility. For example
+In the same folder where you created the *flags.mk* file, compile the program using the scons utility. If the scons program is not installed in your machine, a local version provided in `/path/to/lm/scons-local/scons.py` can be used, just replace all occurrences of scons in the following commands. The dependency resolution, compilation, and linking is facilitated by the scons utility. For example:
 
 `scons -Y /path/to/lm/ -j 16 all`
 
 will build target all using up to 4 simultaneous compilation/linking processes. For a list of available targets execute the above without all. For a list of scons options use `--help`.
 
-It is advisable to test the build. Each module has a related set of tests which can be invoked with the following command after replacing `<modulename>` with one of the modules: lm, fp, gf, pgf, sx, gwd, optics, tb, mol, dmft, gw.
+It is advisable to test the build. Each module has a related set of tests which can be invoked with the following command by replacing `<modulename>` with one of the following  module names: lm, fp, gf, pgf, sx, gwd, optics, tb, mol, dmft, gw.
 
 `scons -Y /path/to/lm/ check<modulename>`
 
@@ -59,7 +58,7 @@ The executables (and possibly other files in future) can be installed in a path 
 
 Apple's darwin operating system:
 
-1. The standard functions diff, zdiff and awk are less versatile than the linux (gnu) equivalents. Some of the testing scripts make use of the extra versatility of gnu versions. Before running the standard checks, please install the gnu versions of diff and awk, e.g. using macports.Also copy zdiff from a linux system and park it in the directory where diff is located.
+1. The standard functions diff, zdiff and awk are less versatile than the linux (gnu) equivalents. Some of the testing scripts make use of the extra versatility of gnu versions. Before running the standard checks, please install the gnu versions of diff and awk, e.g. using macports. Also copy zdiff from a linux system and park it in the directory where diff is located.
 
 2. The gnu BLAS library has some bugs, e.g. the one that accompanies gcc Apple LLVM version 6.1.0 and GNU Fortran 5.1.0 Some of them have been worked around, but zdotc needs to be replaced. Pick up a distribution of zdotc from, [e.g.](http://www.netlib.org/lapack/explore-html/d6/db8/zdotc_8f_source.html) Put it into the slatsm directory, and update SConscript (or Makefile if you are using the old installation)
 
