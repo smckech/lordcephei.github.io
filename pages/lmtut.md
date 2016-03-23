@@ -15,7 +15,7 @@ To perform a basic QSGW calculation and set up for more accurate/specific calcul
 
 ### _Step 1: Crystal structure_  
 
-The first step is to extract the site/crystall structure from the POSCAR file. This can be achieved in two methods using ”*poscar2init*{: style="color: green"}” or ”*poscar2site*{: style="color: green"}”, both write output as *stdout*{: style="color: blue"} while ”*poscar2site*{: style="color: green"}” also creates a file named ”*site*{: style="color: green"}”. To use just execute in the directory with the POSCAR file. The output of the two executables are very similar, ”Site” file is more convenient when the *ctrl.ext*{: style="color: blue"} file has been prepared and only the ”*site.ext*{: style="color: green"}” is needed, while *init.ext*{: style="color: green"} can be used to create a simple template input file (hence recommended for 1st runs).
+The first step is to extract the site/crystal structure from the POSCAR file. This can be achieved in two methods using ”*poscar2init*{: style="color: green"}” or ”*poscar2site*{: style="color: green"}”, both write output as *stdout*{: style="color: blue"} while ”*poscar2site*{: style="color: green"}” also creates a file named ”*site*{: style="color: green"}”. To use just execute in the directory with the POSCAR file. The output of the two executables are very similar, ”Site” file is more convenient when the *ctrl.ext*{: style="color: blue"} file has been prepared and only the ”*site.ext*{: style="color: green"}” is needed, while *init.ext*{: style="color: green"} can be used to create a simple template input file (hence recommended for 1st runs).
 
 <div onclick="elm = document.getElementById('box1'); if(elm.style.display == 'none') elm.style.display = 'block'; else elm.style.display = 'none';">Click here to show or hide.</div>
 {::nomarkdown}<div style="display:none;" id="box1">{:/}
@@ -46,7 +46,7 @@ To run GW calculation you must first get a self consistent DFT calculation, here
 
 	$cp actrl.ext ctrl.ext
 
-This is the file that lm packages access as iput file. For FP calculations it is often nessery to add empty spheres to act as floating orbital centers, for this the following line in the *ctrl.ext*{: style="color: green"} has to be uncommented
+This is the file that lm packages access as iput file. For FP calculations it is often necessary to add empty spheres to act as floating orbital centers, for this the following line in the *ctrl.ext*{: style="color: green"} has to be uncommented
 
      #SCLWSR=21 WSRMAX=3.3
  
@@ -62,7 +62,7 @@ Before starting with FP the atomistic densities and the basis are need, these pa
 <div onclick="elm = document.getElementById('box3'); if(elm.style.display == 'none') elm.style.display = 'block'; else elm.style.display = 'none';">Click here to show or hide.</div>
 {::nomarkdown}<div style="display:none;" id="box3">{:/}
 
-There are two important result to take note of at this stage; The first is the GMAX written at the end of the stdout, the other is the *basp0.ext*{: style="color: green"} file which contains the basis parameters (the ”0” is there not to over write previous *basp.ext*{: style="color: green"} files, note that the basis set can be set in the ctrl file as well). To perform a DFT-FP calculation add the GMAX from stdout to the HAM_GMAX in the *ctrl.ext*{: style="color: green"} file and move *basp0.ext*{: style="color: green"} to *basp.ext*{: style="color: green"}. Some times it is necessary to repeat this step once to avoid crashes in the future.
+There are two important result to take note of at this stage: The first is the GMAX written at the end of the stdout, the other is the *basp0.ext*{: style="color: green"} file which contains the basis parameters (the ”0” is there not to over write previous *basp.ext*{: style="color: green"} files, note that the basis set can be set in the ctrl file as well). To perform a DFT-FP calculation add the GMAX from stdout to the HAM_GMAX in the *ctrl.ext*{: style="color: green"} file and move *basp0.ext*{: style="color: green"} to *basp.ext*{: style="color: green"}. Some times it is necessary to repeat this step once to avoid crashes in the future.
 
 {::nomarkdown}</div>{:/}
 
@@ -117,7 +117,7 @@ The definition of all the switches above can be found through
 
     	$lmgwsc --h
 
-It is often a good  idea to run a 1-shot GW calculation (setting -maxit=0) and plotting band structure so that basis and other parameters can be altered if needed.
+It is often a good idea to run a 1-shot GW calculation (setting -maxit=0) and plotting band structure so that basis and other parameters can be altered if needed.
 
 once self-consistency has been achieved the file ”*sigm.ext*{: style="color: green"}”  contains the information regarding the self energy (Σ from Hedin’s equations). Running a FP calculation with ”*sigm.ext*{: style="color: green"}” present in the same directory  will now include the electronic self energy obtained from qsGW. Using the lmf with *sigm.ext*{: style="color: green"} allows for qsGW level calculations of Band structure, optics, DOS ....... with much faster speed as the lmf uses the single particle approximation.
 
@@ -128,7 +128,7 @@ once self-consistency has been achieved the file ”*sigm.ext*{: style="color: g
 <div onclick="elm = document.getElementById('box4'); if(elm.style.display == 'none') elm.style.display = 'block'; else elm.style.display = 'none';">Click here to show or hide.</div>
 {::nomarkdown}<div style="display:none;" id="box4">{:/}
 
-Creating the band structure is fairly simple. All you have to do is create a file which specifies which branches you want and how fine a mesh you want it for. So create a file called *syml.ext*{: style="color: green"}; the syntax for this file is quite intuitive, each line provides information for each band structure branch to be outputted; Simply specify the number of points in the branch, starting vector and final vector; for example branch Γ to R with 50 k points will be :
+Creating the band structure is fairly simple. All you have to do is create a file which specifies which branches you want and how fine a mesh you want it for. So create a file called *syml.ext*{: style="color: green"}; the syntax for this file is quite intuitive, each line provides information for each band structure branch to be outputted; simply specify the number of points in the branch, starting vector and final vector; for example branch Γ to R with 50 k points will be :
 
 	50 0.0 0.0 0.0 0.5 0.5 0.5
 
@@ -136,7 +136,7 @@ there are sample syml file in the ASAsampples folder. once you have your syml.ex
 
 	$ lmf ctrl.ext −−band:fn=syml −−rs=1,0
 
-The switch *−−band:fn=syml*{: style="color: blue"} specifies a band structure calculation with the appropriate data, the second switch *−−rs=1,0*{: style="color: green"} tells the program to read from the *rst.ext*{: style="color: green"} file (1st digit is 1) and not to write to the *rst.ext*{: style="color: green"} file (2nd digit is 0), this is recommended so you always use the same self-consistent density with out altering each run.
+The switch *−−band:fn=syml*{: style="color: blue"} specifies a band structure calculation with the appropriate data, the second switch *−−rs=1,0*{: style="color: green"} tells the program to read from the *rst.ext*{: style="color: green"} file (1st digit is 1) and not to write to the *rst.ext*{: style="color: green"} file (2nd digit is 0), this is recommended so you always use the same self-consistent density without altering each run.
 
 {::nomarkdown}</div>{:/}
 
@@ -153,7 +153,7 @@ First I will discuss for the case of where number of spins (*-vnsp=1*{: style="c
 
 	$ lmf ctrl.ext −−rs=1,0
 
-this will create a file called *opt.ext*{: style="color: green"} which is the imaginary part of the dielectric function. the format of the file is:
+this will create a file called *opt.ext*{: style="color: green"} which is the imaginary part of the dielectric function. The format of the file is:
 
 	Energy εix εiy εiz
 
