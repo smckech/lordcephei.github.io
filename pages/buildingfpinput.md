@@ -147,7 +147,7 @@ Near all programs in this package require an input file _ctrl.ext_{: style="colo
 
     As the [output](FPsamples/out.bi2te3.blm) shows, it found all five atoms that were implicit in the specification of the symmetry group, R-3m.
 
-    Note that **blm**{: style="color: blue"} automatically determined [augmentation sphere radii](FPsamples/out.bi2te3.blm#rmt), which it accomplishes by attempting to find spheres with equal potentials on each sphere surfaces (as well as it can). If you already have an input file, you can run **lmchk**{: style="color: blue"} with _--getwsr_ to determine radii for you (it uses the same algorithm as **blm**{: style="color: blue"}) Particularly in polar compounds, this algorithm probably does a better job than you can do by hand, and it is recommended that you use the radii it finds, or some scaled version of them.
+    Note that **blm**{: style="color: blue"} automatically determined [augmentation sphere radii](FPsamples/out.bi2te3.blm#rmt), which it accomplishes by attempting to find spheres with equal potentials on each sphere surfaces (as well as it can). If you already have an input file, you can run **lmchk**{: style="color: blue"} with _--getwsr_ to determine radii for you (it uses the same algorithm as **blm**{: style="color: blue"}). Particularly in polar compounds, this algorithm probably does a better job than you can do by hand, and it is recommended that you use the radii it finds, or some scaled version of them.
 
     **blm**{: style="color: blue"} creates the file _actrl.bi2te3_{: style="color: green"} with these contents:
 
@@ -326,13 +326,13 @@ Finally, the input file contains AUTOBAS[MTO=1]. This causes **lmfa** to envelop
         % const met=5 nk=0
         BZ      NKABC={nk}  METAL={met}  # NKABC requires 1 to 3 positive numbers  
 
-    BZ_NKABC governs the mesh of _k_-points. What is appropriate it will depend strongly on the context: many things: the size of the unit cell; the density-of-states at the Fermi level; whether Fermi surface properties are important; whether you want optical properties as well as total energies well described; the precision you need; the integration method, and so on. Any automatic formula can be dangerous, so **blm** will not choose a default for you. In this case, a 4×4×4 mesh works well. Use your text editor to change nk=0 to nk=4. Alternatively, supply --nk=.. to **blm** on the command line, as was done in [this tutorial](Demo_QSGW_Si.html#nk).
+    BZ_NKABC governs the mesh of _k_-points. What is appropriate will depend strongly on the context: many things: the size of the unit cell; the density-of-states at the Fermi level; whether Fermi surface properties are important; whether you want optical properties as well as total energies well described; the precision you need; the integration method, and so on. Any automatic formula can be dangerous, so **blm** will not choose a default for you. In this case, a 4×4×4 mesh works well. Use your text editor to change nk=0 to nk=4. Alternatively, supply --nk=.. to **blm** on the command line, as was done in [this tutorial](Demo_QSGW_Si.html#nk).
 
     Note that as generated, ctrl.bi2te3 will reflect METAL=5. Using METAL=5 with the tetrahedron integration is the recommended way to handle Fermi surface integration in metals. See [this tutorial](FPtutorial.html#metal) for some discussion.
 
 #### _Input files for GW_
 
-_GW_ calculations demand more of the basis set because unuoccupied states are important. To setting up a job in preparation for a _GW_ calculation, invoke **blm** as :
+_GW_ calculations demand more of the basis set because unuoccupied states are important. To set up a job in preparation for a _GW_ calculation, invoke **blm** as :
 
     blm --gw bi2te3  
 
