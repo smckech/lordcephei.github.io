@@ -76,7 +76,9 @@ A tag in the outermost branch of the tree points to actual data and is called a 
 <div onclick="elm = document.getElementById('tagexample'); if(elm.style.display == 'none') elm.style.display = 'block'; else elm.style.display = 'none';">Click here for an example.</div>
 {::nomarkdown}<div style="display:none;padding:25px;" id="tagexample">{:/} 
 
-Suppose for example, the calculation you want to do requires Brillouin zone integrations of a metallic material, which you plan to to carry out using the Methfessel-Paxton sampling method.  Two parameters: polynomial order n and gaussian width w. 
+Suppose for example, the calculation you want to do e −‘; some have two (−−‘). requires Brillouin zone integrations of a metallic material, which you plan to to carry out using the Methfessel-Paxton sampling method.  
+
+Two parameters: polynomial order n and gaussian width w. 
 Two tags are used to identify them: internally they are represented as **BZ\_N** and **BZ_W**, but in the input file they are usually expressed as follows: 
 
         BZ	N=2	W=.01
@@ -126,7 +128,7 @@ Some tags are required; others are optional; still others (in fact most) may not
 
 Input lines are passed through a preprocessor, which provides a wide flexibility in how input files are structured. The preprocessor has many features in common with a programming language, including the ability to declare variables, evaluate algebraic expressions; and it has constructs for branching and looping, to make possible multiple or conditional reading of input lines.  
 
-For example, supposing through a prior preprocessor instruction you have declared a variable *range*, and it has been assigned the value 3. This line in the input file:
+For example, supposing through a prior preprocessor instruction you have declared a variable range, and it has been assigned the value 3. This line in the input file:
 
         RMAX={range+1/4}
 
@@ -156,7 +158,7 @@ Some switches have a single "−"; some have two ("−−"). Those with a single
 
 You can also put these switches in the  CMD  category in the input file. The function is similar to a command-line argument, but not identical, since preprocessor has already read the input file before the "CMD" switches are read. Thus the  "−v"  and  "−c"  variable declarations have no effect.  
 
-Some switches are common to most or all programs.  
+Some switches common to most or all programs.  
 <div onclick="elm = document.getElementById('commonSwitch'); if(elm.style.display == 'none') elm.style.display = 'block'; else elm.style.display = 'none';">Click to show common switches.</div>
 {::nomarkdown}<div style="display:none;padding:25px;" id="commonSwitch">{:/} 
 

@@ -127,3 +127,60 @@ It is often a good idea to run a 1-shot GW calculation (setting -maxit=0) and pl
 
 once self-consistency has been achieved the file ”*sigm.ext*{: style="color: green"}”  contains the information regarding the self energy (Σ from Hedin’s equations). Running a FP calculation with ”*sigm.ext*{: style="color: green"}” present in the same directory  will now include the electronic self energy obtained from qsGW. Using the lmf with *sigm.ext*{: style="color: green"} allows for qsGW level calculations of Band structure, optics, DOS ....... with much faster speed as the lmf uses the single particle approximation.
 
+### _Bonus Step_  
+
+#### Band structure  
+
+<div onclick="elm = document.getElementById('box4'); if(elm.style.display == 'none') elm.style.display = 'block'; else elm.style.display = 'none';">Click here to show or hide.</div>
+{::nomarkdown}<div style="display:none;" id="box4">{:/}
+
+Creating the band structure is fairly simple. All you have to do is create a file which specifies which branches you want and how fine a mesh you want it for. So create a file called *syml.ext*{: style="color: green"}; the syntax for this file is quite intuitive, each line provides information for each band structure branch to be outputted; simply specify the number of points in the branch, starting vector and final vector; for example branch Γ to R with 50 k points will be :
+
+	50 0.0 0.0 0.0 0.5 0.5 0.5
+
+there are sample syml file in the ASAsampples folder. once you have your syml.ext file simply run
+
+	$ lmf ctrl.ext −−band:fn=syml −−rs=1,0
+
+The switch *−−band:fn=syml*{: style="color: blue"} specifies a band structure calculation with the appropriate data, the second switch *−−rs=1,0*{: style="color: green"} tells the program to read from the *rst.ext*{: style="color: green"} file (1st digit is 1) and not to write to the *rst.ext*{: style="color: green"} file (2nd digit is 0), this is recommended so you always use the same self-consistent density without altering each run.
+
+{::nomarkdown}</div>{:/}
+
+#### Optics  
+
+Calculating optical properties are slightly dependant on a number of switches used for your calculation.
+
+##### Procedure A  
+
+<div onclick="elm = document.getElementById('box5'); if(elm.style.display == 'none') elm.style.display = 'block'; else elm.style.display = 'none';">Click here to show or hide.</div>
+{::nomarkdown}<div style="display:none;" id="box5">{:/}
+
+First I will discuss for the case of where number of spins (*-vnsp=1*{: style="color: blue"}) or spin orbit coupling is taken into about through ”L·S” (i.e. *-vnsp=2*{: style="color: blue"} and *-vso=1*{: style="color: blue"}). The simplest procedure will be to set *OPTICS MODE=1*{: style="color: blue"} and set energy window and mesh density through *OPTICS WINDOW=a b*{: style="color: blue"} and *OPTICS=NPTS*{: style="color: blue"} respectively, note a and b are in units Rydberg. Now run the program again Cartesian
+
+	$ lmf ctrl.ext −−rs=1,0
+
+this will create a file called *opt.ext*{: style="color: green"} which is the imaginary part of the dielectric function. The format of the file is:
+
+	Energy εix εiy εiz
+
+where x y and z are the real space directions.
+
+{::nomarkdown}</div>{:/}
+
+##### Procedure B  
+
+For the case where *-vso=3*{: style="color: blue"} the procedure has to be preformed through two steps. Once with *OPTICS MODE=1*{: style="color: blue"} and once with *OPTICS MODE=2*{: style="color: blue"}, in this mode the *opt.ext*{: style="color: green"} files are spin polarized.
+
+##### Joint Density of States  
+
+JDOS is calculated in the same manor as εi but with *OPTICS MODE=-1*{: style="color: blue"} for the case of *-vnsp=1*{: style="color: blue"} or *-vnsp=2*{: style="color: blue"} and *-vso=1*{: style="color: blue"}, and with *OPTICS MODE=-1*{: style="color: blue"} and *OPTICS MODE=-2*{: style="color: blue"} for case *-vnsp=2*{: style="color: blue"} and *-vso=3*{: style="color: blue"}.
+
+##### Other procedures  
+
+There are currently 13 optics mode, a brief description of each is given through:
+
+	$ lmf −−input
+
+Optics mode 8 (non-equilibrium absorption) and 9 (non-equilibrium emission) will be documented separately.
+
+{::nomarkdown}</div>{:/}
