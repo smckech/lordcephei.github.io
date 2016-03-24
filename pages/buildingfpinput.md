@@ -189,7 +189,7 @@ Near all programs in this package require an input file _ctrl.ext_{: style="colo
 
 *Note:*{: style="color: red"} The following applies to the FP code **lmf**{: style="color: blue"}. For ASA calculations, ignore the remainder of this section.
 
-This template will not work as is; three pieces of information **blm**{: style="color: blue"} cannot supply are missing:
+This template will not work as is; three pieces of information which **blm**{: style="color: blue"} does not supply and are essential are missing:
 
 *   You must specify plane-wave cutoff GMAX; see [here](#gmax).
 *   You must specify a valid **k** mesh for Brillouin zone integration; see [here](#bz).
@@ -284,7 +284,7 @@ As was explained [earlier](#autobas), when HAM_AUTOBAS_QLOC is set **lmfa** will
 
 Because HAM_AUTOBAS_P is set, **lmfa** save estimates for logarithmic derivative parameters P into basp0._ext_. As is well known from elementary quantum mechanics, and as described [here](lmto.html#pbasp), there is a relation between the energy of a wave function and its logaritmic derivative at some radius. This information is supplied through the parameters P.
 
-**lmfa** calculates P for the free-atom potential. Since this potential is not so far removed from the crystal potential, these parameters reasonably well find the "band center" for each partial wave _l_. In any case, these are only estimates; they normally get "floated" in the self-consistency cycle.
+**lmfa** calculates P for the free-atom potential. Since this potential is not so far removed from the crystal potential, these parameters can find the "band center" reasonably well for each partial wave _l_. In any case, these are only estimates; they normally get "floated" in the self-consistency cycle.
 
 ##### _Automatically finding envelope function parameters_
 
@@ -326,7 +326,7 @@ Finally, the input file contains AUTOBAS[MTO=1]. This causes **lmfa** to envelop
         % const met=5 nk=0
         BZ      NKABC={nk}  METAL={met}  # NKABC requires 1 to 3 positive numbers  
 
-    BZ_NKABC governs the mesh of _k_-points. What is appropriate will depend strongly on the context: many things: the size of the unit cell; the density-of-states at the Fermi level; whether Fermi surface properties are important; whether you want optical properties as well as total energies well described; the precision you need; the integration method, and so on. Any automatic formula can be dangerous, so **blm** will not choose a default for you. In this case, a 4×4×4 mesh works well. Use your text editor to change nk=0 to nk=4. Alternatively, supply --nk=.. to **blm** on the command line, as was done in [this tutorial](Demo_QSGW_Si.html#nk).
+    BZ_NKABC governs the mesh of _k_-points. An appropriate choice will depend strongly on the context of the calculation and the sytem of interest; the density-of-states at the Fermi level; whether Fermi surface properties are important; whether you want optical properties as well as total energies well described; the precision you need; the integration method, and so on. Any automatic formula can be dangerous, so **blm** will not choose a default for you. In this case, a 4×4×4 mesh works well. Use your text editor to change nk=0 to nk=4. Alternatively, supply --nk=.. to **blm** on the command line, as was done in [this tutorial](Demo_QSGW_Si.html#nk).
 
     Note that as generated, ctrl.bi2te3 will reflect METAL=5. Using METAL=5 with the tetrahedron integration is the recommended way to handle Fermi surface integration in metals. See [this tutorial](FPtutorial.html#metal) for some discussion.
 
