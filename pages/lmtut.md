@@ -71,7 +71,7 @@ There are two important result to take note of at this stage: The first is the G
 <hr style="height:5pt; visibility:hidden;" />
 ### _Step 4: DFT_  
 
-Before running a DFT calculation certain parameters have to be set in the *ctrl.ext*{: style="color: green"}, for FP calculations les variable should be set to 11 as shown previously.
+Before running a DFT calculation certain parameters have to be set in the *ctrl.ext*{: style="color: green"}, for the FP calculations *les* variable should be set to 11 as shown previously.
 Once all the essential parameters have been set you can run a full-potential DFT  calculation by executing:
 
 	$ lmf ctrl.ext
@@ -92,7 +92,7 @@ If self-consistency was not achieved repeat the calculation with higher number o
 <hr style="height:5pt; visibility:hidden;" />
 ### _Step 5: GW set up(almost there)_  
 
-Once self consistency has been achieved with the desired parameters within DFT, you can start a qsGW calculation. First you have to create an input files for the GW package, once again the lmto package has the capability to make tempelate *GWinput*{: style="color: green"} which can be utulised through
+Once self consistency has been achieved with the desired parameters within DFT, you can start a qsGW calculation. First you have to create the input files for the GW package, once again the lmto package has the capability to make tempelate *GWinput*{: style="color: green"} which can be utulised through
 
 	$ echo -1 | lmfgwd ctrl.ext 
 
