@@ -46,7 +46,7 @@ ________________________________________
 
 This tutorial gives a brief outline as to the commands and procedures required to use the **lmf** program for users who may have experience with the program already. More detailed instructions can be found in each section should you require them.
 
-_Note:_ All instances of _al_ in the command lines can be replaced with _*ctrl.al*{: style="color: green"}_, depending on what your input file has been named.  
+_Note:_ All instances of _al_ in the command lines can be replaced with _ctrl.al_{: style="color: green"}_, depending on what your input file has been named.  
 
 
 
@@ -76,7 +76,7 @@ Use **lmchk** to verify:
 
          lmchk al
 
-     And verify from the output that the sphere overlaps about 0.6% (a safe number) and that sum-of-sphere volumes equals about 75% of the total.
+     And verify from the output that the sphere overlap is about 0.6% (a safe number) and that sum-of-sphere volumes equals about 75% of the total cell volume.
 
 Use **lmfa** to generate densitites for the free atom. Atomic densities will be overlapped to make a first trial density for the solid (Mattheis construction).
 
@@ -110,11 +110,10 @@ Read more about basis sets [here](/fpbasisset/).
 #### _4\. Self-consistent LDA calculation_
 ________________________________________
 
-We can do a self-consistent calculation with:
+A fully self-consistent full-potential  calculation can be preformed by invoking:
 
         lmf al > out 
 
-Up to the calculation of the Fermi level the output will be essentially the same.
 
 Now the [output density](FPsamples/out.al.lmf#outrho) is generated. With the output density, the HKS energy functional can be evaluated. Also the log derivative parameters P are floated to the band centers-of-gravity. How the P's are floated is prescribed by tokens [IDMOD](tokens.html#SPECcat); there is a corresponding ASA counterpart discussed in the [ASA overview](lmto.html#section2).
 
