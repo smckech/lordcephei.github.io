@@ -60,9 +60,9 @@ creates the same input template.
 
 To import data from a CIF file you need **cif2cell**{: style="color: blue"} installed and **cif2init**{: style="color: blue"} in your path (**cif2init**{: style="color: blue"} should be automatically compiled with this package). The steps are:
 
-    1\. Run **cif2cell** (without any special switches) and capture the output in a file, e.g.         cif2cell.out        .
-    2\. Run **cif2init** to generate an         init         file (called simply `        init        ').
-    3\. Rename         init         to         init._ext_         and use the [blm](#run) tool.    
+1\. Run **cif2cell** (without any special switches) and capture the output in a file, e.g.         cif2cell.out        .
+2\. Run **cif2init** to generate an         init         file (called simply `        init        ').
+3\. Rename         init         to         init._ext_         and use the [blm](#run) tool.    
 
 _Example_  : create an init file for the orthorhombic form of BaTiO3:
 
@@ -91,12 +91,12 @@ The following init file should be generated:
 
 If you prefer to make your own input file but import structure information via a site file, use **cif2site**{: style="color: blue"} in place of **cif2init**{: style="color: blue"}. To summarize:
 
-    cif2init     creates an init file from the output of **cif2cell**
-    cif2site     creates a  site file from the output of **cif2cell**
+cif2init     creates an init file from the output of **cif2cell**
+cif2site     creates a  site file from the output of **cif2cell**
 
 ##### _Importing a POSCAR file_
 
-[VASP](http://www.vasp.at) is a very popular electronic structure program. Structural information is contained in the POSCAR file. If you want to import data from such a file in a form suitable for this program suite, use one of these:
+[VASP](http://www.vasp.at) is a very popular electronic structure program which can store structural information in the POSCAR files. If you want to import data from such a file in a form suitable for this program suite, use one of the following commands:
 
     poscar2init     creates an init file from a VASP POSCAR file
     poscar2site     creates a  site file from a VASP POSCAR file
@@ -118,11 +118,11 @@ _Example:_{: style="color: red"} create a site file for the Kesterite Cu2ZnSnS4:
 
     testing/test.blm 3 
 
-It creates file _site_{: style="color: green"} from file POSCAR{: style="color: green"}.
+It creates file _site_{: style="color: green"} from file _POSCAR_{: style="color: green"}.
 
 #### _Running blm_
 
-Near all programs in this package require an input file _ctrl.ext_{: style="color: green"}. You can do an entire calculation starting only with this file; but often you supply other files such as site files to supplement _ctrl.ext_{: style="color: green"}. **blm**{: style="color: blue"} will create a skeleton or template file from basic material structural information; it is called _actrl.ext_{: style="color: green"}, so as not to overwrite any file named _ctrl.ext_{: style="color: green"}.
+Almost all programs in this package require the input file _ctrl.ext_{: style="color: green"}. You can do an entire calculation starting only with this file; but often you supply other files such as site files to supplement _ctrl.ext_{: style="color: green"}. **blm**{: style="color: blue"} will create a skeleton or template file from basic material structural information; it is called _actrl.ext_{: style="color: green"}, so as not to overwrite any file named _ctrl.ext_{: style="color: green"}.
 
 1.  Create a file named init.bi2te3 containing the following lines:
 
@@ -224,7 +224,7 @@ Tokens in AUTOBAS tell **lmfa**{: style="color: blue"} to do the following:
     GW=0     If GW=1, tailor basis for a GW calculation, e.g. changing the
              criteria for including shallow cores as valence, and the size of basis.
 
-These tokens thus define some reasonable default basis for you. **lmfa**{: style="color: blue"} _writes_ _basp0.ext_{: style="color: green"}. This file is never read, but **lmf**{: style="color: blue"} will _read_ _basp.ext_{: style="color: green"} and use this information when assembling the basis set. The two files have the same structure and you can copy _basp0.ext_{: style="color: green"} to _basp.ext_{: style="color: green"}. What **lmfa**{: style="color: blue"} generates is not cast in concrete. You are free to adjust the parameters to your liking, e.g. add a local orbital or remove one from the basis. You need to use your judgement here.
+These tokens thus define some reasonable default basis for you. **lmfa**{: style="color: blue"} _writes_ _basp0.ext_{: style="color: green"}. This file is never read, but **lmf**{: style="color: blue"} will _read_ _basp.ext_{: style="color: green"} and use this information when assembling the basis set. The two files have the same structure and you can copy _basp0.ext_{: style="color: green"} to _basp.ext_{: style="color: green"}. What **lmfa**{: style="color: blue"} generates is not cast in concrete. You are free to adjust the parameters to your liking, e.g. add a local orbital or remove one from the basis.
 
 The AUTOBAS tokens tell **lmf**{: style="color: blue"} what to read from _basp.ext_{: style="color: green"}. It uses tokens in a manner similar, but not identical, to the way **lmfa**{: style="color: blue"} uses them:
 
