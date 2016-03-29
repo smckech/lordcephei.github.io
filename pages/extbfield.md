@@ -107,7 +107,7 @@ Magnetization and total energy (relative to the B=0 case) were generated for sev
 **[Click here for image](http://lordcephei.github.io/images/graph2.png)**
 
 As the top figure shows, the total energy _E_ has a minimum near, but not exactly at B=0\. This shows that there are some slight errors in the LDA calculation (in an exact self-consistent LDA calculation _E_ should be minimum at exactly B=0).   
-_E_ is smooth in the interval (−0.01, 0.01) Ry, as the figure shows. The behavior is somewhat unsmooth near B=−0.01 Ry, and is a discontinuity or near discontinuity is evident near B=0.01 Ry. That means numerical differentiation ∂E/∂B is a bit problematic, particularly outside the (−0.01,0.01) interval. Nevertheless we can perform it. In the bottom figure, _M_−_M_(B=0) and ∂E/∂B are plotted respectively as a function of B as dashed lines+circles, and a solid line. The two curves track fairly well, though ∂E/∂B is noisy; nor is _M_(B) particularly smooth.   
+_E_ is smooth in the interval (−0.01, 0.01) Ry, as the figure shows. The behavior is somewhat unsmooth near B=−0.01 Ry, and its discontinuity or near discontinuity is evident near B=0.01 Ry. That means numerical differentiation ∂E/∂B is a bit problematic, particularly outside the (−0.01,0.01) interval. Nevertheless we can perform it. In the bottom figure, _M_−_M_(B=0) and ∂E/∂B are plotted respectively as a function of B as dashed lines+circles, and a solid line. The two curves track fairly well, though ∂E/∂B is noisy; nor is _M_(B) particularly smooth.   
 
 We can obtain χ from the slope ∂_E_/∂B. There is some uncertainty in the calculation since _M_ is not particularly smooth (note in particular that (∂E/∂B)<sub>+</sub> and (∂E/∂B)<sub>−</sub> are a little different).   
 
