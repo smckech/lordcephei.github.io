@@ -189,11 +189,11 @@ Almost all programs in this package require the input file _ctrl.ext_{: style="c
 
 *Note:*{: style="color: red"} The following applies to the FP code **lmf**{: style="color: blue"}. For ASA calculations, ignore the remainder of this section.
 
-This template will not work as is; three pieces of information which **blm**{: style="color: blue"} does not supply and are essential are missing:
+This template will not work as is; three essential pieces of information which **blm**{: style="color: blue"} does not supply are missing, to rectify this :
 
 *   You must specify plane-wave cutoff GMAX; see [here](#gmax).
 *   You must specify a valid **k** mesh for Brillouin zone integration; see [here](#bz).
-*   No basis set has been defined. You can do this manually or automatically, as described next.
+*   You must define a basis set which can be done manually or automatically, as described next.
 
 **blm**{: style="color: blue"} creates a family of tags belonging to AUTOBAS to enbable other programs to automatically find a basis set for you. We will use this tag, which sets up a standard minimal basis:
 
