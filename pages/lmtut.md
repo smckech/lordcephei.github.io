@@ -71,7 +71,7 @@ There are two important result to take note of at this stage: The first is the G
 <hr style="height:5pt; visibility:hidden;" />
 ### _Step 4: DFT_  
 
-Before running a DFT calculation certain parameters have to be set in the *ctrl.ext*{: style="color: green"}, for the FP calculations *les* variable should be set to 11 as shown previously.
+Before running the DFT calculation certain parameters have to be set in the *ctrl.ext*{: style="color: green"}, for the FP calculations *les* variable should be set to 11 as shown previously.
 Once all the essential parameters have been set you can run a full-potential DFT  calculation by executing:
 
 	$ lmf ctrl.ext
