@@ -10,6 +10,15 @@
   url: "/developers/"
   side: left
 
+- title: "Functionality"
+  url: "/functionality/"
+  side: left
+  dropdown:
+  - title: "By Application"
+    url: "/appfunc/"
+  - title: "By Package"
+    url: "/codefunc/"
+
 - title: "Documentation"
   url: "/docs/"
   side: left
