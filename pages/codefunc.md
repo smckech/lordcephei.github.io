@@ -32,6 +32,6 @@ The _lm_{: style="color: blue"} partial DOS can be obtained using
 
     command
 
-A detailed tutorial for _lm_{: style="color: blue"} partial DOS can be found [here](#)
+A detailed tutorial for _lm_{: style="color: blue"} partial DOS can be found [here](https://lordcephei.github.io/asa_dos/)
 
 {::nomarkdown}</div>{:/}

@@ -1,6 +1,6 @@
 ---
 layout: page-fullwidth
-title: "Functionalities Of The Suite By Application"
+title: "Functionalities Of The Suite By Physical Application"
 subheadline: ""
 show_meta: false
 teaser: ""
@@ -43,6 +43,6 @@ The _lm_{: style="color: blue"} partial DOS can be obtained using
 
     command
 
-A detailed tutorial for _lm_{: style="color: blue"} partial DOS can be found [here](#)
+A detailed tutorial for _lm_{: style="color: blue"} partial DOS can be found [here](https://lordcephei.github.io/asa_dos/)
 
 {::nomarkdown}</div>{:/}
