@@ -38,8 +38,7 @@ urlimg: "http://lordcephei.github.io/images/"
 
 
 # Logo size is 600x80 pixels
-logo: "logo3.png"
-
+logo: 
 
 # Paginates all X entries
 paginate: 5
