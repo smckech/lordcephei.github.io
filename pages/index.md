@@ -7,7 +7,7 @@
 layout: frontpage
 title: "LM Suite - Home"
 header:
-   image_fullwidth: "banner_grey.png"
+   image_fullwidth: "banner_grey.jpg"
 ---
 
 <hr style="height:10pt; visibility:hidden;" />
