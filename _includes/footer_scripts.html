@@ -7,6 +7,13 @@
 </script>
 {% endif %}
 
+{% if page.header.image_nologo %}
+<script>
+    $("#masthead").backstretch("{{ site.urlimg }}{{ page.header.image_nologo }}", {fade: 700});
+    $("#masthead-with-text").backstretch("{{ site.urlimg }}{{ page.header.image_nologo }}", {fade: 700});
+</script>
+{% endif %}
+
 
 
 {% if site.google_analytics_tracking_id %}
