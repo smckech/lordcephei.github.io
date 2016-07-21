@@ -22,15 +22,6 @@
 
 {% endcomment %}
       <ul class="right">
-	{% include google_search.html %}
-
-	<li class="divider"></li>
-	<li style="background:#FFFFFF">
-		<form style="width:200px" onsubmit="google_search()" >
-			<input type="text" id="google-search" placeholder="{{ site.data.language.enter_search_term }}">
-		</form>
-	</li>
-
         {% for link in site.data.navigation %}
 
               {% if link.url contains 'http' %}
@@ -100,8 +91,13 @@
 
             {% comment %}   If left side WITHOUT dropdown menu do   {% endcomment %}
             {% if link.dropdown == nil %}
-              <li{% if link.url == page.url %} class="active"{% endif %}><a href="{{ domain }}{{ site.baseurl }}{{ link.url }}"{% if link.url contains 'http' %} target="_blank"{% endif %}>{{ link.title }}</a></li>
-              <li class="divider"></li>
+				{% if link.title == 'Start' %}
+              		<li{% if link.url == page.url %} class="active"{% endif %}><a href="{{ domain }}{{ site.baseurl }}{{ link.url }}"{% if link.url contains 'http' %} target="_blank"{% endif %}>
+					<img src="{{ site.url }}{{ site.baseurl }}/images/logo.jpg" style="width:125px;height:40px"></a></li>
+              	  	<li class="divider"></li>
+				{% else %}
+              		<li{% if link.url == page.url %} class="active"{% endif %}><a href="{{ domain }}{{ site.baseurl }}{{ link.url }}"{% if link.url contains 'http' %} target="_blank"{% endif %}>{{ link.title }}</a></li>
+              	  	<li class="divider"></li>
 
             {% comment %}   If left side WITH dropdown menu do   {% endcomment %}
             {% else %}

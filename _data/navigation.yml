@@ -2,16 +2,12 @@
   url: "/"
   side: left
 
-- title: News and Updates
-  url: "/blog/"
-  side: left
-
 - title: "Developers"
   url: "/developers/"
   side: left
 
 - title: "Functionality"
-  url: "/functionality/"
+  url: ""
   side: left
   dropdown:
   - title: "By Application"
@@ -20,7 +16,7 @@
     url: "/codefunc/"
 
 - title: "Documentation"
-  url: "/docs/"
+  url: ""
   side: left
   dropdown:
   - title: "Installation"
@@ -60,6 +56,10 @@
 - title: "About"
   url: "/about/"
   side: left
+
+- title: "Search"
+  url: "/search/"
+  side: right
 
 - title: "Contact"
   url: "/contact/"
