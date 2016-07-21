@@ -11,6 +11,66 @@
       <li class="toggle-topbar menu-icon"><a href="#"><span>Navigation</span></a></li>
     </ul>
     <section class="top-bar-section">
+		{% comment %}
+
+		    __         ______     _   __            _             __  _           
+		   / /   ___  / __/ /_   / | / /___ __   __(_)___ _____ _/ /_(_)___  ____ 
+		  / /   / _ \/ /_/ __/  /  |/ / __ `/ | / / / __ `/ __ `/ __/ / __ \/ __ \
+		 / /___/  __/ __/ /_   / /|  / /_/ /| |/ / / /_/ / /_/ / /_/ / /_/ / / / /
+		/_____/\___/_/  \__/  /_/ |_/\__,_/ |___/_/\__, /\__,_/\__/_/\____/_/ /_/ 
+		                                          /____/                          
+
+		{% endcomment %}
+		      <ul class="left">
+		        {% for link in site.data.navigation %}
+
+		              {% if link.url contains 'http' %}
+		                {% assign domain = '' %}
+		              {% elsif link.url == '#' %}
+		                {% assign domain = '' %}
+		              {% else %}
+		                {% assign domain = site.url %}
+		              {% endif %}
+
+		          {% comment %}   If there are links for left side begin   {% endcomment %}
+		          {% if link.side == 'left' %}
+
+		            {% comment %}   If left side WITHOUT dropdown menu do   {% endcomment %}
+		            {% if link.dropdown == nil %}
+						{% if link.title == 'Start' %}
+		              		<li><a href="{{ domain }}{{ site.baseurl }}{{ link.url }}"{% if link.url contains 'http' %} target="_blank"{% endif %}>
+							<img src="{{ site.url }}{{ site.baseurl }}/images/logo.png" style="width:125px;height:40px"></a></li>
+		              	  	<li class="divider"></li>
+						{% else %}
+		              		<li{% if link.url == page.url %} class="active"{% endif %}><a href="{{ domain }}{{ site.baseurl }}{{ link.url }}"{% if link.url contains 'http' %} target="_blank"{% endif %}>{{ link.title }}</a></li>
+		              	  	<li class="divider"></li>
+						{% endif %}
+		            {% comment %}   If left side WITH dropdown menu do   {% endcomment %}
+		            {% else %}
+
+		              <li class="has-dropdown{% if link.url == page.url %} active{% endif %}">
+		                <a href="{{ domain }}{{ site.baseurl }}{{ link.url }}"{% if link.url contains 'http' %} target="_blank"{% endif %}>{{ link.title }}</a>
+
+		                  <ul class="dropdown">
+		                    {% for dropdown_link in link.dropdown %}
+
+		                      {% if dropdown_link.url contains 'http' %}
+		                        {% assign domain = '' %}
+		                        {% else %}
+		                        {% assign domain = site.url %}
+		                      {% endif %}
+
+		                      <li><a href="{{ domain }}{{ site.baseurl }}{{ dropdown_link.url }}"{% if dropdown_link.url contains 'http' %} target="_blank"{% endif %}>{{ dropdown_link.title }}</a></li>
+		                    {% endfor %}
+		                  </ul>
+                  
+		              </li>
+		              <li class="divider"></li>
+		            {% endif %}
+		          {% endif %}
+		        {% endfor %}
+		        {% comment %}   Second loop finished   {% endcomment %}
+		      </ul>
 {% comment %}
 
     ____  _       __    __     _   __            _             __  _           
@@ -64,66 +124,6 @@
           {% endif %}
         {% endfor %}
         {% comment %}   First loop finished 1   {% endcomment %}
-      </ul>
-{% comment %}
-
-    __         ______     _   __            _             __  _           
-   / /   ___  / __/ /_   / | / /___ __   __(_)___ _____ _/ /_(_)___  ____ 
-  / /   / _ \/ /_/ __/  /  |/ / __ `/ | / / / __ `/ __ `/ __/ / __ \/ __ \
- / /___/  __/ __/ /_   / /|  / /_/ /| |/ / / /_/ / /_/ / /_/ / /_/ / / / /
-/_____/\___/_/  \__/  /_/ |_/\__,_/ |___/_/\__, /\__,_/\__/_/\____/_/ /_/ 
-                                          /____/                          
-
-{% endcomment %}
-      <ul class="left">
-        {% for link in site.data.navigation %}
-
-              {% if link.url contains 'http' %}
-                {% assign domain = '' %}
-              {% elsif link.url == '#' %}
-                {% assign domain = '' %}
-              {% else %}
-                {% assign domain = site.url %}
-              {% endif %}
-
-          {% comment %}   If there are links for left side begin   {% endcomment %}
-          {% if link.side == 'left' %}
-
-            {% comment %}   If left side WITHOUT dropdown menu do   {% endcomment %}
-            {% if link.dropdown == nil %}
-				{% if link.title == 'Start' %}
-              		<li><a href="{{ domain }}{{ site.baseurl }}{{ link.url }}"{% if link.url contains 'http' %} target="_blank"{% endif %}>
-					<img src="{{ site.url }}{{ site.baseurl }}/images/logo.png" style="width:125px;height:40px"></a></li>
-              	  	<li class="divider"></li>
-				{% else %}
-              		<li{% if link.url == page.url %} class="active"{% endif %}><a href="{{ domain }}{{ site.baseurl }}{{ link.url }}"{% if link.url contains 'http' %} target="_blank"{% endif %}>{{ link.title }}</a></li>
-              	  	<li class="divider"></li>
-				{% endif %}
-            {% comment %}   If left side WITH dropdown menu do   {% endcomment %}
-            {% else %}
-
-              <li class="has-dropdown{% if link.url == page.url %} active{% endif %}">
-                <a href="{{ domain }}{{ site.baseurl }}{{ link.url }}"{% if link.url contains 'http' %} target="_blank"{% endif %}>{{ link.title }}</a>
-
-                  <ul class="dropdown">
-                    {% for dropdown_link in link.dropdown %}
-
-                      {% if dropdown_link.url contains 'http' %}
-                        {% assign domain = '' %}
-                        {% else %}
-                        {% assign domain = site.url %}
-                      {% endif %}
-
-                      <li><a href="{{ domain }}{{ site.baseurl }}{{ dropdown_link.url }}"{% if dropdown_link.url contains 'http' %} target="_blank"{% endif %}>{{ dropdown_link.title }}</a></li>
-                    {% endfor %}
-                  </ul>
-                  
-              </li>
-              <li class="divider"></li>
-            {% endif %}
-          {% endif %}
-        {% endfor %}
-        {% comment %}   Second loop finished   {% endcomment %}
       </ul>
     </section>
   </nav>
