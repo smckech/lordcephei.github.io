@@ -5,7 +5,7 @@
       <li class="name">
       <h1 class="show-for-small-only">
 		  <a href="{{ site.url }}{{ site.baseurl }}">
-		  	<img src="{{ site.url }}{{ site.baseurl }}/images/logo.jpg" style="width:125px;height:40px"></a></h1>
+		  	<img src="{{ site.url }}{{ site.baseurl }}/images/logo.png" style="width:125px;height:40px"></a></h1>
     </li>
        <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
       <li class="toggle-topbar menu-icon"><a href="#"><span>Navigation</span></a></li>
@@ -93,7 +93,7 @@
             {% if link.dropdown == nil %}
 				{% if link.title == 'Start' %}
               		<li><a href="{{ domain }}{{ site.baseurl }}{{ link.url }}"{% if link.url contains 'http' %} target="_blank"{% endif %}>
-					<img src="{{ site.url }}{{ site.baseurl }}/images/logo.jpg" style="width:125px;height:40px"></a></li>
+					<img src="{{ site.url }}{{ site.baseurl }}/images/logo.png" style="width:125px;height:40px"></a></li>
               	  	<li class="divider"></li>
 				{% else %}
               		<li{% if link.url == page.url %} class="active"{% endif %}><a href="{{ domain }}{{ site.baseurl }}{{ link.url }}"{% if link.url contains 'http' %} target="_blank"{% endif %}>{{ link.title }}</a></li>
