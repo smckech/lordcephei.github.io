@@ -1,9 +1,6 @@
 ---
 layout: page-fullwidth
 title: "Functionalities Of The Suite By Physical Application"
-subheadline: ""
-show_meta: false
-teaser: ""
 permalink: "/appfunc/"
 header: no
 ---
@@ -22,27 +19,122 @@ This page serves as a list of the capabilities of the suite sorted by physical a
 ### _Physical Applications_
 _____________________________________________________________
 
-##### _Generating a Partial Density of States_
-A partial DOS can be obtained with the band code _lmf_{: style="color: blue"} and ASA band code _lm_{: style="color: blue"}.  
+##### _Drawing Energy Bands_
+Energy bands can be drawn with the _lmf_{: style="color: blue"}, _lm_{: style="color: blue"}, _tbe_{: style="color: blue"}, _lmgf_{: style="color: blue"} and _lumpy_{: style="color: blue"} codes.   
 
-<div onclick="elm = document.getElementById('lmfpardos'); if(elm.style.display == 'none') elm.style.display = 'block'; else elm.style.display = 'none';"><button type="button" class="button tiny radius">Click to show/hide lmf instructions.</button></div>
-{::nomarkdown}<div style="display:none;margin:0px 25px 0px 25px;"id="lmfpardos">{:/}
+<div onclick="elm = document.getElementById('lmf_energybands'); if(elm.style.display == 'none') elm.style.display = 'block'; else elm.style.display = 'none';"><button type="button" class="button tiny radius">Click to show/hide lmf instructions.</button></div>
+{::nomarkdown}<div style="display:none;margin:0px 25px 0px 25px;"id="lmf_energybands">{:/}
+	
+The _lmf_{: style="color: blue"} code can generate energy bands as shown in the test
 
-The _lmf_{: style="color: blue"} partial DOS can be obtained using
+    $ fp/test/test.fp co
 
-    command
-
-A detailed tutorial for _lmf_{: style="color: blue"} partial DOS can be found [here](#)
+And an accompanying tutorial can be found [here](http://titus.phy.qub.ac.uk/packages/LMTO/v7.11/doc/generating-energy-bands.html) [Please note, this is an old-style tutorial and will not be supported in future. It will eventually be ported over but for now this is the main source.]
 
 {::nomarkdown}</div>{:/}
 
-<div onclick="elm = document.getElementById('lmpardos'); if(elm.style.display == 'none') elm.style.display = 'block'; else elm.style.display = 'none';"><button type="button" class="button tiny radius">Click to show/hide lm instructions.</button></div>
-{::nomarkdown}<div style="display:none;margin:0px 25px 0px 25px;"id="lmpardos">{:/}
+##### _Drawing Fermi Surfaces_
+Fermi surfaces can be drawn with the _lmf_{: style="color: blue"} and _lm_{: style="color: blue"} codes.
 
-The _lm_{: style="color: blue"} partial DOS can be obtained using
+<div onclick="elm = document.getElementById('lm_fermisurfaces'); if(elm.style.display == 'none') elm.style.display = 'block'; else elm.style.display = 'none';"><button type="button" class="button tiny radius">Click to show/hide lm instructions.</button></div>
+{::nomarkdown}<div style="display:none;margin:0px 25px 0px 25px;"id="lm_fermisurfaces">{:/}
+	
+The _lm_{: style="color: blue"} code can generate energy bands as shown in [this](http://titus.phy.qub.ac.uk/packages/LMTO/v7.11/doc/FStutorial.html) tutorial. [Please note, this is an old-style tutorial and will not be supported in future. It will eventually be ported over but for now this is the main source.]
 
-    command
+{::nomarkdown}</div>{:/}
 
+<div onclick="elm = document.getElementById('lmf_fermisurfaces'); if(elm.style.display == 'none') elm.style.display = 'block'; else elm.style.display = 'none';"><button type="button" class="button tiny radius">Click to show/hide lmf instructions.</button></div>
+{::nomarkdown}<div style="display:none;margin:0px 25px 0px 25px;"id="lmf_fermisurfaces">{:/}
+
+The _lmf_{: style="color: blue"} code can draw fermi surfaces as shown in this test
+
+    $ fp/test/test.fp fe
+
+{::nomarkdown}</div>{:/}
+
+##### _Density Of States_
+All of the codes have some abilitity to generate either full or partial Density of States.
+
+A tutorial that covers generation of DoS in the _lmf_{: style="color: blue"}, _lm_{: style="color: blue"} and _tbe_{: style="color: blue"} codes can be found [here](http://titus.phy.qub.ac.uk/packages/LMTO/v7.11/doc/generating-density-of-states.html). [Please note, this is an old-style tutorial and will not be supported in future. It will eventually be ported over but for now this is the main source.]   
+
+<div onclick="elm = document.getElementById('lm_dos'); if(elm.style.display == 'none') elm.style.display = 'block'; else elm.style.display = 'none';"><button type="button" class="button tiny radius">Click to show/hide lm instructions.</button></div>
+{::nomarkdown}<div style="display:none;margin:0px 25px 0px 25px;"id="lm_dos">{:/}
+	
 A detailed tutorial for _lm_{: style="color: blue"} partial DOS can be found [here](https://lordcephei.github.io/asa_dos/)
 
 {::nomarkdown}</div>{:/}
+
+Density of states relates heavily to other topics. You may want to take a look at
+
+*   Core Level Spectroscopy:
+    This is exemplified in the test:
+	
+	    $ fp/test/test.fp fe 2
+
+*   Mulliken analysis:
+    This is exemplified in the test:
+	
+	    $ fp/test/test.fp fe 2
+	
+*   k-resolved DoS
+
+##### _Obtaining quasipartice energy bands from 1-shot GW_
+The test case
+
+    $ gwd/test/test.gwd fe 1
+
+Demonstrates the method to obtain results for a metallic system
+
+##### _Obtaining a self-energy in Dynamiccal Mean Field Theory_
+
+##### _Dielectric Response and Optics_
+
+##### _Spin Susceptibility and Magnetic Exchange Interactions_
+
+##### _Spectral Functions_
+
+##### _Molecular Statics_
+
+##### _Molecular Dynamics_
+
+##### _Noncollinear Magnetism_
+
+##### _Spin Statistics: Relaxation of Spin Quantization Axis_
+
+##### _Spin Orbit Coupling_
+
+##### _Fully Relativistic Dirac Equation_
+
+##### _Coherent Potential Approximation_
+
+##### _Application of External Scalar Potential_
+
+##### _Application of External Zeeman B Field_
+
+##### _Using Functionals Other Than LDA_
+
+##### _LDA+U_
+
+##### _Techniques for Brillouin Zone Integration_
+
+##### _Adding a Homogenous Background_
+
+##### _Building a Supercell_
+
+##### _Band Edge Finder_
+
+##### _Point Defects in Large Supercells_
+
+##### _Rotate The Crystal Coordinates_
+
+##### _Special Quasirandom Structures_
+
+##### _Spin Dynamics_
+
+##### _How The Code Defines Integer Lists in Various Contexts_
+
+##### _How The Code Defines Rotations in Various Contexts_
+
+##### _How Site Positions are Read by the Input File_
+
+##### _Ordering of m Quantum Numbers for a given l_
