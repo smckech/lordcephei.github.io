@@ -92,7 +92,7 @@
             {% comment %}   If left side WITHOUT dropdown menu do   {% endcomment %}
             {% if link.dropdown == nil %}
 				{% if link.title == 'Start' %}
-              		<li{% if link.url == page.url %} class="active"{% endif %}><a href="{{ domain }}{{ site.baseurl }}{{ link.url }}"{% if link.url contains 'http' %} target="_blank"{% endif %}>
+              		<li><a href="{{ domain }}{{ site.baseurl }}{{ link.url }}"{% if link.url contains 'http' %} target="_blank"{% endif %}>
 					<img src="{{ site.url }}{{ site.baseurl }}/images/logo.jpg" style="width:125px;height:40px"></a></li>
               	  	<li class="divider"></li>
 				{% else %}
