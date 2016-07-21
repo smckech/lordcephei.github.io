@@ -92,7 +92,7 @@ defaults:
       path: ""
       type: "posts"
     values:
-      show_meta: flase   # Show metadata beneath all posts
+      show_meta: false   # Show metadata beneath all posts
       # sidebar:        # Possible values › left, right › by default there will be no sidebar
       comments: false
       author: "your_author_name"
