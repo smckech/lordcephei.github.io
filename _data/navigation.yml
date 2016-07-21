@@ -2,10 +2,6 @@
   url: "/"
   side: left
 
-- title: "Developers"
-  url: "/developers/"
-  side: left
-
 - title: "Functionality"
   url: ""
   side: left
@@ -53,8 +49,8 @@
   url: "/formatting/"
   side: left
 
-- title: "About"
-  url: "/about/"
+- title: "Developers"
+  url: "/developers/"
   side: left
 
 - title: "Search"
@@ -63,4 +59,8 @@
 
 - title: "Contact"
   url: "/contact/"
+  side: right
+  
+- title: "About"
+  url: "/about/"
   side: right

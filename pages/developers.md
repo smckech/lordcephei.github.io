@@ -1,23 +1,14 @@
 ---
 layout: page
-title: "LM Suite - Developers"
-subheadline: ""
-show_meta: false
-teaser: ""
+title: "Developers"
 permalink: "/developers/"
-header: no
-
+header:
+    image_nologo: "banner_grey.jpg"
 ---
 
-The development and expansion of LM Suite has been led by Mark van Schilfgaarde since its inception.
-During his time with Ole Anderson’s group at the Max Planck Institute for Solid State Institute 
-(1987-1988), Mark implemented Ole’s ideas on a linear muffin tin orbital approach for density 
-functional theory into the first LMTO-ASA code. This code served as the foundation for both the 
-well known Stuttgart LMTO-ASA package and for LM Suite. Over the years, a number of other people 
-have helped in developing new capabilities for the code. A list of developers in alphabetical order is provided below:
+The development and expansion of LM Suite has been led by Mark van Schilfgaarde since its inception. During his time with Ole Anderson’s group at the Max Planck Institute for Solid State Institute (1987-1988), Mark implemented Ole’s ideas on a linear muffin tin orbital approach for density functional theory into the first LMTO-ASA code. This code served as the foundation for both the  well known Stuttgart LMTO-ASA package and for LM Suite. Over the years, a number of other people have helped in developing new capabilities for the code. A list of developers in alphabetical order is provided below:   
 
-
-##### *LM Suite Developers*
+#### *Questaal Developers*
 _________________________
 
 [Athanasios Chantis]() *(LANL)*

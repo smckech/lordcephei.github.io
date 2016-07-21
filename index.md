@@ -4,9 +4,10 @@ title: "Questaal Home"
 header:
     image_nologo: "banner_grey.jpg"
 ---
-   
-   
-   
+
+<hr style="height:10pt; visibility:hidden;" />
+<hr style="height:10pt; visibility:hidden;" />
+
 # **Welcome!**
 _________________________________________________
 Welcome to the Questaal website.   

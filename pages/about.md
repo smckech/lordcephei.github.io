@@ -1,11 +1,9 @@
 ---
 layout: page-fullwidth
 title: "About"
-subheadline: ""
-show_meta: false
-teaser: "This page describes what the program aims to do."
 permalink: "/about/"
-header: no
+header:
+    image_nologo: "banner_grey.jpg"
 ---
 
 *LM Suite* offers a range of first principles programs that can be used to model different materials and nanoscale structures. The common basis of these codes is the use of a linear muffin tin orbital basis (LMTO) set to describe the electronic structure of the different materials. These orbitals are expanded in terms of the angular momentum index around each atom and can be considered crystal extensions of atomic orbitals.
