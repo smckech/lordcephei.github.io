@@ -3,7 +3,7 @@
   <nav class="top-bar" data-topbar>
     <ul class="title-area">
       <li class="name">
-      <h1 class="show-for-small-only">
+      <h1 class="hide-for-large-up">
 		  <a href="{{ site.url }}{{ site.baseurl }}">
 		  	<img src="{{ site.url }}{{ site.baseurl }}/images/logo.png" style="width:125px;height:40px"></a></h1>
     </li>
@@ -38,9 +38,10 @@
 		            {% comment %}   If left side WITHOUT dropdown menu do   {% endcomment %}
 		            {% if link.dropdown == nil %}
 						{% if link.title == 'Start' %}
+						<h1 class="show-for-large-up">
 		              		<li><a href="{{ domain }}{{ site.baseurl }}{{ link.url }}"{% if link.url contains 'http' %} target="_blank"{% endif %}>
 							<img src="{{ site.url }}{{ site.baseurl }}/images/logo.png" style="width:125px;height:40px"></a></li>
-		              	  	<li class="divider"></li>
+		              	  	<li class="divider"></li></h1>
 						{% else %}
 		              		<li{% if link.url == page.url %} class="active"{% endif %}><a href="{{ domain }}{{ site.baseurl }}{{ link.url }}"{% if link.url contains 'http' %} target="_blank"{% endif %}>{{ link.title }}</a></li>
 		              	  	<li class="divider"></li>

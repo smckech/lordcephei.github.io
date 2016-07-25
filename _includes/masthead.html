@@ -65,10 +65,8 @@
 {% elsif page.header.image_nologo %}
 
 <div id="masthead">
-	<div class="row">
-		<div class="small-12 columns">
-		</div><!-- /.small-12.columns -->
-	</div><!-- /.row -->
+	<div id="masthead-overflow-container" style="left: 0px; top: 0px; overflow: hidden; height: 100%; width: 100%; position: relative;">
+		<img src="{{ site.urlimg }}{{ page.header.image_nologo }}" style="height:100%; max-height:100%; max-width: none; overflow: hidden"></div>
 </div><!-- /#masthead -->
 
 {% if page.breadcrumb == true %}
