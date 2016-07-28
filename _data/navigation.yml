@@ -45,7 +45,7 @@
   - title: "Generating a Fermi surface in spin polarized Fe"
     url: "/fstut/"
   - title: "Generating A Partial DOS With lmf"
-	url: "/lmf_pdos/"
+    url: "/lmf_pdos/"
 
 - title: "Site Contribution"
   url: "/formatting/"
