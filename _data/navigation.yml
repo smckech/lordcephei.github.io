@@ -9,9 +9,9 @@
   prefix: "/functionality"
   dropdown:
   - title: "By Physical Application"
-    url: "/functionality/application/"
+    url: "/application/"
   - title: "By Suite Program"
-    url: "/functionality/program/"
+    url: "/program/"
 
 - title: "Documentation"
   url: ""
