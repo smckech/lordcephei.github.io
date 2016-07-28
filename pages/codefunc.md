@@ -22,7 +22,7 @@ This page serves as a list of the capabilities of each package within the suite 
 ### _Packages_
 _____________________________________________________________
 
-##### __lm___
+##### __lm__
 ____________________________________________________________
 
 ###### _Basic self-consistent calculation_
