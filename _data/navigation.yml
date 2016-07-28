@@ -6,9 +6,9 @@
   url: ""
   side: left
   dropdown:
-  - title: "By Application"
+  - title: "By Physical Application"
     url: "/appfunc/"
-  - title: "By Package"
+  - title: "By Suite Program"
     url: "/codefunc/"
 
 - title: "Documentation"
