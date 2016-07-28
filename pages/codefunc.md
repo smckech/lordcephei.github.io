@@ -22,7 +22,8 @@ This page serves as a list of the capabilities of each package within the suite 
 ### _Packages_
 _____________________________________________________________
 
-##### _lm_
+##### __lm___
+____________________________________________________________
 
 ###### _Basic self-consistent calculation_
 
@@ -82,7 +83,8 @@ A detailed tutorial for _lm_{: style="color: blue"} partial DOS can be found [he
 
 ###### _Optics: Nonlinear Optics_
 
-##### _lmf_
+##### __lmf__
+____________________________________________________________
 
 ###### _Basic Self-Consistent Calculation_
 
@@ -118,7 +120,8 @@ A detailed tutorial for _lm_{: style="color: blue"} partial DOS can be found [he
 
 ###### _Application of External Scalar Potential_
 
-##### _lmgf_
+##### __lmgf__
+____________________________________________________________
 
 ###### _Basic Self-Consistent Calculation_
 
@@ -140,23 +143,28 @@ A detailed tutorial for _lm_{: style="color: blue"} partial DOS can be found [he
 
 ###### _Assisting Convergence: Generating the q=0 Charge Susceptibility_
 
-##### _lmpg_
+##### __lmpg__
+____________________________________________________________
 
 tbc
 
-##### _tbe_
+##### __tbe__
+____________________________________________________________
 
 tbc
 
-##### _lmfgws_
+##### __lmfgws__
+____________________________________________________________
 
 tbc
 
-##### _lmfdmft_
+##### __lmfdmft__
+____________________________________________________________
 
 tbc
 
-##### _lmscell_
+##### __lmscell__
+____________________________________________________________
 
 ###### _Make a Supercell of a Given Unit Cell_
 
@@ -166,7 +174,8 @@ tbc
 
 ###### _Make a Restart File for a Supercell from a Smaller Cell_
 
-##### _lmchk_
+##### __lmchk__
+____________________________________________________________
 
 ###### _Basic Check of Structure and Overlaps_
 
@@ -180,6 +189,7 @@ tbc
 
 ###### _Clean Up Lattice and Site Positions for a Given Symmetry_
 
-##### _lmmag_
+##### __lmmag__
+____________________________________________________________
 
 tbc
