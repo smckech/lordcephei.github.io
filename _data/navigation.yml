@@ -1,19 +1,22 @@
 - title: Start
   url: "/"
   side: left
+  prefix: ""
 
 - title: "Functionality"
   url: ""
   side: left
+  prefix: "/functionality"
   dropdown:
   - title: "By Physical Application"
-    url: "/appfunc/"
+    url: "/functionality/application/"
   - title: "By Suite Program"
-    url: "/codefunc/"
+    url: "/functionality/program/"
 
 - title: "Documentation"
   url: ""
   side: left
+  prefix: ""
   dropdown:
   - title: "Installation"
     url: "/install/"
@@ -29,6 +32,7 @@
 - title: "Tutorials"
   url: ""
   side: left
+  prefix: ""
   dropdown:
   - title: "Basic GW Tutorial"
     url: "/lmtut/"
@@ -50,19 +54,24 @@
 - title: "Site Contribution"
   url: "/formatting/"
   side: left
+  prefix: ""
 
 - title: "Developers"
   url: "/developers/"
   side: left
+  prefix: ""
 
 - title: "Search"
   url: "/search/"
   side: right
+  prefix: ""
 
 - title: "Contact"
   url: "/contact/"
   side: right
+  prefix: ""
   
 - title: "About"
   url: "/about/"
   side: right
+  prefix: ""

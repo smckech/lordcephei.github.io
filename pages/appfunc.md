@@ -1,7 +1,7 @@
 ---
 layout: page-fullwidth
 title: "Functionalities Of The Suite By Physical Application"
-permalink: "/appfunc/"
+permalink: "/functionality/application/"
 header: no
 ---
 

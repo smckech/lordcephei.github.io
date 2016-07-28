@@ -4,7 +4,7 @@ title: "Functionalities Of The Suite By Program"
 subheadline: ""
 show_meta: false
 teaser: ""
-permalink: "/codefunc/"
+permalink: "/functionality/program/"
 header: no
 ---
 
