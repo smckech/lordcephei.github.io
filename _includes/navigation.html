@@ -42,7 +42,7 @@
 							<img src="{{ site.url }}{{ site.baseurl }}/images/logo.png" style="width:125px;height:40px"></a></li>
 		              	  	<li class="divider"></li>
 						{% else %}
-		              		<li{% if link.url == page.url %} class="active"{% endif %}><a href="{{ domain }}{{ site.baseurl }}{{ link.url }}"{% if link.url contains 'http' %} target="_blank"{% endif %}>{{ link.title }}</a></li>
+		              		<li class="{% if link.url == page.url %}active{% endif %}"><a href="{{ domain }}{{ site.baseurl }}{{ link.url }}"{% if link.url contains 'http' %} target="_blank"{% endif %}>{{ link.title }}</a></li>
 		              	  	<li class="divider"></li>
 						{% endif %}
 		            {% comment %}   If left side WITH dropdown menu do   {% endcomment %}
@@ -53,7 +53,7 @@
 
 		                  <ul class="dropdown">
 		                    {% for dropdown_link in link.dropdown %}
-
+							 {% if dropdown_link.program == nil %}
 		                      {% if dropdown_link.url contains 'http' %}
 		                        {% assign domain = '' %}
 		                        {% else %}
@@ -61,6 +61,16 @@
 		                      {% endif %}
 
 		                      <li><a href="{{ domain }}{{ site.baseurl }}{{ link.prefix }}{{ dropdown_link.url }}"{% if dropdown_link.url contains 'http' %} target="_blank"{% endif %}>{{ dropdown_link.title }}</a></li>
+ 							 {% else %}
+ 							  {% for program in dropdown_link.program %}
+ 						      <li class="has-dropdown"><a href="#">{{ program.name }}</a>
+ 						      <ul class="dropdown">
+ 							   {% for content in program.content %}
+ 							      <li><a href="{{ domain }}{{ site.baseurl }}{{ link.prefix }}{{ content.url }}"{% if content.url contains 'http' %} target="_blank"{% endif %}>{{ content.title }}</a></li>
+ 						       {% endfor %}
+ 						      </ul></li>
+ 							  {% endfor %}
+ 							 {% endif %}
 		                    {% endfor %}
 		                  </ul>
                   
