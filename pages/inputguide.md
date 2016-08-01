@@ -1,10 +1,7 @@
 ---
 layout: page-fullwidth
 title: "Input File Guide"
-subheadline: ""
-show_meta: false
-teaser: ""
-permalink: "/inputguide/"
+permalink: "/docs/inputfile/"
 header: no
 ---
 

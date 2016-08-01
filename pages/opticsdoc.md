@@ -1,10 +1,7 @@
 ---
 layout: page-fullwidth
 title: "Optics Documentation"
-subheadline: ""
-show_meta: false
-teaser: ""
-permalink: "/opticsdoc/"
+permalink: "/docs/optics/"
 header: no
 ---
 _____________________________________________________________

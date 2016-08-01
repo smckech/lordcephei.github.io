@@ -66,7 +66,7 @@
  						      <li class="has-dropdown"><a href="#">{{ program.name }}</a>
  						      <ul class="dropdown">
  							   {% for content in program.content %}
- 							      <li><a href="{{ domain }}{{ site.baseurl }}{{ link.prefix }}{{ content.url }}"{% if content.url contains 'http' %} target="_blank"{% endif %}>{{ content.title }}</a></li>
+ 							      <li><a href="{{ domain }}{{ site.baseurl }}{{ link.prefix }}{{ program.prefix }}{{ content.url }}"{% if content.url contains 'http' %} target="_blank"{% endif %}>{{ content.title }}</a></li>
  						       {% endfor %}
  						      </ul></li>
  							  {% endfor %}

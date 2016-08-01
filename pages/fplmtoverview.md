@@ -1,10 +1,7 @@
 ---
 layout: page-fullwidth
-title: "Full Potential Documentation Overview"
-subheadline: ""
-show_meta: false
-teaser: ""
-permalink: "/fplmtoverview/"
+title: "Full Potential Overview"
+permalink: "/docs/lmf/overview/"
 header: no
 ---
 

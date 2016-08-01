@@ -16,19 +16,30 @@
 - title: "Documentation"
   url: ""
   side: left
-  prefix: ""
+  prefix: "/docs"
   dropdown:
   - program:
     - name: "Universal"
+      prefix: ""
       content:
       - title: "The Input File"
-        url: "/inputguide/"
+        url: "/inputfile/"
       - title: "Optics"
-        url: "/opticsdoc/"
-    - name: "lmf"
+        url: "/optics/"
+    - name: "Command Line Options"
+      prefix: "/commandline"
       content:
-      - title: "FP Overview"
-      url: "/fplmtoverview/"
+      - title: "General"
+        url: "/general/"
+      - title: "lm"
+        url: "/lm/"
+      - title: "lmf"
+        url: "/lmf/"
+    - name: "lmf"
+      prefix: "/lmf"
+      content:
+      - title: "Full Potential Overview"
+        url: "/overview/"
 
 - title: "Tutorials"
   url: ""
