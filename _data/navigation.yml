@@ -37,8 +37,8 @@
   - program:
     - name: "lmf"
       content:
-	  - title: "Tutorial for the full-potential LDA program lmf"
-	    url: "/fpnew/"
+      - title: "Tutorial for the full-potential LDA program lmf"
+        url: "/fpnew/"
       - title: "Building the FP Input File"
         url: "/buildingfpinput/"
       - title: "FP basis optimisation"
@@ -47,8 +47,8 @@
         url: "/lmf_pdos/"
     - name: "lm"
       content:
-	  - title: "ASA tutorial"
-	    url: "/asadoc/"
+      - title: "ASA tutorial"
+        url: "/asadoc/"
       - title: "Basic GW Tutorial"
         url: "/lmtut/"
     - name: "Miscellaneous"
