@@ -1,14 +1,10 @@
 ---
-layout: page-fullwidth
+layout: page
 title: "Contact"
-subheadline: ""
-show_meta: false
-teaser: ""
 permalink: "/contact/"
-header: no
+header:
+    image_nologo: "banner_grey.jpg"
 ---
-
-### *Contact our help desk here:*
 
 Please click <a href="mailto:help.lmto@gmail.com">here</a> to write an email.  
 

@@ -1,22 +1,19 @@
 ---
-#
-# Use the widgets beneath and the content will be
-# inserted automagically in the webpage. To make
-# this work, you have to use › layout: frontpage
-#
 layout: frontpage
-title: "LM Suite - Home"
+title: "Questaal Home"
 header:
-   image_fullwidth: "greybck.jpg"
+    image_nologo: "banner_grey.jpg"
 ---
 
 <hr style="height:10pt; visibility:hidden;" />
 <hr style="height:10pt; visibility:hidden;" />
-# Welcome
-_________________________________________________
-<hr style="height:10pt; visibility:hidden;" />
 
-#### Welcome to the *LM Suite website*.
-This site serves as the primary web source for information on the suite of density functional tools based on the linear
-muffin tin orbital approach. Please see our [About](/about/) page for more information on the codes. If you have any questions,
-please feel free to contact the Site Administrators, <a href="mailto:help.lmto@gmail.com">here</a>.
+# **Welcome!**
+_________________________________________________
+Welcome to the Questaal website.   
+
+This site serves as the primary web source for information on Questaal - the suite of density functional tools based on the linear muffin tin orbital approach. Please see our [About Page](/about/) or the Functionality tab for more information on the codes.  
+
+You should begin by visiting the [installation tutorial](/install/) to get the suite up and running. Once you have done this, have a look at the Functionality tab for what the code can do and the Tutorials tab for how to do them.
+
+If you have any questions or comments, you can find our contact details on the [Contact Page](/contact/).

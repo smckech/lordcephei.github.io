@@ -1,8 +1,10 @@
 ---
 layout: page
 show_meta: false
-title: "LM Suite - Search"
+title: "Search Questaal"
 permalink: "/search/"
+header:
+    image_nologo: "banner_grey.jpg"
 ---
 
 {% include google_search.html %}

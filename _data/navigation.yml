@@ -1,57 +1,98 @@
 - title: Start
   url: "/"
   side: left
+  prefix: ""
 
-- title: News and Updates
-  url: "/blog/"
+- title: "Functionality"
+  url: ""
   side: left
-
-- title: "Developers"
-  url: "/developers/"
-  side: left
+  prefix: "/functionality"
+  dropdown:
+  - title: "By Physical Application"
+    url: "/application/"
+  - title: "By Suite Program"
+    url: "/program/"
 
 - title: "Documentation"
-  url: "/docs/"
+  url: ""
   side: left
+  prefix: "/docs"
   dropdown:
-  - title: "Installation"
-    url: "/install/"
-  - title: "FP Overview"
-    url: "/fplmtoverview/"
-  - title: "FP Capabilities"
-    url: "/fpcapabilities/"
-  - title: "The Input File"
-    url: "/inputguide/"
-  - title: "Optics"
-    url: "/opticsdoc/"
+  - program:
+    - name: "Universal"
+      prefix: ""
+      content:
+      - title: "The Input File"
+        url: "/inputfile/"
+      - title: "Optics"
+        url: "/optics/"
+    - name: "Command Line Options"
+      prefix: "/commandline"
+      content:
+      - title: "General"
+        url: "/general/"
+      - title: "lm"
+        url: "/lm/"
+      - title: "lmf"
+        url: "/lmf/"
+    - name: "lmf"
+      prefix: "/lmf"
+      content:
+      - title: "Full Potential Overview"
+        url: "/overview/"
 
 - title: "Tutorials"
   url: ""
   side: left
+  prefix: ""
   dropdown:
-  - title: "Basic GW Tutorial"
-    url: "/lmtut/"
-  - title: "ASA tutorial"
-    url: "/asadoc/"
-  - title: "Building the FP Input File"
-    url: "/buildingfpinput/"
-  - title: "Tutorial for the full-potential LDA program lmf"
-    url: "/fpnew/"
-  - title: "FP basis optimisation"
-    url: "/fpoptbas/"
-  - title: "Adding external Zeeman field to the potential"
-    url: "/extbfield/"
-  - title: "Generating a Fermi surface in spin polarized Fe"
-    url: "/fstut/"
+  - program:
+    - name: "lmf"
+      content:
+      - title: "Tutorial for the full-potential LDA program lmf"
+        url: "/fpnew/"
+      - title: "Building the FP Input File"
+        url: "/buildingfpinput/"
+      - title: "FP basis optimisation"
+        url: "/fpoptbas/"
+      - title: "Generating a Partial DOS with lmf"
+        url: "/lmf_pdos/"
+    - name: "lm"
+      content:
+      - title: "ASA tutorial"
+        url: "/asadoc/"
+      - title: "Basic GW Tutorial"
+        url: "/lmtut/"
+    - name: "Miscellaneous"
+      content:
+      - title: "Installation"
+        url: "/install/"
+      - title: "Adding external Zeeman field to the potential"
+        url: "/extbfield/"
+      - title: "Generating a Fermi surface in spin polarized Fe"
+        url: "/fstut/"
 
 - title: "Site Contribution"
   url: "/formatting/"
   side: left
+  prefix: ""
 
-- title: "About"
-  url: "/about/"
+- title: "Developers"
+  url: "/developers/"
   side: left
+  prefix: ""
+
+- title: "Search"
+  url: "/search/"
+  side: right
+  prefix: ""
 
 - title: "Contact"
   url: "/contact/"
   side: right
+  prefix: ""
+  
+- title: "About"
+  url: "/about/"
+  side: right
+  prefix: ""
